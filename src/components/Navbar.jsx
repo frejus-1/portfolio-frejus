@@ -1,13 +1,33 @@
 import { useEffect, useState } from "react";
 
+function getInitialTheme() {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        return true;
+    }
+
+    if (savedTheme === "light") {
+        return false;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(getInitialTheme);
     const [scrolled, setScrolled] = useState(false);
 
     const closeMenu = () => {
         setMenuOpen(false);
     };
+
+    useEffect(() => {
+        const isDark = getInitialTheme();
+
+        document.documentElement.classList.toggle("dark", isDark);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,40 +43,17 @@ function Navbar() {
         };
     }, []);
 
-    useEffect(() => {
-        const savedTheme = localStorage.getItem("theme");
-
-        if (savedTheme === "dark") {
-            setDarkMode(true);
-            document.documentElement.classList.add("dark");
-        } else if (savedTheme === "light") {
-            setDarkMode(false);
-            document.documentElement.classList.remove("dark");
-        } else {
-            const prefersDark = window.matchMedia(
-                "(prefers-color-scheme: dark)"
-            ).matches;
-
-            setDarkMode(prefersDark);
-
-            if (prefersDark) {
-                document.documentElement.classList.add("dark");
-            }
-        }
-    }, []);
-
     const toggleTheme = () => {
         const newDarkMode = !darkMode;
 
         setDarkMode(newDarkMode);
 
-        if (newDarkMode) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        }
+        document.documentElement.classList.toggle("dark", newDarkMode);
+
+        localStorage.setItem(
+            "theme",
+            newDarkMode ? "dark" : "light"
+        );
     };
 
     return (
@@ -68,7 +65,9 @@ function Navbar() {
             <button
                 className="menu-toggle"
                 type="button"
-                aria-label="Ouvrir le menu"
+                aria-label={
+                    menuOpen ? "Fermer le menu" : "Ouvrir le menu"
+                }
                 aria-expanded={menuOpen}
                 onClick={() => setMenuOpen(!menuOpen)}
             >
@@ -118,7 +117,7 @@ function Navbar() {
                 }
                 title={darkMode ? "Mode clair" : "Mode sombre"}
             >
-                <span className="theme-icon">
+                <span className="theme-icon" aria-hidden="true">
                     {darkMode ? "☀" : "☾"}
                 </span>
             </button>
