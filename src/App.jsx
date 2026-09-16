@@ -7,6 +7,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Timeline from "./components/Timeline";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
             <Projects />
             <Timeline />
             <Contact />
+            <Footer />
         </>
     );
 }
