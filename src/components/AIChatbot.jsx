@@ -132,7 +132,6 @@ You can also contact him directly through the contact form on the portfolio.
 */
 
 const getLocalAnswer = (text, language) => {
-    console.log("TEST CHATBOT :", text);
     const normalized = normalizeText(text);
 
     const frejusQuestions = [
