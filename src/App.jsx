@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useLanguage } from "./context/useLanguage";
@@ -17,10 +17,32 @@ import NotFound from "./components/NotFound";
 import PageLoader from "./components/PageLoader";
 import BackToTop from "./components/BackToTop";
 import ScrollProgress from "./components/ScrollProgress";
+import DeveloperEasterEgg from "./components/DeveloperEasterEgg";
+import Gifts from "./components/Gifts";
 
 function Home() {
     const [terminalOpen, setTerminalOpen] = useState(false);
+    const [giftsOpen, setGiftsOpen] = useState(false);
+
     const { t } = useLanguage();
+
+    useEffect(() => {
+        const handleSecretUnlock = () => {
+            setGiftsOpen(true);
+        };
+
+        window.addEventListener(
+            "frejus-secret-unlocked",
+            handleSecretUnlock
+        );
+
+        return () => {
+            window.removeEventListener(
+                "frejus-secret-unlocked",
+                handleSecretUnlock
+            );
+        };
+    }, []);
 
     return (
         <>
@@ -39,13 +61,14 @@ function Home() {
 
             <Footer />
 
-            {/* Terminal modal */}
+            {/* ==============================
+                TERMINAL
+            ============================== */}
             <Terminal
                 isOpen={terminalOpen}
                 onClose={() => setTerminalOpen(false)}
             />
 
-            {/* Bouton flottant Terminal */}
             <button
                 type="button"
                 className="terminal-floating-button"
@@ -56,8 +79,28 @@ function Home() {
                 <span>Terminal</span>
             </button>
 
+            {/* ==============================
+                EASTER EGG
+                frejus → secret → cadeaux
+            ============================== */}
+            <DeveloperEasterEgg />
+
+            {/* ==============================
+                CADEAUX - MODAL
+            ============================== */}
+            <Gifts
+                isOpen={giftsOpen}
+                onClose={() => setGiftsOpen(false)}
+            />
+
+            {/* ==============================
+                WHATSAPP
+            ============================== */}
             <WhatsAppButton />
 
+            {/* ==============================
+                RETOUR EN HAUT
+            ============================== */}
             <BackToTop />
         </>
     );
