@@ -25,6 +25,14 @@ const translations = {
                 "Étudiant en Système Informatique et Logiciel à l'IATF, je conçois des applications web et mobiles en explorant les technologies modernes du développement frontend, backend et mobile.",
             projects: "Voir mes projets",
             contact: "Me contacter",
+            cv: "Télécharger mon CV",
+            typingWords: [
+                "Développeur Full Stack",
+                "Développeur React",
+                "Développeur Flutter",
+                "Développeur Backend",
+                "Développeur Web & Mobile",
+            ],
         },
 
         about: {
@@ -190,6 +198,96 @@ const translations = {
             rights: "Tous droits réservés.",
             backTop: "Retour en haut",
         },
+
+        whatsapp: {
+            button: "Discutons sur WhatsApp",
+            label: "Me contacter sur WhatsApp",
+        },
+
+        terminal: {
+            label: "Mode développeur",
+            title: "Explorez mon terminal",
+            description:
+                "Découvrez mon portfolio autrement. Tapez une commande pour commencer.",
+            windowTitle: "frejus@portfolio:~",
+            placeholder: "Tapez une commande...",
+            close: "Fermer le terminal",
+
+            welcome:
+                "Bienvenue dans le terminal de Fréjus.",
+            instruction:
+                'Tapez "help" pour voir les commandes disponibles.',
+
+            commands: {
+                help: {
+                    description: "Voir les commandes disponibles",
+                    output: [
+                        "Commandes disponibles :",
+                        "about    → À propos de Fréjus",
+                        "skills   → Mes compétences",
+                        "projects → Mes projets",
+                        "contact  → Mes coordonnées",
+                        "whoami   → Qui suis-je ?",
+                        "clear    → Effacer le terminal",
+                    ],
+                },
+
+                about: {
+                    description: "À propos de Fréjus",
+                    output: [
+                        "Fréjus Adjanohoun",
+                        "Étudiant en Système Informatique et Logiciel.",
+                        "Développeur Full Stack Web & Mobile.",
+                    ],
+                },
+
+                skills: {
+                    description: "Mes compétences",
+                    output: [
+                        "Frontend : React, JavaScript, HTML, CSS",
+                        "Backend  : Laravel, Spring Boot",
+                        "Mobile   : Flutter",
+                        "Outils   : Git, GitHub, Vite",
+                    ],
+                },
+
+                projects: {
+                    description: "Mes projets",
+                    output: [
+                        "Mes projets :",
+                        "• CampusLib",
+                        "• Orienter Education",
+                        "• Applications Flutter",
+                        "• Projets Web Full Stack",
+                    ],
+                },
+
+                contact: {
+                    description: "Mes coordonnées",
+                    output: [
+                        "Email    : f2987319@gmail.com",
+                        "GitHub   : github.com/frejus-1",
+                        "LinkedIn : Fréjus Adjanohoun",
+                    ],
+                },
+
+                whoami: {
+                    description: "Qui suis-je ?",
+                    output: [
+                        "Je suis le terminal de Fréjus.",
+                        "Bienvenue sur son portfolio.",
+                    ],
+                },
+
+                clear: {
+                    description: "Effacer le terminal",
+                },
+            },
+
+            unknownCommand: "Commande inconnue",
+        },
+
+
     },
 
     en: {
@@ -209,6 +307,14 @@ const translations = {
                 "A Computer Science and Software Engineering student at IATF, I build web and mobile applications while exploring modern frontend, backend and mobile development technologies.",
             projects: "View my projects",
             contact: "Contact me",
+            cv: "Download my CV",
+            typingWords: [
+                "Full Stack Developer",
+                "React Developer",
+                "Flutter Developer",
+                "Backend Developer",
+                "Web & Mobile Developer",
+            ],
         },
 
         about: {
@@ -372,6 +478,94 @@ const translations = {
             socials: "Find me",
             rights: "All rights reserved.",
             backTop: "Back to top",
+        },
+
+        whatsapp: {
+            button: "Let's chat on WhatsApp",
+            label: "Contact me on WhatsApp",
+        },
+
+        terminal: {
+            label: "Developer mode",
+            title: "Explore my terminal",
+            description:
+                "Discover my portfolio in a different way. Type a command to get started.",
+            windowTitle: "frejus@portfolio:~",
+            placeholder: "Type a command...",
+            close: "Close terminal",
+
+            welcome:
+                "Welcome to Fréjus' terminal.",
+            instruction:
+                'Type "help" to see the available commands.',
+
+            commands: {
+                help: {
+                    description: "Show available commands",
+                    output: [
+                        "Available commands:",
+                        "about    → About Fréjus",
+                        "skills   → My skills",
+                        "projects → My projects",
+                        "contact  → My contact information",
+                        "whoami   → Who am I?",
+                        "clear    → Clear the terminal",
+                    ],
+                },
+
+                about: {
+                    description: "About Fréjus",
+                    output: [
+                        "Fréjus Adjanohoun",
+                        "Computer Science and Software Engineering student.",
+                        "Full Stack Web & Mobile Developer.",
+                    ],
+                },
+
+                skills: {
+                    description: "My skills",
+                    output: [
+                        "Frontend : React, JavaScript, HTML, CSS",
+                        "Backend  : Laravel, Spring Boot",
+                        "Mobile   : Flutter",
+                        "Tools    : Git, GitHub, Vite",
+                    ],
+                },
+
+                projects: {
+                    description: "My projects",
+                    output: [
+                        "My projects:",
+                        "• CampusLib",
+                        "• Orienter Education",
+                        "• Flutter applications",
+                        "• Full Stack Web projects",
+                    ],
+                },
+
+                contact: {
+                    description: "My contact information",
+                    output: [
+                        "Email    : f2987319@gmail.com",
+                        "GitHub   : github.com/frejus-1",
+                        "LinkedIn : Fréjus Adjanohoun",
+                    ],
+                },
+
+                whoami: {
+                    description: "Who am I?",
+                    output: [
+                        "I am Fréjus' terminal.",
+                        "Welcome to his portfolio.",
+                    ],
+                },
+
+                clear: {
+                    description: "Clear the terminal",
+                },
+            },
+
+            unknownCommand: "Unknown command",
         },
     },
 };
