@@ -19,6 +19,7 @@ import BackToTop from "./components/BackToTop";
 import ScrollProgress from "./components/ScrollProgress";
 import DeveloperEasterEgg from "./components/DeveloperEasterEgg";
 import Gifts from "./components/Gifts";
+import AIChatbot from "./components/AIChatbot";
 
 function Home() {
     const [terminalOpen, setTerminalOpen] = useState(false);
@@ -92,6 +93,8 @@ function Home() {
                 isOpen={giftsOpen}
                 onClose={() => setGiftsOpen(false)}
             />
+
+            <AIChatbot />
 
             {/* ==============================
                 WHATSAPP
