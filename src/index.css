@@ -999,7 +999,7 @@ html.dark .menu-toggle span {
     background-position: center top;
     background-repeat: no-repeat;
 
-    opacity: 0.7;
+    opacity: 1;
 
     filter: grayscale(20%);
 
@@ -1022,7 +1022,7 @@ html.dark .hero::before {
             rgba(13, 17, 23, 0) 100%),
         url("./assets/frejus.png");
 
-    opacity: 0.8;
+    opacity: 1;
 
     filter: grayscale(15%);
 }
