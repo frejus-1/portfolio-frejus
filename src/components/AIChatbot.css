@@ -22,9 +22,7 @@
     cursor: pointer;
 
     color: #ffffff;
-    background: linear-gradient(135deg,
-            #2563eb,
-            #7c3aed);
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
 
     box-shadow:
         0 15px 35px rgba(37, 99, 235, 0.3),
@@ -129,9 +127,7 @@
 
     color: #ffffff;
 
-    background: linear-gradient(135deg,
-            #1d4ed8,
-            #6d28d9);
+    background: linear-gradient(135deg, #1d4ed8, #6d28d9);
 }
 
 .ai-chatbot-header-info {
@@ -220,7 +216,7 @@
 .ai-chatbot-messages {
     flex: 1;
 
-    padding: 20px;
+    padding: 18px;
 
     overflow-y: auto;
 
@@ -236,9 +232,13 @@
     align-items: flex-start;
     gap: 9px;
 
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     animation: aiMessageIn 0.3s ease;
+}
+
+.ai-message:last-child {
+    margin-bottom: 0;
 }
 
 .ai-message-user {
@@ -248,14 +248,17 @@
 .ai-message-content {
     max-width: 78%;
 
-    padding: 11px 14px;
+    padding: 10px 13px;
 
     border-radius: 16px;
 
     font-size: 13px;
-    line-height: 1.55;
+    line-height: 1.42;
 
     white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .ai-message-assistant .ai-message-content {
@@ -272,9 +275,7 @@
     border-top-right-radius: 5px;
 
     color: #ffffff;
-    background: linear-gradient(135deg,
-            #2563eb,
-            #4f46e5);
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
 }
 
 .ai-message-avatar {
@@ -291,11 +292,138 @@
 
     color: #ffffff;
 
-    background: linear-gradient(135deg,
-            #2563eb,
-            #7c3aed);
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
 
     font-size: 13px;
+}
+
+
+/* ==========================================
+   MARKDOWN DES RÉPONSES IA
+========================================== */
+
+.ai-message-content p {
+    margin: 0 0 5px;
+}
+
+.ai-message-content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Titres */
+
+.ai-message-content h1,
+.ai-message-content h2,
+.ai-message-content h3,
+.ai-message-content h4 {
+    margin: 7px 0 4px;
+
+    line-height: 1.3;
+}
+
+.ai-message-content h1 {
+    font-size: 16px;
+}
+
+.ai-message-content h2 {
+    font-size: 15px;
+}
+
+.ai-message-content h3,
+.ai-message-content h4 {
+    font-size: 14px;
+}
+
+
+/* Texte important */
+
+.ai-message-content strong {
+    font-weight: 750;
+}
+
+
+/* Listes */
+
+.ai-message-content ul,
+.ai-message-content ol {
+    margin: 4px 0 5px;
+
+    padding-left: 18px;
+}
+
+.ai-message-content li {
+    margin-bottom: 2px;
+
+    line-height: 1.4;
+}
+
+.ai-message-content li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Liens */
+
+.ai-message-content a {
+    color: #2563eb;
+
+    font-weight: 650;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid transparent;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ai-message-content a:hover {
+    color: #4f46e5;
+
+    border-color: currentColor;
+}
+
+.ai-message-user .ai-message-content a {
+    color: #ffffff;
+}
+
+
+/* Code inline */
+
+.ai-message-content code {
+    padding: 2px 5px;
+
+    border-radius: 5px;
+
+    color: #4338ca;
+    background: #eef2ff;
+
+    font-size: 0.9em;
+}
+
+
+/* Blocs de code */
+
+.ai-message-content pre {
+    margin: 7px 0;
+
+    padding: 9px;
+
+    overflow-x: auto;
+
+    border-radius: 10px;
+
+    color: #e2e8f0;
+    background: #0f172a;
+}
+
+.ai-message-content pre code {
+    padding: 0;
+
+    color: inherit;
+    background: transparent;
 }
 
 
@@ -304,18 +432,19 @@
 ========================================== */
 
 .ai-quick-questions {
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 .ai-quick-questions>span {
     display: block;
 
-    margin-bottom: 9px;
+    margin-bottom: 7px;
 
     color: #64748b;
 
     font-size: 11px;
     font-weight: 700;
+
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -323,11 +452,12 @@
 .ai-quick-questions>div {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
+
+    gap: 6px;
 }
 
 .ai-quick-questions button {
-    padding: 8px 11px;
+    padding: 7px 10px;
 
     border: 1px solid #dbe3ef;
     border-radius: 12px;
@@ -336,7 +466,7 @@
     background: #ffffff;
 
     font-size: 11px;
-    line-height: 1.3;
+    line-height: 1.25;
 
     cursor: pointer;
 
@@ -348,7 +478,9 @@
 
 .ai-quick-questions button:hover {
     border-color: #818cf8;
+
     background: #eef2ff;
+
     transform: translateY(-1px);
 }
 
@@ -363,9 +495,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 4px;
 
-    padding: 12px;
+    padding: 10px;
 
     border-radius: 14px;
 
@@ -404,15 +537,113 @@
 
 
 /* ==========================================
+   LIENS SOCIAUX
+========================================== */
+
+.ai-social-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 4px 3px 4px 0;
+
+    padding: 8px 10px;
+
+    border: 1px solid rgba(29, 78, 137, 0.18);
+    border-radius: 12px;
+
+    background: rgba(29, 78, 137, 0.05);
+
+    color: inherit;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ai-social-link:hover {
+    transform: translateY(-2px);
+
+    background: rgba(29, 78, 137, 0.1);
+
+    border-color: rgba(29, 78, 137, 0.35);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.ai-social-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: #1d4e89;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.ai-social-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+}
+
+.ai-social-platform {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    opacity: 0.65;
+}
+
+.ai-social-value {
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.ai-social-arrow {
+    margin-left: 3px;
+
+    font-size: 14px;
+
+    opacity: 0.55;
+
+    transition: transform 0.2s ease;
+}
+
+.ai-social-link:hover .ai-social-arrow {
+    transform: translate(2px, -2px);
+}
+
+
+/* ==========================================
    FORM
 ========================================== */
 
 .ai-chatbot-form {
     display: flex;
     align-items: flex-end;
+
     gap: 8px;
 
-    padding: 12px 14px;
+    padding: 11px 13px;
 
     border-top: 1px solid #e2e8f0;
 
@@ -425,7 +656,7 @@
     min-height: 42px;
     max-height: 110px;
 
-    padding: 11px 13px;
+    padding: 10px 12px;
 
     resize: none;
 
@@ -466,9 +697,8 @@
     justify-content: center;
 
     color: #ffffff;
-    background: linear-gradient(135deg,
-            #2563eb,
-            #7c3aed);
+
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
 
     font-size: 20px;
 
@@ -485,11 +715,12 @@
 
 .ai-chatbot-form button:disabled {
     opacity: 0.4;
+
     cursor: not-allowed;
 }
 
 .ai-chatbot-footer {
-    padding: 5px 14px 9px;
+    padding: 5px 14px 8px;
 
     color: #94a3b8;
 
@@ -570,6 +801,7 @@
 
     .ai-chatbot-overlay {
         padding: 0;
+
         align-items: stretch;
     }
 
@@ -586,13 +818,37 @@
     }
 
     .ai-chatbot-messages {
-        padding: 16px;
+        padding: 14px;
     }
 
     .ai-message-content {
         max-width: 84%;
+
+        padding: 9px 12px;
+
+        font-size: 13px;
+
+        line-height: 1.4;
+    }
+
+    .ai-message {
+        margin-bottom: 8px;
+    }
+
+    .ai-message-content p {
+        margin-bottom: 4px;
+    }
+
+    .ai-message-content ul,
+    .ai-message-content ol {
+        margin: 3px 0 4px;
     }
 }
+
+
+/* ==========================================
+   ACCESSIBILITÉ
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -603,165 +859,4 @@
         animation: none;
         transition: none;
     }
-}
-
-/* ==========================================
-   MARKDOWN DES RÉPONSES IA
-========================================== */
-
-.ai-message-content p {
-    margin: 0 0 8px;
-}
-
-.ai-message-content p:last-child {
-    margin-bottom: 0;
-}
-
-.ai-message-content strong {
-    font-weight: 750;
-}
-
-.ai-message-content ul,
-.ai-message-content ol {
-    margin: 8px 0;
-    padding-left: 20px;
-}
-
-.ai-message-content li {
-    margin-bottom: 4px;
-}
-
-.ai-message-content a {
-    color: #2563eb;
-    font-weight: 650;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-
-    transition:
-        color 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.ai-message-content a:hover {
-    color: #4f46e5;
-    border-color: currentColor;
-}
-
-.ai-message-user .ai-message-content a {
-    color: #ffffff;
-}
-
-.ai-message-content code {
-    padding: 2px 5px;
-
-    border-radius: 5px;
-
-    color: #4338ca;
-    background: #eef2ff;
-
-    font-size: 0.9em;
-}
-
-.ai-message-content pre {
-    margin: 10px 0;
-
-    padding: 10px;
-
-    overflow-x: auto;
-
-    border-radius: 10px;
-
-    color: #e2e8f0;
-    background: #0f172a;
-}
-
-.ai-message-content pre code {
-    padding: 0;
-
-    color: inherit;
-    background: transparent;
-}
-
-/* ==========================================
-   LIENS SOCIAUX DANS LES RÉPONSES IA
-========================================== */
-
-.ai-social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-
-    margin: 6px 4px 6px 0;
-    padding: 9px 12px;
-
-    border: 1px solid rgba(29, 78, 137, 0.18);
-    border-radius: 12px;
-
-    background: rgba(29, 78, 137, 0.05);
-
-    color: inherit;
-    text-decoration: none;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.ai-social-link:hover {
-    transform: translateY(-2px);
-
-    background: rgba(29, 78, 137, 0.1);
-
-    border-color: rgba(29, 78, 137, 0.35);
-
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-.ai-social-icon {
-    width: 32px;
-    height: 32px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 9px;
-
-    background: #1d4e89;
-    color: white;
-
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.ai-social-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-}
-
-.ai-social-platform {
-    font-size: 11px;
-    font-weight: 700;
-    opacity: 0.65;
-}
-
-.ai-social-value {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.ai-social-arrow {
-    margin-left: 4px;
-
-    font-size: 15px;
-    opacity: 0.55;
-
-    transition: transform 0.2s ease;
-}
-
-.ai-social-link:hover .ai-social-arrow {
-    transform: translate(2px, -2px);
 }
