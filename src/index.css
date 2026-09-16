@@ -3896,6 +3896,331 @@ html.dark textarea:focus-visible {
     cursor: not-allowed;
 }
 
+/* =========================================================
+   PAGE 404
+   ========================================================= */
+
+.not-found {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 3rem 1.5rem;
+    background:
+        radial-gradient(circle at 20% 20%,
+            rgba(29, 78, 137, 0.12),
+            transparent 35%),
+        radial-gradient(circle at 80% 80%,
+            rgba(244, 162, 89, 0.12),
+            transparent 35%),
+        var(--c-fond);
+}
+
+.not-found-content {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 700px);
+    text-align: center;
+    animation: notFoundAppear 0.8s ease both;
+}
+
+.not-found-number {
+    margin-bottom: -1.5rem;
+    font-size: clamp(8rem, 25vw, 16rem);
+    line-height: 0.9;
+    font-weight: 900;
+    letter-spacing: -0.08em;
+
+    background: linear-gradient(135deg,
+            var(--c-primaire),
+            var(--c-secondaire));
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    user-select: none;
+
+    animation: notFoundFloat 4s ease-in-out infinite;
+}
+
+.not-found-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.55rem 1rem;
+
+    border: 1px solid rgba(29, 78, 137, 0.2);
+    border-radius: 999px;
+
+    background: rgba(29, 78, 137, 0.08);
+    color: var(--c-primaire);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.not-found-content h1 {
+    margin: 1.5rem 0 1rem;
+
+    color: var(--c-texte);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.not-found-content p {
+    max-width: 550px;
+    margin: 0 auto 2rem;
+
+    color: var(--c-texte-doux);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.not-found-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+
+    padding: 0.9rem 1.5rem;
+
+    border: 1px solid transparent;
+    border-radius: 999px;
+
+    background: var(--c-primaire);
+    color: #ffffff;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 12px 30px rgba(29, 78, 137, 0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.not-found-button span {
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: transform 0.25s ease;
+}
+
+.not-found-button:hover {
+    transform: translateY(-4px);
+    background: var(--c-primaire-fonce);
+    box-shadow: 0 18px 35px rgba(29, 78, 137, 0.3);
+}
+
+.not-found-button:hover span {
+    transform: translateX(-4px);
+}
+
+.not-found-button:focus-visible {
+    outline: 3px solid var(--c-secondaire);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   ÉLÉMENTS DÉCORATIFS
+   ========================================================= */
+
+.not-found-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.not-found-circle {
+    position: absolute;
+    display: block;
+
+    border: 1px solid rgba(29, 78, 137, 0.12);
+    border-radius: 50%;
+
+    animation: notFoundCircle 8s ease-in-out infinite;
+}
+
+.circle-one {
+    width: 320px;
+    height: 320px;
+
+    top: -120px;
+    left: -100px;
+}
+
+.circle-two {
+    width: 450px;
+    height: 450px;
+
+    right: -180px;
+    bottom: -180px;
+
+    animation-delay: -2s;
+}
+
+.circle-three {
+    width: 180px;
+    height: 180px;
+
+    top: 20%;
+    right: 15%;
+
+    border-color: rgba(244, 162, 89, 0.15);
+
+    animation-delay: -4s;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes notFoundAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes notFoundFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes notFoundCircle {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(15px, -15px) scale(1.04);
+    }
+}
+
+
+/* =========================================================
+   MODE SOMBRE
+   ========================================================= */
+
+html.dark .not-found {
+    background:
+        radial-gradient(circle at 20% 20%,
+            rgba(29, 78, 137, 0.2),
+            transparent 35%),
+        radial-gradient(circle at 80% 80%,
+            rgba(244, 162, 89, 0.1),
+            transparent 35%),
+        var(--c-fond);
+}
+
+html.dark .not-found-badge {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .not-found-circle {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .circle-three {
+    border-color: rgba(244, 162, 89, 0.12);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .not-found {
+        padding: 2rem 1.2rem;
+    }
+
+    .not-found-number {
+        margin-bottom: -0.5rem;
+        font-size: clamp(7rem, 35vw, 10rem);
+    }
+
+    .not-found-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .not-found-content p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .not-found-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .circle-one {
+        width: 220px;
+        height: 220px;
+        top: -100px;
+        left: -100px;
+    }
+
+    .circle-two {
+        width: 280px;
+        height: 280px;
+        right: -150px;
+        bottom: -130px;
+    }
+
+    .circle-three {
+        width: 120px;
+        height: 120px;
+        top: 15%;
+        right: -40px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .not-found-content,
+    .not-found-number,
+    .not-found-circle {
+        animation: none;
+    }
+
+    .not-found-button,
+    .not-found-button span {
+        transition: none;
+    }
+}
+
 
 /* =========================================================
    FIN DU FICHIER
