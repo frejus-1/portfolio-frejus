@@ -1,8 +1,8 @@
-
 import { useEffect, useState } from "react";
-
+import { useLanguage } from "../context/useLanguage";
 function BackToTop() {
     const [visible, setVisible] = useState(false);
+    const { t } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -36,10 +36,12 @@ function BackToTop() {
     return (
         <button
             type="button"
-            className={`back-to-top ${visible ? "back-to-top-visible" : ""}`}
+            className={`back-to-top ${
+                visible ? "back-to-top-visible" : ""
+            }`}
             onClick={scrollToTop}
-            aria-label="Retour en haut"
-            title="Retour en haut"
+            aria-label={t.footer.backTop}
+            title={t.footer.backTop}
         >
             <span>↑</span>
         </button>

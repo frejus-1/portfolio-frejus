@@ -1,20 +1,25 @@
+import { useLanguage } from "../context/useLanguage";
+
 function Hero() {
+    const { t } = useLanguage();
+
     return (
         <section id="accueil" className="hero">
             <div className="hero-content">
-                <p className="hero-intro">Bonjour, je suis</p>
+                <p className="hero-intro">
+                    {t.hero.greeting}
+                </p>
 
                 <h1>
                     Fréjus<span> Adjanohoun</span>
                 </h1>
 
-                <h2>Développeur Full Stack Web & Mobile</h2>
+                <h2>
+                    {t.hero.role}
+                </h2>
 
                 <p className="hero-description">
-                    Étudiant en Système Informatique et Logiciel à l'IATF,
-                    je conçois des applications web et mobiles en explorant
-                    les technologies modernes du développement frontend,
-                    backend et mobile.
+                    {t.hero.description}
                 </p>
 
                 <div className="hero-actions">
@@ -22,14 +27,14 @@ function Hero() {
                         href="#projets"
                         className="button button-primary"
                     >
-                        Voir mes projets
+                        {t.hero.projects}
                     </a>
 
                     <a
                         href="#contact"
                         className="button button-secondary"
                     >
-                        Me contacter
+                        {t.hero.contact}
                     </a>
                 </div>
 
@@ -62,7 +67,9 @@ function Hero() {
 
                     <div className="code-content">
                         <p>
-                            <span className="code-keyword">const</span>{" "}
+                            <span className="code-keyword">
+                                const
+                            </span>{" "}
                             developer = {"{"}
                         </p>
 
@@ -98,4 +105,5 @@ function Hero() {
     );
 }
 
-export default Hero
+export default Hero;
+

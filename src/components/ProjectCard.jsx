@@ -1,16 +1,22 @@
+import { useLanguage } from "../context/useLanguage";
+
 function ProjectCard({ project, onOpen }) {
+    const { t } = useLanguage();
+
     return (
         <article className="project-card">
             {project.image && (
                 <div className="project-card-image">
                     <img
                         src={project.image}
-                        alt={`Aperçu du projet ${project.title}`}
+                        alt={`${t.projects.preview} ${project.title}`}
                         loading="lazy"
                     />
 
                     <div className="project-card-image-overlay">
-                        <span>Voir le projet</span>
+                        <span>
+                            {t.projects.viewProject}
+                        </span>
                     </div>
                 </div>
             )}
@@ -56,7 +62,7 @@ function ProjectCard({ project, onOpen }) {
                         className="project-details-button"
                         onClick={() => onOpen(project)}
                     >
-                        Voir les détails
+                        {t.projects.details}
                         <span>→</span>
                     </button>
 
@@ -66,7 +72,7 @@ function ProjectCard({ project, onOpen }) {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Voir le projet ↗
+                            {t.projects.viewProject} ↗
                         </a>
                     )}
                 </div>
@@ -76,4 +82,3 @@ function ProjectCard({ project, onOpen }) {
 }
 
 export default ProjectCard;
-

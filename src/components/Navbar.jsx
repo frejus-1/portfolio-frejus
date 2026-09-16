@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../context/useLanguage";
 
 function getInitialTheme() {
     const savedTheme = localStorage.getItem("theme");
@@ -18,6 +19,8 @@ function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [darkMode, setDarkMode] = useState(getInitialTheme);
     const [scrolled, setScrolled] = useState(false);
+
+    const { language, toggleLanguage, t } = useLanguage();
 
     const closeMenu = () => {
         setMenuOpen(false);
@@ -48,7 +51,10 @@ function Navbar() {
 
         setDarkMode(newDarkMode);
 
-        document.documentElement.classList.toggle("dark", newDarkMode);
+        document.documentElement.classList.toggle(
+            "dark",
+            newDarkMode
+        );
 
         localStorage.setItem(
             "theme",
@@ -57,8 +63,16 @@ function Navbar() {
     };
 
     return (
-        <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
-            <a href="#accueil" className="logo" onClick={closeMenu}>
+        <header
+            className={`navbar ${
+                scrolled ? "navbar-scrolled" : ""
+            }`}
+        >
+            <a
+                href="#accueil"
+                className="logo"
+                onClick={closeMenu}
+            >
                 Fréjus<span>.</span>
             </a>
 
@@ -66,7 +80,13 @@ function Navbar() {
                 className="menu-toggle"
                 type="button"
                 aria-label={
-                    menuOpen ? "Fermer le menu" : "Ouvrir le menu"
+                    menuOpen
+                        ? language === "fr"
+                            ? "Fermer le menu"
+                            : "Close menu"
+                        : language === "fr"
+                        ? "Ouvrir le menu"
+                        : "Open menu"
                 }
                 aria-expanded={menuOpen}
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -82,45 +102,72 @@ function Navbar() {
                 }`}
             >
                 <a href="#accueil" onClick={closeMenu}>
-                    Accueil
+                    {t.nav.home}
                 </a>
 
                 <a href="#apropos" onClick={closeMenu}>
-                    À propos
+                    {t.nav.about}
                 </a>
 
                 <a href="#competences" onClick={closeMenu}>
-                    Compétences
+                    {t.nav.skills}
                 </a>
 
                 <a href="#projets" onClick={closeMenu}>
-                    Projets
+                    {t.nav.projects}
                 </a>
 
                 <a href="#parcours" onClick={closeMenu}>
-                    Parcours
+                    {t.nav.journey}
                 </a>
 
                 <a href="#contact" onClick={closeMenu}>
-                    Contact
+                    {t.nav.contact}
                 </a>
             </nav>
 
-            <button
-                className="theme-toggle"
-                type="button"
-                onClick={toggleTheme}
-                aria-label={
-                    darkMode
-                        ? "Activer le mode clair"
-                        : "Activer le mode sombre"
-                }
-                title={darkMode ? "Mode clair" : "Mode sombre"}
-            >
-                <span className="theme-icon" aria-hidden="true">
-                    {darkMode ? "☀" : "☾"}
-                </span>
-            </button>
+            <div className="navbar-actions">
+                <button
+                    className="language-toggle"
+                    type="button"
+                    onClick={toggleLanguage}
+                    aria-label={
+                        language === "fr"
+                            ? "Passer en anglais"
+                            : "Switch to French"
+                    }
+                    title={
+                        language === "fr"
+                            ? "English"
+                            : "Français"
+                    }
+                >
+                    {language === "fr" ? "EN" : "FR"}
+                </button>
+
+                <button
+                    className="theme-toggle"
+                    type="button"
+                    onClick={toggleTheme}
+                    aria-label={
+                        darkMode
+                            ? "Activer le mode clair"
+                            : "Activer le mode sombre"
+                    }
+                    title={
+                        darkMode
+                            ? "Mode clair"
+                            : "Mode sombre"
+                    }
+                >
+                    <span
+                        className="theme-icon"
+                        aria-hidden="true"
+                    >
+                        {darkMode ? "☀" : "☾"}
+                    </span>
+                </button>
+            </div>
         </header>
     );
 }

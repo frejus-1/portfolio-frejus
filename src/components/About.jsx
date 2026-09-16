@@ -1,14 +1,18 @@
 import ScrollReveal from "./ScrollReveal";
-
+import { useLanguage } from "../context/useLanguage";
 function About() {
+    const { t } = useLanguage();
+
     return (
         <section id="apropos" className="section about-section">
             <ScrollReveal>
                 <div className="section-heading">
-                    <p className="section-label">À propos</p>
+                    <p className="section-label">
+                        {t.about.title}
+                    </p>
 
                     <h2>
-                        Construire, apprendre et progresser.
+                        {t.about.heading}
                     </h2>
                 </div>
             </ScrollReveal>
@@ -17,25 +21,15 @@ function About() {
                 <ScrollReveal direction="left">
                     <div className="about-text">
                         <p>
-                            Je suis Fréjus Adjanohoun, étudiant en
-                            Système Informatique et Logiciel à l'IATF
-                            et passionné par le développement web et
-                            mobile.
+                            {t.about.paragraph1}
                         </p>
 
                         <p>
-                            Je m'intéresse particulièrement à la
-                            conception d'applications modernes, aux
-                            interfaces web, aux API et au développement
-                            d'applications mobiles.
+                            {t.about.paragraph2}
                         </p>
 
                         <p>
-                            Mon objectif est de continuer à renforcer
-                            mes compétences techniques à travers des
-                            projets concrets et de participer à la
-                            réalisation de solutions utiles, accessibles
-                            et bien conçues.
+                            {t.about.paragraph3}
                         </p>
                     </div>
                 </ScrollReveal>
@@ -46,12 +40,12 @@ function About() {
                             <span className="about-number">01</span>
 
                             <div>
-                                <h3>Développement Web</h3>
+                                <h3>
+                                    {t.about.webTitle}
+                                </h3>
 
                                 <p>
-                                    Création d'interfaces modernes et
-                                    responsive avec les technologies
-                                    du web.
+                                    {t.about.webDescription}
                                 </p>
                             </div>
                         </div>
@@ -60,12 +54,12 @@ function About() {
                             <span className="about-number">02</span>
 
                             <div>
-                                <h3>Backend & API</h3>
+                                <h3>
+                                    {t.about.backendTitle}
+                                </h3>
 
                                 <p>
-                                    Conception de services backend et
-                                    découverte de l'architecture des
-                                    applications modernes.
+                                    {t.about.backendDescription}
                                 </p>
                             </div>
                         </div>
@@ -74,12 +68,12 @@ function About() {
                             <span className="about-number">03</span>
 
                             <div>
-                                <h3>Développement Mobile</h3>
+                                <h3>
+                                    {t.about.mobileTitle}
+                                </h3>
 
                                 <p>
-                                    Exploration du développement
-                                    d'applications mobiles avec
-                                    Flutter et Dart.
+                                    {t.about.mobileDescription}
                                 </p>
                             </div>
                         </div>
@@ -90,4 +84,4 @@ function About() {
     );
 }
 
-export default About
+export default About;

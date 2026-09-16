@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
+import { useLanguage } from "../context/useLanguage";
 
 const FORM_ENDPOINT = "https://formspree.io/f/meaojonv";
 
@@ -7,32 +8,34 @@ const whatsappMessage = encodeURIComponent(
     "Bonjour Fréjus, je vous contacte depuis votre portfolio."
 );
 
-const contactItems = [
-    {
-        label: "Email",
-        value: "f2987319@gmail.com",
-        href: "mailto:f2987319@gmail.com",
-    },
-    {
-        label: "WhatsApp",
-        value: "+229 01 52 90 53 10",
-        href: `https://wa.me/2290152905310?text=${whatsappMessage}`,
-    },
-    {
-        label: "GitHub",
-        value: "github.com/frejus-1",
-        href: "https://github.com/frejus-1/",
-    },
-    {
-        label: "LinkedIn",
-        value: "Fréjus Adjanohoun",
-        href: "https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/",
-    },
-];
-
 function Contact() {
+    const { t } = useLanguage();
+
     const [formStatus, setFormStatus] = useState("idle");
     const [errorMessage, setErrorMessage] = useState("");
+
+    const contactItems = [
+        {
+            label: t.contact.email,
+            value: "f2987319@gmail.com",
+            href: "mailto:f2987319@gmail.com",
+        },
+        {
+            label: t.contact.whatsapp,
+            value: "+229 01 52 90 53 10",
+            href: `https://wa.me/2290152905310?text=${whatsappMessage}`,
+        },
+        {
+            label: t.contact.github,
+            value: "github.com/frejus-1",
+            href: "https://github.com/frejus-1/",
+        },
+        {
+            label: t.contact.linkedin,
+            value: "Fréjus Adjanohoun",
+            href: "https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/",
+        },
+    ];
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -67,19 +70,14 @@ function Contact() {
                         .join(" ")
                 );
             } else {
-                setErrorMessage(
-                    "Impossible d'envoyer le message pour le moment."
-                );
+                setErrorMessage(t.contact.error);
             }
 
             setFormStatus("error");
         } catch (error) {
             console.error("Erreur Formspree :", error);
 
-            setErrorMessage(
-                "Une erreur réseau est survenue. Vérifiez votre connexion puis réessayez."
-            );
-
+            setErrorMessage(t.contact.networkError);
             setFormStatus("error");
         }
     };
@@ -90,19 +88,16 @@ function Contact() {
                 <ScrollReveal direction="left">
                     <div className="contact-content">
                         <p className="section-label">
-                            Contact
+                            {t.contact.title}
                         </p>
 
                         <h2>
-                            Un projet ou une idée ?
-                            <span> Parlons-en.</span>
+                            {t.contact.heading}
+                            <span> {t.contact.headingHighlight}</span>
                         </h2>
 
                         <p className="contact-introduction">
-                            Vous souhaitez échanger autour d'un projet,
-                            d'une collaboration ou simplement discuter
-                            de développement web et mobile ? Vous pouvez
-                            me contacter directement.
+                            {t.contact.introduction}
                         </p>
 
                         <div className="contact-list">
@@ -154,11 +149,11 @@ function Contact() {
                     <div className="contact-form-wrapper">
                         <div className="contact-form-header">
                             <span>
-                                Envoyer un message
+                                {t.contact.sendMessage}
                             </span>
 
                             <span className="contact-form-status">
-                                Disponible
+                                {t.contact.available}
                             </span>
                         </div>
 
@@ -168,21 +163,21 @@ function Contact() {
                         >
                             <div className="form-group">
                                 <label htmlFor="nom">
-                                    Nom
+                                    {t.contact.name}
                                 </label>
 
                                 <input
                                     type="text"
                                     id="nom"
                                     name="name"
-                                    placeholder="Votre nom"
+                                    placeholder={t.contact.namePlaceholder}
                                     required
                                 />
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="email">
-                                    Email
+                                    {t.contact.email}
                                 </label>
 
                                 <input
@@ -196,28 +191,28 @@ function Contact() {
 
                             <div className="form-group">
                                 <label htmlFor="sujet">
-                                    Sujet
+                                    {t.contact.subject}
                                 </label>
 
                                 <input
                                     type="text"
                                     id="sujet"
                                     name="_subject"
-                                    placeholder="Objet de votre message"
+                                    placeholder={t.contact.subjectPlaceholder}
                                     required
                                 />
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="message">
-                                    Message
+                                    {t.contact.message}
                                 </label>
 
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows="6"
-                                    placeholder="Décrivez votre projet ou votre demande..."
+                                    placeholder={t.contact.messagePlaceholder}
                                     required
                                 ></textarea>
                             </div>
@@ -230,8 +225,7 @@ function Contact() {
 
                             {formStatus === "success" && (
                                 <p className="form-message form-message-success">
-                                    Votre message a bien été envoyé.
-                                    Merci pour votre contact.
+                                    {t.contact.success}
                                 </p>
                             )}
 
@@ -248,8 +242,8 @@ function Contact() {
                                     disabled={formStatus === "sending"}
                                 >
                                     {formStatus === "sending"
-                                        ? "Envoi en cours..."
-                                        : "Envoyer le message"}
+                                        ? t.contact.sending
+                                        : t.contact.send}
 
                                     {formStatus !== "sending" && (
                                         <span>↗</span>
@@ -262,7 +256,7 @@ function Contact() {
                                     rel="noopener noreferrer"
                                     className="button button-whatsapp"
                                 >
-                                    WhatsApp
+                                    {t.contact.whatsapp}
                                     <span>↗</span>
                                 </a>
                             </div>

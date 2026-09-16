@@ -3,8 +3,11 @@ import projects from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
 import ScrollReveal from "./ScrollReveal";
+import { useLanguage } from "../context/useLanguage";
 
 function Projects() {
+    const { t } = useLanguage();
+
     const [activeFilter, setActiveFilter] = useState("Tous");
     const [selectedProject, setSelectedProject] = useState(null);
     const [filterKey, setFilterKey] = useState(0);
@@ -16,6 +19,14 @@ function Projects() {
         "Mobile",
         "Full Stack",
     ];
+
+    const filterLabels = {
+        Tous: t.projects.all,
+        Frontend: t.projects.frontend,
+        Backend: t.projects.backend,
+        Mobile: t.projects.mobile,
+        "Full Stack": t.projects.fullStack,
+    };
 
     const filteredProjects =
         activeFilter === "Tous"
@@ -38,17 +49,15 @@ function Projects() {
             <ScrollReveal direction="up">
                 <div className="section-heading">
                     <p className="section-label">
-                        Projets
+                        {t.projects.title}
                     </p>
 
                     <h2>
-                        Des projets pour apprendre et construire.
+                        {t.projects.heading}
                     </h2>
 
                     <p>
-                        Une sélection de projets réalisés ou en cours
-                        de développement, autour du développement web,
-                        backend et mobile.
+                        {t.projects.subtitle}
                     </p>
                 </div>
             </ScrollReveal>
@@ -56,7 +65,7 @@ function Projects() {
             <ScrollReveal direction="up" delay={150}>
                 <div
                     className="project-filters"
-                    aria-label="Filtrer les projets"
+                    aria-label={t.projects.filterLabel}
                 >
                     {filters.map((filter) => (
                         <button
@@ -71,7 +80,7 @@ function Projects() {
                                 handleFilterChange(filter)
                             }
                         >
-                            {filter}
+                            {filterLabels[filter]}
                         </button>
                     ))}
                 </div>
@@ -102,7 +111,7 @@ function Projects() {
             {filteredProjects.length === 0 && (
                 <ScrollReveal direction="up">
                     <p className="projects-empty">
-                        Aucun projet ne correspond à cette catégorie.
+                        {t.projects.empty}
                     </p>
                 </ScrollReveal>
             )}
@@ -117,4 +126,4 @@ function Projects() {
     );
 }
 
-export default Projects
+export default Projects;

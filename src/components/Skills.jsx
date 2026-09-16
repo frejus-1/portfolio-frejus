@@ -1,69 +1,69 @@
 import ScrollReveal from "./ScrollReveal";
-
-const skillGroups = [
-    {
-        title: "Frontend",
-        description:
-            "Création d'interfaces web modernes, responsives et interactives.",
-        skills: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "React",
-            "Vite",
-        ],
-    },
-    {
-        title: "Backend",
-        description:
-            "Développement d'API et de services côté serveur.",
-        skills: [
-            "Java",
-            "Spring Boot",
-            "Laravel",
-            "REST API",
-            "JWT",
-        ],
-    },
-    {
-        title: "Mobile",
-        description:
-            "Développement d'applications mobiles avec une approche multiplateforme.",
-        skills: [
-            "Flutter",
-            "Dart",
-        ],
-    },
-    {
-        title: "Données & outils",
-        description:
-            "Gestion des données et utilisation des outils de développement.",
-        skills: [
-            "MySQL",
-            "Git",
-            "GitHub",
-            "VS Code",
-        ],
-    },
-];
+import { useLanguage } from "../context/useLanguage";
 
 function Skills() {
+    const { t } = useLanguage();
+
+    const skillGroups = [
+        {
+            title: t.skills.frontendTitle,
+            description: t.skills.frontendDescription,
+            skills: [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React",
+                "Vite",
+            ],
+        },
+        {
+            title: t.skills.backendTitle,
+            description: t.skills.backendDescription,
+            skills: [
+                "Java",
+                "Spring Boot",
+                "Laravel",
+                "REST API",
+                "JWT",
+            ],
+        },
+        {
+            title: t.skills.mobileTitle,
+            description: t.skills.mobileDescription,
+            skills: [
+                "Flutter",
+                "Dart",
+            ],
+        },
+        {
+            title: t.skills.dataTitle,
+            description: t.skills.dataDescription,
+            skills: [
+                "MySQL",
+                "Git",
+                "GitHub",
+                "VS Code",
+            ],
+        },
+    ];
+
     return (
-        <section id="competences" className="section skills-section">
+        <section
+            id="competences"
+            className="section skills-section"
+        >
             <ScrollReveal direction="up">
                 <div className="section-heading">
                     <p className="section-label">
-                        Compétences
+                        {t.skills.title}
                     </p>
 
                     <h2>
-                        Les technologies que j'utilise.
+                        {t.skills.heading}
                     </h2>
 
                     <p>
-                        Un ensemble de technologies que j'apprends
-                        et que je mets progressivement en pratique
-                        à travers mes projets.
+                        {t.skills.subtitle}
                     </p>
                 </div>
             </ScrollReveal>

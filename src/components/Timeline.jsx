@@ -1,63 +1,61 @@
 import ScrollReveal from "./ScrollReveal";
-
-const timelineItems = [
-    {
-        number: "01",
-        category: "Formation",
-        title: "Système Informatique et Logiciel",
-        description:
-            "Formation universitaire à l'IATF avec un apprentissage progressif du développement logiciel, des bases de données et des technologies web et mobile.",
-        technologies: [
-            "Programmation",
-            "Bases de données",
-            "Développement web",
-        ],
-    },
-    {
-        number: "02",
-        category: "Développement Web",
-        title: "Création de projets web",
-        description:
-            "Mise en pratique des connaissances à travers différents projets frontend et backend, avec une attention particulière portée à la structure, au responsive design et à l'expérience utilisateur.",
-        technologies: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Laravel",
-        ],
-    },
-    {
-        number: "03",
-        category: "Full Stack & Mobile",
-        title: "Approfondissement des technologies",
-        description:
-            "Exploration de nouvelles technologies pour développer des applications complètes, du frontend au backend, ainsi que des applications mobiles.",
-        technologies: [
-            "React",
-            "Spring Boot",
-            "Flutter",
-            "MySQL",
-        ],
-    },
-];
+import { useLanguage } from "../context/useLanguage";
 
 function Timeline() {
+    const { t } = useLanguage();
+
+    const timelineItems = [
+        {
+            number: "01",
+            category: t.timeline.item1Category,
+            title: t.timeline.item1Title,
+            description: t.timeline.item1Description,
+            technologies: [
+                "Programmation",
+                "Bases de données",
+                "Développement web",
+            ],
+        },
+        {
+            number: "02",
+            category: t.timeline.item2Category,
+            title: t.timeline.item2Title,
+            description: t.timeline.item2Description,
+            technologies: [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "Laravel",
+            ],
+        },
+        {
+            number: "03",
+            category: t.timeline.item3Category,
+            title: t.timeline.item3Title,
+            description: t.timeline.item3Description,
+            technologies: [
+                "React",
+                "Spring Boot",
+                "Flutter",
+                "MySQL",
+            ],
+        },
+    ];
+
     return (
         <section id="parcours" className="section timeline-section">
             <ScrollReveal direction="up">
                 <div className="section-heading">
                     <p className="section-label">
-                        Parcours
+                        {t.timeline.title}
                     </p>
 
                     <h2>
-                        Un parcours construit par la pratique.
+                        {t.timeline.heading}
                     </h2>
 
                     <p>
-                        Une progression basée sur l'apprentissage,
-                        la réalisation de projets et l'exploration
-                        de nouvelles technologies.
+                        {t.timeline.subtitle}
                     </p>
                 </div>
             </ScrollReveal>

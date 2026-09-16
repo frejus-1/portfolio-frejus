@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { useLanguage } from "../context/useLanguage";
 
 function ProjectModal({ project, onClose }) {
+    const { t } = useLanguage();
+
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "Escape") {
@@ -35,7 +38,7 @@ function ProjectModal({ project, onClose }) {
                     type="button"
                     className="project-modal-close"
                     onClick={onClose}
-                    aria-label="Fermer"
+                    aria-label={t.projects.close}
                 >
                     ×
                 </button>
@@ -44,7 +47,7 @@ function ProjectModal({ project, onClose }) {
                     <div className="project-modal-image">
                         <img
                             src={project.image}
-                            alt={`Aperçu du projet ${project.title}`}
+                            alt={`${t.projects.preview} ${project.title}`}
                         />
                     </div>
                 )}
@@ -80,7 +83,7 @@ function ProjectModal({ project, onClose }) {
                 </p>
 
                 <div className="project-modal-section">
-                    <h3>Technologies</h3>
+                    <h3>{t.projects.technologies}</h3>
 
                     <div className="project-technologies">
                         {project.technologies.map((technology) => (
@@ -92,14 +95,10 @@ function ProjectModal({ project, onClose }) {
                 </div>
 
                 <div className="project-modal-section">
-                    <h3>À propos du projet</h3>
+                    <h3>{t.projects.aboutProject}</h3>
 
                     <p>
-                        Ce projet fait partie de mon parcours
-                        d'apprentissage et me permet de mettre en
-                        pratique les technologies utilisées ainsi que
-                        les principes de conception d'applications
-                        modernes.
+                        {t.projects.aboutProjectDescription}
                     </p>
                 </div>
 
@@ -111,7 +110,7 @@ function ProjectModal({ project, onClose }) {
                             rel="noopener noreferrer"
                             className="button button-primary"
                         >
-                            Voir le projet
+                            {t.projects.viewProject}
                             <span>↗</span>
                         </a>
                     )}
@@ -130,7 +129,7 @@ function ProjectModal({ project, onClose }) {
 
                     {!project.demo && !project.github && (
                         <span className="project-modal-development">
-                            Projet actuellement en développement.
+                            {t.projects.inDevelopment}
                         </span>
                     )}
                 </div>
@@ -140,3 +139,4 @@ function ProjectModal({ project, onClose }) {
 }
 
 export default ProjectModal;
+
