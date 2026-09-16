@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { useLanguage } from "../context/useLanguage";
 import "./AIChatbot.css";
 
-const API_URL = "http://localhost:3001/api/chat";
+const API_URL = "https://portfolio-ai-server-beta.vercel.app/api/chat";
 
 let messageId = 1;
 
