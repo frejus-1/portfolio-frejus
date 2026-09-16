@@ -9,6 +9,7 @@ import Timeline from "./components/Timeline";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import PageLoader from "./components/PageLoader";
 
 function Home() {
     return (
@@ -27,13 +28,16 @@ function Home() {
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </BrowserRouter>
+        <>
+            <PageLoader />
+
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </BrowserRouter>
+        </>
     );
 }
-
 export default App;
