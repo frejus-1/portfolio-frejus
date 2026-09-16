@@ -1,109 +1,123 @@
 import { useLanguage } from "../context/useLanguage";
+import ScrollReveal from "./ScrollReveal";
 
 function Hero() {
     const { t } = useLanguage();
 
     return (
         <section id="accueil" className="hero">
-            <div className="hero-content">
-                <p className="hero-intro">
-                    {t.hero.greeting}
-                </p>
 
-                <h1>
-                    Fréjus<span> Adjanohoun</span>
-                </h1>
+            <ScrollReveal direction="left">
+                <div className="hero-content">
+                    <p className="hero-intro">
+                        {t.hero.greeting}
+                    </p>
 
-                <h2>
-                    {t.hero.role}
-                </h2>
+                    <h1>
+                        Fréjus<span> Adjanohoun</span>
+                    </h1>
 
-                <p className="hero-description">
-                    {t.hero.description}
-                </p>
+                    <h2>
+                        {t.hero.role}
+                    </h2>
 
-                <div className="hero-actions">
-                    <a
-                        href="#projets"
-                        className="button button-primary"
-                    >
-                        {t.hero.projects}
-                    </a>
+                    <p className="hero-description">
+                        {t.hero.description}
+                    </p>
 
-                    <a
-                        href="#contact"
-                        className="button button-secondary"
-                    >
-                        {t.hero.contact}
-                    </a>
-                </div>
+                    <div className="hero-actions">
+                        <a
+                            href="#projets"
+                            className="button button-primary"
+                        >
+                            {t.hero.projects}
+                        </a>
 
-                <div className="hero-socials">
-                    <a
-                        href="https://github.com/frejus-1/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub
-                    </a>
-
-                    <a
-                        href="https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        LinkedIn
-                    </a>
-                </div>
-            </div>
-
-            <div className="hero-visual">
-                <div className="code-card">
-                    <div className="code-header">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <a
+                            href="#contact"
+                            className="button button-secondary"
+                        >
+                            {t.hero.contact}
+                        </a>
                     </div>
 
-                    <div className="code-content">
-                        <p>
-                            <span className="code-keyword">
-                                const
-                            </span>{" "}
-                            developer = {"{"}
-                        </p>
+                    <div className="hero-socials">
+                        <a
+                            href="https://github.com/frejus-1/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                        </a>
 
-                        <p className="code-indent">
-                            name: <span>"Fréjus Adjanohoun"</span>,
-                        </p>
-
-                        <p className="code-indent">
-                            role: <span>"Full Stack Developer"</span>,
-                        </p>
-
-                        <p className="code-indent">
-                            focus: <span>"Web & Mobile"</span>
-                        </p>
-
-                        <p>{"};"}</p>
+                        <a
+                            href="https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn
+                        </a>
                     </div>
                 </div>
+            </ScrollReveal>
 
-                <div className="floating-badge badge-react">
-                    React
-                </div>
+            <ScrollReveal direction="right" delay={200}>
+                <div className="hero-visual">
 
-                <div className="floating-badge badge-spring">
-                    Spring Boot
-                </div>
+                    <div className="code-card">
+                        <div className="code-header">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
 
-                <div className="floating-badge badge-flutter">
-                    Flutter
+                        <div className="code-content">
+                            <p>
+                                <span className="code-keyword">
+                                    const
+                                </span>{" "}
+                                developer = {"{"}
+                            </p>
+
+                            <p className="code-indent">
+                                name: <span>"Fréjus Adjanohoun"</span>,
+                            </p>
+
+                            <p className="code-indent">
+                                role: <span>"Full Stack Developer"</span>,
+                            </p>
+
+                            <p className="code-indent">
+                                focus: <span>"Web & Mobile"</span>
+                            </p>
+
+                            <p>{"};"}</p>
+                        </div>
+                    </div>
+
+                    <ScrollReveal delay={400}>
+                        <div className="floating-badge badge-react">
+                            React
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal delay={600}>
+                        <div className="floating-badge badge-spring">
+                            Spring Boot
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal delay={800}>
+                        <div className="floating-badge badge-flutter">
+                            Flutter
+                        </div>
+                    </ScrollReveal>
+
                 </div>
-            </div>
+            </ScrollReveal>
+
         </section>
     );
 }
 
 export default Hero;
-

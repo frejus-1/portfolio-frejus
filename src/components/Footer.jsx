@@ -40,11 +40,13 @@ function Footer() {
 
     return (
         <footer className="site-footer">
-            <ScrollReveal direction="up">
-                <div className="footer-container">
 
-                    <div className="footer-main">
+            <div className="footer-container">
 
+                <div className="footer-main">
+
+                    {/* BRAND */}
+                    <ScrollReveal direction="left">
                         <div className="footer-brand">
                             <a
                                 href="#accueil"
@@ -57,7 +59,10 @@ function Footer() {
                                 {t.footer.description}
                             </p>
                         </div>
+                    </ScrollReveal>
 
+                    {/* NAVIGATION */}
+                    <ScrollReveal direction="up" delay={200}>
                         <div className="footer-navigation">
                             <h3>
                                 {t.footer.navigation}
@@ -78,7 +83,10 @@ function Footer() {
                                 ))}
                             </nav>
                         </div>
+                    </ScrollReveal>
 
+                    {/* RÉSEAUX SOCIAUX */}
+                    <ScrollReveal direction="right" delay={400}>
                         <div className="footer-socials">
                             <h3>
                                 {t.footer.socials}
@@ -98,8 +106,12 @@ function Footer() {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
 
+                </div>
+
+                {/* BAS DU FOOTER */}
+                <ScrollReveal direction="up" delay={600}>
                     <div className="footer-bottom">
                         <p>
                             © {currentYear} Fréjus Adjanohoun.
@@ -114,9 +126,10 @@ function Footer() {
                             <span>↑</span>
                         </a>
                     </div>
+                </ScrollReveal>
 
-                </div>
-            </ScrollReveal>
+            </div>
+
         </footer>
     );
 }
