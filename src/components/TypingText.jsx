@@ -12,12 +12,16 @@ function TypingText({ words = [] }) {
 
         const currentWord = words[wordIndex];
 
-        let delay = 200;
+        let delay = 280;
 
+        // Pause lorsque le mot est complètement écrit
         if (!deleting && text === currentWord) {
-            delay = 2000;
-        } else if (deleting) {
-            delay = 70;
+            delay = 2500;
+        }
+
+        // Suppression plus lente
+        else if (deleting) {
+            delay = 120;
         }
 
         const timer = setTimeout(() => {
