@@ -8,15 +8,28 @@ const API_URL =
 
 let messageId = 1;
 
-const createMessageId = () => {
-    return messageId++;
+const createMessageId = () => messageId++;
+
+/*
+|--------------------------------------------------------------------------
+| Normalisation du texte
+|--------------------------------------------------------------------------
+*/
+
+const normalizeText = (text) => {
+    return text
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, " ");
 };
 
 /*
 |--------------------------------------------------------------------------
 | Réponses locales
 |--------------------------------------------------------------------------
-| Ces questions ne consomment pas de quota Gemini.
+| Ces réponses ne consomment pas de quota Gemini.
 |--------------------------------------------------------------------------
 */
 
@@ -112,64 +125,235 @@ You can also contact him directly through the contact form on the portfolio.
     },
 };
 
+/*
+|--------------------------------------------------------------------------
+| Questions naturelles sur Fréjus
+|--------------------------------------------------------------------------
+*/
+
+const getLocalAnswer = (text, language) => {
+    console.log("TEST CHATBOT :", text);
+    const normalized = normalizeText(text);
+
+    const frejusQuestions = [
+        "frejus",
+        "qui est frejus",
+        "c'est qui frejus",
+        "c est qui frejus",
+        "parle moi de frejus",
+        "parle-moi de frejus",
+        "presente frejus",
+        "presente moi frejus",
+        "presente-moi frejus",
+        "tell me about frejus",
+        "who is frejus",
+    ];
+
+    if (frejusQuestions.includes(normalized)) {
+        if (language === "fr") {
+            return `
+**Fréjus Adjanohoun** est un développeur **Full Stack Web & Mobile**, actuellement étudiant en deuxième année en **Système informatique et logiciel à l'IATF**.
+
+Il développe des applications **Web et Mobile** avec notamment :
+
+- **React**
+- **JavaScript**
+- **Laravel**
+- **Spring Boot**
+- **Flutter / Dart**
+- **MySQL**
+
+Parmi ses projets figurent **CampusLib**, **Orienter Education**, une **application Todo** et son **portfolio personnel**.
+
+Tu peux découvrir son parcours, ses compétences et ses projets directement sur ce portfolio.
+            `.trim();
+        }
+
+        return `
+**Fréjus Adjanohoun** is a **Full Stack Web & Mobile developer**, currently a second-year student in **Computer Systems and Software at IATF**.
+
+He develops **web and mobile applications** using technologies such as:
+
+- **React**
+- **JavaScript**
+- **Laravel**
+- **Spring Boot**
+- **Flutter / Dart**
+- **MySQL**
+
+His projects include **CampusLib**, **Orienter Education**, a **Todo application**, and his **personal portfolio**.
+
+You can explore his background, skills and projects throughout this portfolio.
+        `.trim();
+    }
+
+    return null;
+};
+
+/*
+|--------------------------------------------------------------------------
+| Protection des informations secrètes
+|--------------------------------------------------------------------------
+*/
+
+const SECRET_PATTERNS = [
+    /code\s+secret/i,
+    /secret\s+code/i,
+
+    /mot\s+de\s+passe/i,
+    /password/i,
+
+    /code\s+cach[ée]/i,
+    /hidden\s+code/i,
+
+    /easter.?egg.*code/i,
+    /code.*easter.?egg/i,
+
+    /comment.*déverrouill/i,
+    /comment.*deverrouill/i,
+    /how.*unlock/i,
+
+    /commande\s+cach[ée]/i,
+    /commande\s+secr[èe]te/i,
+    /hidden\s+command/i,
+    /secret\s+command/i,
+
+    /mécanisme.*secret/i,
+    /mecanisme.*secret/i,
+    /secret.*mechanism/i,
+
+    /clé\s+api/i,
+    /cle\s+api/i,
+    /api\s+key/i,
+
+    /variable.*environnement/i,
+    /environment.*variable/i,
+
+    /code.*terminal/i,
+    /commande.*terminal/i,
+
+    /source.*easter/i,
+    /source.*secret/i,
+];
+
+const isSecretQuestion = (message) => {
+    return SECRET_PATTERNS.some((pattern) =>
+        pattern.test(message)
+    );
+};
+
+/*
+|--------------------------------------------------------------------------
+| Composant principal
+|--------------------------------------------------------------------------
+*/
+
 function AIChatbot() {
     const { language } = useLanguage();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Interface
+    |--------------------------------------------------------------------------
+    */
 
     const ui =
         language === "fr"
             ? {
                 title: "Assistant IA",
+
                 subtitle:
                     "Je connais le portfolio de Fréjus",
+
                 placeholder:
                     "Posez-moi une question...",
+
                 send: "Envoyer",
+
                 thinking:
                     "L'assistant réfléchit...",
+
                 welcome:
                     "Bonjour 👋 Je suis l'assistant IA du portfolio de Fréjus. Que souhaitez-vous savoir sur son parcours, ses compétences ou ses projets ?",
+
                 error:
                     "Désolé, je n'arrive pas à contacter l'assistant pour le moment.",
+
                 quotaError:
-                    "Le quota de l'assistant IA est temporairement atteint. Réessayez plus tard.",
-                quickTitle: "Questions rapides",
+                    "Le quota de l'assistant IA est temporairement atteint. Les questions générales pourront fonctionner à nouveau lorsque le quota sera disponible.",
+
+                secretError:
+                    "Je peux parler du parcours, des compétences et des projets de Fréjus, mais je ne peux pas révéler les codes secrets, commandes cachées ou mécanismes internes du portfolio.",
+
+                quickTitle:
+                    "Questions rapides",
+
                 quickQuestions: [
                     "Qui est Fréjus ?",
                     "Quelles technologies utilise-t-il ?",
                     "Quels sont ses projets ?",
                     "Comment le contacter ?",
                 ],
-                open: "Ouvrir l'assistant IA",
-                close: "Fermer l'assistant IA",
+
+                open:
+                    "Ouvrir l'assistant IA",
+
+                close:
+                    "Fermer l'assistant IA",
             }
             : {
                 title: "AI Assistant",
+
                 subtitle:
                     "I know Fréjus' portfolio",
+
                 placeholder:
                     "Ask me a question...",
+
                 send: "Send",
+
                 thinking:
                     "The assistant is thinking...",
+
                 welcome:
                     "Hello 👋 I'm the AI assistant of Fréjus' portfolio. What would you like to know about his background, skills or projects?",
+
                 error:
                     "Sorry, I cannot contact the assistant right now.",
+
                 quotaError:
-                    "The AI assistant quota has temporarily been reached. Please try again later.",
-                quickTitle: "Quick questions",
+                    "The AI assistant quota has temporarily been reached. General questions will work again when the quota becomes available.",
+
+                secretError:
+                    "I can talk about Fréjus' background, skills and projects, but I cannot reveal secret codes, hidden commands or internal portfolio mechanisms.",
+
+                quickTitle:
+                    "Quick questions",
+
                 quickQuestions: [
                     "Who is Fréjus?",
                     "What technologies does he use?",
                     "What are his projects?",
                     "How can I contact him?",
                 ],
-                open: "Open AI assistant",
-                close: "Close AI assistant",
+
+                open:
+                    "Open AI assistant",
+
+                close:
+                    "Close AI assistant",
             };
 
+    /*
+    |--------------------------------------------------------------------------
+    | États
+    |--------------------------------------------------------------------------
+    */
+
     const [isOpen, setIsOpen] = useState(false);
+
     const [message, setMessage] = useState("");
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [messages, setMessages] = useState([
@@ -187,9 +371,9 @@ function AIChatbot() {
     */
 
     const messagesEndRef = useRef(null);
+
     const inputRef = useRef(null);
 
-    // Empêche plusieurs requêtes simultanées
     const isSendingRef = useRef(false);
 
     /*
@@ -311,16 +495,46 @@ function AIChatbot() {
 
         /*
         |--------------------------------------------------------------------------
-        | Réponse locale
+        | Protection des informations secrètes
         |--------------------------------------------------------------------------
-        |
-        | Les questions rapides ne passent pas par Gemini.
-        |
         */
 
-        if (localAnswer) {
+        if (isSecretQuestion(cleanMessage)) {
             setTimeout(() => {
-                addAssistantMessage(localAnswer);
+                addAssistantMessage(
+                    ui.secretError
+                );
+
+                isSendingRef.current = false;
+            }, 200);
+
+            return;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Recherche d'une réponse locale
+        |--------------------------------------------------------------------------
+        */
+
+        const automaticLocalAnswer =
+            localAnswer ||
+            getLocalAnswer(
+                cleanMessage,
+                language
+            );
+
+        /*
+        |--------------------------------------------------------------------------
+        | Réponse locale
+        |--------------------------------------------------------------------------
+        */
+
+        if (automaticLocalAnswer) {
+            setTimeout(() => {
+                addAssistantMessage(
+                    automaticLocalAnswer
+                );
 
                 isSendingRef.current = false;
             }, 250);
@@ -328,20 +542,29 @@ function AIChatbot() {
             return;
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Chargement
+        |--------------------------------------------------------------------------
+        */
+
         setIsLoading(true);
 
         /*
         |--------------------------------------------------------------------------
-        | Appel API Gemini
+        | Appel API
         |--------------------------------------------------------------------------
         */
 
         try {
             const response = await fetch(API_URL, {
                 method: "POST",
+
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type":
+                        "application/json",
                 },
+
                 body: JSON.stringify({
                     message: cleanMessage,
                 }),
@@ -357,24 +580,27 @@ function AIChatbot() {
 
             /*
             |--------------------------------------------------------------------------
-            | Détection du quota Gemini
+            | Détection quota Gemini
             |--------------------------------------------------------------------------
             */
 
             const details =
-                typeof data?.details === "string"
+                typeof data?.details ===
+                    "string"
                     ? data.details
                     : "";
 
+            const errorText =
+                `${data?.error || ""} ${details}`
+                    .toLowerCase();
+
             const isQuotaError =
                 response.status === 429 ||
-                details.includes("429") ||
-                details.includes(
-                    "RESOURCE_EXHAUSTED"
+                errorText.includes("429") ||
+                errorText.includes(
+                    "resource_exhausted"
                 ) ||
-                details
-                    .toLowerCase()
-                    .includes("quota");
+                errorText.includes("quota");
 
             if (!response.ok) {
                 if (isQuotaError) {
@@ -399,7 +625,8 @@ function AIChatbot() {
                 id: createMessageId(),
                 role: "assistant",
                 content:
-                    data.reply || ui.error,
+                    data?.reply ||
+                    ui.error,
             };
 
             setMessages((previous) => [
@@ -427,6 +654,7 @@ function AIChatbot() {
             );
         } finally {
             isSendingRef.current = false;
+
             setIsLoading(false);
         }
     };
@@ -493,7 +721,9 @@ function AIChatbot() {
         ) {
             platform = "Facebook";
             icon = "f";
-        } else if (url.includes("wa.me")) {
+        } else if (
+            url.includes("wa.me")
+        ) {
             platform = "WhatsApp";
             icon = "WA";
         } else if (
@@ -510,16 +740,19 @@ function AIChatbot() {
         */
 
         if (platform) {
+            const isMail =
+                url.startsWith("mailto:");
+
             return (
                 <a
                     href={href}
                     target={
-                        url.startsWith("mailto:")
+                        isMail
                             ? undefined
                             : "_blank"
                     }
                     rel={
-                        url.startsWith("mailto:")
+                        isMail
                             ? undefined
                             : "noopener noreferrer"
                     }
@@ -765,8 +998,7 @@ function AIChatbot() {
                                 value={message}
                                 onChange={(event) =>
                                     setMessage(
-                                        event
-                                            .target
+                                        event.target
                                             .value
                                     )
                                 }
