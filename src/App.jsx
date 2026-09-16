@@ -10,18 +10,28 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import PageLoader from "./components/PageLoader";
+import BackToTop from "./components/BackToTop";
+import ScrollProgress from "./components/ScrollProgress";
 
 function Home() {
     return (
         <>
+            <ScrollProgress />
+
             <Navbar />
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Timeline />
-            <Contact />
+
+            <main>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Timeline />
+                <Contact />
+            </main>
+
             <Footer />
+
+            <BackToTop />
         </>
     );
 }
@@ -40,4 +50,5 @@ function App() {
         </>
     );
 }
+
 export default App;
