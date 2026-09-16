@@ -457,118 +457,123 @@ const translations = {
                 "Commande inconnue",
         },
 
-        /* ==================================================
-           🎁 CADEAUX
-           ================================================== */
-
         gifts: {
             label:
                 "Secret débloqué",
 
             title:
-                "Bienvenue dans mes ",
+                "Une petite surprise pour ",
 
             highlight:
-                "cadeaux",
+                "vous",
 
             description:
-                "Tu as trouvé le code secret. Maintenant, c'est à moi de te faire un cadeau. Choisis ce qui te ferait plaisir et viens m'en parler directement.",
+                "Vous avez découvert le code secret. Choisissez une offre spéciale et profitez d'une réduction sur votre prochain projet.",
+
+            codeLabel:
+                "Code promo",
 
             action:
-                "Faire ma demande",
+                "Profiter de l'offre",
 
             footer:
-                "Une demande sérieuse, une idée folle ou simplement une question ? Écris-moi. On en parle.",
+                "Offres valables pour une première commande et non cumulables avec une autre promotion.",
 
             items: [
                 {
                     id: "website",
-
                     icon: "🌐",
+                    discount: "-20%",
+                    code: "WEB20",
 
                     title:
-                        "Je veux un site web",
+                        "Création de site web",
 
                     description:
-                        "Tu as besoin d'un site vitrine, portfolio, plateforme ou site personnalisé ?",
+                        "Landing page, portfolio, site vitrine ou plateforme web personnalisée.",
 
                     message:
-                        "Je souhaite discuter de la création d'un site web.",
+                        "Je souhaite profiter de la réduction de 20 % sur la création d'un site web.",
                 },
 
                 {
                     id: "mobile",
-
                     icon: "📱",
+                    discount: "-15%",
+                    code: "APP15",
 
                     title:
-                        "Je veux une application",
+                        "Application mobile",
 
                     description:
-                        "Une application mobile ou une solution adaptée à ton projet.",
+                        "Application mobile Flutter adaptée à votre projet ou votre activité.",
 
                     message:
-                        "Je souhaite discuter de la création d'une application.",
+                        "Je souhaite profiter de la réduction de 15 % sur la création d'une application mobile.",
+                },
+
+                {
+                    id: "backend",
+                    icon: "⚙️",
+                    discount: "-10%",
+                    code: "API10",
+
+                    title:
+                        "Backend & API",
+
+                    description:
+                        "Backend Laravel ou Spring Boot, API et intégration de base de données.",
+
+                    message:
+                        "Je souhaite profiter de la réduction de 10 % sur le développement backend ou API.",
+                },
+
+                {
+                    id: "design",
+                    icon: "🎨",
+                    discount: "-25%",
+                    code: "DESIGN25",
+
+                    title:
+                        "Design UI / UX",
+
+                    description:
+                        "Interfaces modernes, responsives et professionnelles pour votre projet.",
+
+                    message:
+                        "Je souhaite profiter de la réduction de 25 % sur la conception UI/UX.",
                 },
 
                 {
                     id: "training",
-
                     icon: "🎓",
+                    discount: "-15%",
+                    code: "LEARN15",
 
                     title:
-                        "Je veux une formation",
+                        "Formation & accompagnement",
 
                     description:
-                        "Développement web, mobile, React, Flutter, Laravel, Spring Boot ou Git.",
+                        "React, Flutter, Laravel, Spring Boot, Git et développement web.",
 
                     message:
-                        "Je souhaite bénéficier d'une formation ou d'un accompagnement.",
+                        "Je souhaite profiter de la réduction de 15 % sur une formation ou un accompagnement technique.",
                 },
 
                 {
-                    id: "advice",
-
-                    icon: "💡",
-
-                    title:
-                        "Je veux des conseils",
-
-                    description:
-                        "Une question sur le développement, un projet ou ton parcours informatique ?",
-
-                    message:
-                        "Je souhaite avoir des conseils concernant mon projet ou mon parcours.",
-                },
-
-                {
-                    id: "project",
-
+                    id: "deployment",
                     icon: "🚀",
+                    discount: "-15%",
+                    code: "DEPLOY15",
 
                     title:
-                        "Je veux parler d'un projet",
+                        "Déploiement",
 
                     description:
-                        "Tu as une idée et tu souhaites la transformer en véritable projet ?",
+                        "Accompagnement pour l'hébergement, le déploiement et la mise en ligne.",
 
                     message:
-                        "Je souhaite discuter d'un projet que j'aimerais réaliser.",
-                },
-
-                {
-                    id: "other",
-
-                    icon: "✨",
-
-                    title:
-                        "J'ai une autre demande",
-
-                    description:
-                        "Tu as une demande qui ne correspond à aucune des catégories ?",
-
-                    message:
-                        "J'ai une autre demande et j'aimerais en discuter avec toi.",
+                        "Je souhaite profiter de la réduction de 15 % sur le déploiement ou l'hébergement.",
                 },
             ],
         },
@@ -1045,27 +1050,30 @@ const translations = {
         },
 
         /* ==================================================
-           🎁 GIFTS
-           ================================================== */
+   🎁 SPECIAL OFFERS
+   ================================================== */
 
         gifts: {
             label:
                 "Secret unlocked",
 
             title:
-                "Welcome to my ",
+                "A little gift for ",
 
             highlight:
-                "gifts",
+                "you",
 
             description:
-                "You found the secret code. Now it's my turn to give you a gift. Choose what you would like and let's talk about it directly.",
+                "You found the secret code. Choose one of my special offers and enjoy a discount on your next project.",
+
+            codeLabel:
+                "Promo code",
 
             action:
-                "Make my request",
+                "Claim this offer",
 
             footer:
-                "A serious request, a crazy idea or simply a question? Message me. Let's talk.",
+                "Offers are available for a first order and cannot be combined with another promotion.",
 
             items: [
                 {
@@ -1073,14 +1081,20 @@ const translations = {
 
                     icon: "🌐",
 
+                    discount:
+                        "-20%",
+
+                    code:
+                        "WEB20",
+
                     title:
-                        "I want a website",
+                        "Website development",
 
                     description:
-                        "A landing page, portfolio, platform or custom website for your project.",
+                        "Landing page, portfolio, showcase website or custom web platform.",
 
                     message:
-                        "I would like to discuss the creation of a website.",
+                        "I would like to use the 20% discount for website development.",
                 },
 
                 {
@@ -1088,14 +1102,62 @@ const translations = {
 
                     icon: "📱",
 
+                    discount:
+                        "-15%",
+
+                    code:
+                        "APP15",
+
                     title:
-                        "I want an application",
+                        "Mobile application",
 
                     description:
-                        "A mobile application or a solution adapted to your project.",
+                        "Flutter mobile application adapted to your project or business.",
 
                     message:
-                        "I would like to discuss the creation of an application.",
+                        "I would like to use the 15% discount for mobile application development.",
+                },
+
+                {
+                    id: "backend",
+
+                    icon: "⚙️",
+
+                    discount:
+                        "-10%",
+
+                    code:
+                        "API10",
+
+                    title:
+                        "Backend & API",
+
+                    description:
+                        "Laravel or Spring Boot backend, API and database integration.",
+
+                    message:
+                        "I would like to use the 10% discount for backend or API development.",
+                },
+
+                {
+                    id: "design",
+
+                    icon: "🎨",
+
+                    discount:
+                        "-25%",
+
+                    code:
+                        "DESIGN25",
+
+                    title:
+                        "UI / UX design",
+
+                    description:
+                        "Modern, responsive and professional interfaces for your project.",
+
+                    message:
+                        "I would like to use the 25% discount for UI/UX design.",
                 },
 
                 {
@@ -1103,62 +1165,45 @@ const translations = {
 
                     icon: "🎓",
 
+                    discount:
+                        "-15%",
+
+                    code:
+                        "LEARN15",
+
                     title:
-                        "I want training",
+                        "Training & guidance",
 
                     description:
-                        "Web development, mobile development, React, Flutter, Laravel, Spring Boot or Git.",
+                        "React, Flutter, Laravel, Spring Boot, Git and web development.",
 
                     message:
-                        "I would like to benefit from training or guidance.",
+                        "I would like to use the 15% discount for training or technical guidance.",
                 },
 
                 {
-                    id: "advice",
-
-                    icon: "💡",
-
-                    title:
-                        "I want some advice",
-
-                    description:
-                        "A question about development, a project or your computer science journey?",
-
-                    message:
-                        "I would like some advice about my project or career path.",
-                },
-
-                {
-                    id: "project",
+                    id: "deployment",
 
                     icon: "🚀",
 
-                    title:
-                        "I want to discuss a project",
+                    discount:
+                        "-15%",
 
-                    description:
-                        "Have an idea and want to turn it into a real project?",
-
-                    message:
-                        "I would like to discuss a project I want to build.",
-                },
-
-                {
-                    id: "other",
-
-                    icon: "✨",
+                    code:
+                        "DEPLOY15",
 
                     title:
-                        "I have another request",
+                        "Deployment",
 
                     description:
-                        "Something else that does not fit into the categories above?",
+                        "Help with hosting, deployment, configuration and going live.",
 
                     message:
-                        "I have another request and would like to discuss it with you.",
+                        "I would like to use the 15% discount for deployment or hosting assistance.",
                 },
             ],
         },
+
     },
 };
 

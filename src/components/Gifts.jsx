@@ -37,18 +37,27 @@ function Gifts({ isOpen, onClose }) {
             language === "fr"
                 ? `Bonjour Fréjus 👋
 
-J'ai trouvé le code secret de ton portfolio 🎁 et je voudrais profiter de ton cadeau.
+J'ai découvert le secret de ton portfolio 🎁 et j'aimerais profiter d'une de tes offres promotionnelles.
 
-Ma demande : ${gift.title}
+🎁 Offre : ${gift.title}
+💰 Réduction : ${gift.discount}
+🔑 Code promo : ${gift.code}
 
-${gift.message}`
+${gift.message}
+
+Je voudrais en discuter avec toi pour en savoir plus.`
+
                 : `Hello Fréjus 👋
 
-I found the secret code on your portfolio 🎁 and I would like to enjoy my gift.
+I discovered the secret on your portfolio 🎁 and I would like to take advantage of one of your special offers.
 
-My request: ${gift.title}
+🎁 Offer: ${gift.title}
+💰 Discount: ${gift.discount}
+🔑 Promo code: ${gift.code}
 
-${gift.message}`;
+${gift.message}
+
+I would like to discuss it with you and get more details.`;
 
         const whatsappUrl =
             `https://wa.me/2290152905310?text=${encodeURIComponent(
@@ -115,7 +124,7 @@ ${gift.message}`;
                     {gifts.description}
                 </p>
 
-                {/* CARTES */}
+                {/* OFFRES */}
 
                 <div className="gifts-grid">
                     {gifts.items.map((gift) => (
@@ -132,6 +141,11 @@ ${gift.message}`;
                             </div>
 
                             <div className="gift-content">
+
+                                <div className="gift-discount">
+                                    {gift.discount}
+                                </div>
+
                                 <h3>
                                     {gift.title}
                                 </h3>
@@ -140,6 +154,16 @@ ${gift.message}`;
                                     {gift.description}
                                 </p>
 
+                                <div className="gift-code">
+                                    <span>
+                                        {gifts.codeLabel}
+                                    </span>
+
+                                    <strong>
+                                        {gift.code}
+                                    </strong>
+                                </div>
+
                                 <span className="gift-action">
                                     {gifts.action}
 
@@ -147,6 +171,7 @@ ${gift.message}`;
                                         →
                                     </span>
                                 </span>
+
                             </div>
                         </button>
                     ))}
@@ -161,6 +186,7 @@ ${gift.message}`;
                         {gifts.footer}
                     </p>
                 </div>
+
             </div>
         </div>
     );

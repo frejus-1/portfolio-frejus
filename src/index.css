@@ -5831,6 +5831,56 @@ html.dark .circle-three {
     }
 }
 
+.gift-discount {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+
+    margin-bottom: 0.7rem;
+    padding: 0.35rem 0.65rem;
+
+    border-radius: 999px;
+
+    background: var(--c-primaire-clair);
+    color: var(--c-primaire);
+
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.gift-code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0.75rem;
+
+    margin-top: 1rem;
+    padding: 0.55rem 0.7rem;
+
+    border: 1px dashed var(--c-bordure-forte);
+    border-radius: 8px;
+
+    background: var(--c-fond-alt);
+}
+
+.gift-code span {
+    color: var(--c-texte-tres-doux);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.gift-code strong {
+    color: var(--c-primaire);
+
+    font-family: "Courier New", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+}
 /* =========================================================
    FIN DU FICHIER
    ========================================================= */
