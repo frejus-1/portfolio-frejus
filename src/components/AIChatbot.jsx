@@ -3,12 +3,113 @@ import ReactMarkdown from "react-markdown";
 import { useLanguage } from "../context/useLanguage";
 import "./AIChatbot.css";
 
-const API_URL = "https://portfolio-ai-server-beta.vercel.app/api/chat";
+const API_URL =
+    "https://portfolio-ai-server-beta.vercel.app/api/chat";
 
 let messageId = 1;
 
 const createMessageId = () => {
     return messageId++;
+};
+
+/*
+|--------------------------------------------------------------------------
+| Réponses locales
+|--------------------------------------------------------------------------
+| Ces questions ne consomment pas de quota Gemini.
+|--------------------------------------------------------------------------
+*/
+
+const LOCAL_ANSWERS = {
+    fr: {
+        "Qui est Fréjus ?": `
+**Fréjus Adjanohoun** est un développeur **Full Stack Web & Mobile**, actuellement étudiant en deuxième année en **Système informatique et logiciel à l'IATF**.
+
+Il travaille notamment avec **React, Laravel, Spring Boot et Flutter**, et développe des applications web et mobiles.
+
+Son portfolio présente son parcours, ses compétences et plusieurs de ses projets.
+        `.trim(),
+
+        "Quelles technologies utilise-t-il ?": `
+Fréjus travaille principalement avec :
+
+- **Frontend :** React, JavaScript, HTML, CSS
+- **Backend :** Laravel, Spring Boot
+- **Mobile :** Flutter / Dart
+- **Bases de données :** MySQL
+- **Outils :** Git, GitHub, Vercel, VS Code
+
+Il développe des projets **web, backend et mobile**.
+        `.trim(),
+
+        "Quels sont ses projets ?": `
+Parmi les projets présentés dans son portfolio :
+
+- **CampusLib** — plateforme web de bibliothèque universitaire
+- **Orienter Education** — plateforme d'orientation scolaire avec React et Spring Boot
+- **Application Todo** — application mobile Flutter avec backend
+- **Portfolio personnel** — développé avec React et Vite
+
+Chaque projet permet de découvrir davantage ses compétences techniques.
+        `.trim(),
+
+        "Comment le contacter ?": `
+Vous pouvez contacter Fréjus via ses différents profils :
+
+[GitHub](https://github.com/frejus-1/)
+
+[LinkedIn](https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/)
+
+[Email](mailto:f2987319@gmail.com)
+
+Il est également possible de le contacter directement via le formulaire de contact du portfolio.
+        `.trim(),
+    },
+
+    en: {
+        "Who is Fréjus?": `
+**Fréjus Adjanohoun** is a **Full Stack Web & Mobile developer**, currently a second-year student in **Computer Systems and Software at IATF**.
+
+He works mainly with **React, Laravel, Spring Boot and Flutter**, and develops web and mobile applications.
+
+His portfolio presents his background, skills and several projects.
+        `.trim(),
+
+        "What technologies does he use?": `
+Fréjus mainly works with:
+
+- **Frontend:** React, JavaScript, HTML, CSS
+- **Backend:** Laravel, Spring Boot
+- **Mobile:** Flutter / Dart
+- **Databases:** MySQL
+- **Tools:** Git, GitHub, Vercel, VS Code
+
+He develops **web, backend and mobile applications**.
+        `.trim(),
+
+        "What are his projects?": `
+Some of the projects presented in his portfolio include:
+
+- **CampusLib** — university library web platform
+- **Orienter Education** — educational guidance platform with React and Spring Boot
+- **Todo application** — Flutter mobile application with backend
+- **Personal portfolio** — built with React and Vite
+
+Each project showcases different technical skills.
+        `.trim(),
+
+        "How can I contact him?": `
+You can contact Fréjus through his different profiles:
+
+[GitHub](https://github.com/frejus-1/)
+
+[LinkedIn](https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/)
+
+[Email](mailto:f2987319@gmail.com)
+
+You can also contact him directly through the contact form on the portfolio.
+        `.trim(),
+    },
 };
 
 function AIChatbot() {
@@ -18,14 +119,19 @@ function AIChatbot() {
         language === "fr"
             ? {
                 title: "Assistant IA",
-                subtitle: "Je connais le portfolio de Fréjus",
-                placeholder: "Posez-moi une question...",
+                subtitle:
+                    "Je connais le portfolio de Fréjus",
+                placeholder:
+                    "Posez-moi une question...",
                 send: "Envoyer",
-                thinking: "L'assistant réfléchit...",
+                thinking:
+                    "L'assistant réfléchit...",
                 welcome:
                     "Bonjour 👋 Je suis l'assistant IA du portfolio de Fréjus. Que souhaitez-vous savoir sur son parcours, ses compétences ou ses projets ?",
                 error:
                     "Désolé, je n'arrive pas à contacter l'assistant pour le moment.",
+                quotaError:
+                    "Le quota de l'assistant IA est temporairement atteint. Réessayez plus tard.",
                 quickTitle: "Questions rapides",
                 quickQuestions: [
                     "Qui est Fréjus ?",
@@ -38,14 +144,19 @@ function AIChatbot() {
             }
             : {
                 title: "AI Assistant",
-                subtitle: "I know Fréjus' portfolio",
-                placeholder: "Ask me a question...",
+                subtitle:
+                    "I know Fréjus' portfolio",
+                placeholder:
+                    "Ask me a question...",
                 send: "Send",
-                thinking: "The assistant is thinking...",
+                thinking:
+                    "The assistant is thinking...",
                 welcome:
                     "Hello 👋 I'm the AI assistant of Fréjus' portfolio. What would you like to know about his background, skills or projects?",
                 error:
                     "Sorry, I cannot contact the assistant right now.",
+                quotaError:
+                    "The AI assistant quota has temporarily been reached. Please try again later.",
                 quickTitle: "Quick questions",
                 quickQuestions: [
                     "Who is Fréjus?",
@@ -69,14 +180,23 @@ function AIChatbot() {
         },
     ]);
 
+    /*
+    |--------------------------------------------------------------------------
+    | Références
+    |--------------------------------------------------------------------------
+    */
+
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
 
+    // Empêche plusieurs requêtes simultanées
+    const isSendingRef = useRef(false);
+
     /*
-     * ==========================================
-     * SCROLL AUTOMATIQUE
-     * ==========================================
-     */
+    |--------------------------------------------------------------------------
+    | Scroll automatique
+    |--------------------------------------------------------------------------
+    */
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({
@@ -85,10 +205,10 @@ function AIChatbot() {
     }, [messages, isLoading]);
 
     /*
-     * ==========================================
-     * GESTION DE LA FENÊTRE
-     * ==========================================
-     */
+    |--------------------------------------------------------------------------
+    | Ouverture / fermeture
+    |--------------------------------------------------------------------------
+    */
 
     useEffect(() => {
         if (!isOpen) {
@@ -102,7 +222,10 @@ function AIChatbot() {
             }
         };
 
-        document.addEventListener("keydown", handleEscape);
+        document.addEventListener(
+            "keydown",
+            handleEscape
+        );
 
         const timer = setTimeout(() => {
             inputRef.current?.focus();
@@ -123,19 +246,57 @@ function AIChatbot() {
     }, [isOpen]);
 
     /*
-     * ==========================================
-     * ENVOI D'UN MESSAGE
-     * ==========================================
-     */
+    |--------------------------------------------------------------------------
+    | Ajouter une réponse assistant
+    |--------------------------------------------------------------------------
+    */
 
-    const sendMessage = async (text = message) => {
+    const addAssistantMessage = (content) => {
+        setMessages((previous) => [
+            ...previous,
+            {
+                id: createMessageId(),
+                role: "assistant",
+                content,
+            },
+        ]);
+    };
+
+    /*
+    |--------------------------------------------------------------------------
+    | Envoi du message
+    |--------------------------------------------------------------------------
+    */
+
+    const sendMessage = async (
+        text = message,
+        localAnswer = null
+    ) => {
         const cleanMessage = text.trim();
 
-        if (!cleanMessage || isLoading) {
+        if (!cleanMessage) {
             return;
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Protection contre les doubles requêtes
+        |--------------------------------------------------------------------------
+        */
+
+        if (isSendingRef.current) {
+            return;
+        }
+
+        isSendingRef.current = true;
+
         setMessage("");
+
+        /*
+        |--------------------------------------------------------------------------
+        | Message utilisateur
+        |--------------------------------------------------------------------------
+        */
 
         const userMessage = {
             id: createMessageId(),
@@ -148,7 +309,32 @@ function AIChatbot() {
             userMessage,
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Réponse locale
+        |--------------------------------------------------------------------------
+        |
+        | Les questions rapides ne passent pas par Gemini.
+        |
+        */
+
+        if (localAnswer) {
+            setTimeout(() => {
+                addAssistantMessage(localAnswer);
+
+                isSendingRef.current = false;
+            }, 250);
+
+            return;
+        }
+
         setIsLoading(true);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Appel API Gemini
+        |--------------------------------------------------------------------------
+        */
 
         try {
             const response = await fetch(API_URL, {
@@ -161,18 +347,59 @@ function AIChatbot() {
                 }),
             });
 
-            const data = await response.json();
+            let data = {};
+
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Détection du quota Gemini
+            |--------------------------------------------------------------------------
+            */
+
+            const details =
+                typeof data?.details === "string"
+                    ? data.details
+                    : "";
+
+            const isQuotaError =
+                response.status === 429 ||
+                details.includes("429") ||
+                details.includes(
+                    "RESOURCE_EXHAUSTED"
+                ) ||
+                details
+                    .toLowerCase()
+                    .includes("quota");
 
             if (!response.ok) {
+                if (isQuotaError) {
+                    throw new Error(
+                        "QUOTA_EXCEEDED"
+                    );
+                }
+
                 throw new Error(
-                    data?.error || "Erreur serveur"
+                    data?.error ||
+                    "Erreur serveur"
                 );
             }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Réponse Gemini
+            |--------------------------------------------------------------------------
+            */
 
             const assistantMessage = {
                 id: createMessageId(),
                 role: "assistant",
-                content: data.reply || ui.error,
+                content:
+                    data.reply || ui.error,
             };
 
             setMessages((previous) => [
@@ -185,38 +412,42 @@ function AIChatbot() {
                 error
             );
 
-            setMessages((previous) => [
-                ...previous,
-                {
-                    id: createMessageId(),
-                    role: "assistant",
-                    content: ui.error,
-                },
-            ]);
+            let errorMessage = ui.error;
+
+            if (
+                error?.message ===
+                "QUOTA_EXCEEDED"
+            ) {
+                errorMessage =
+                    ui.quotaError;
+            }
+
+            addAssistantMessage(
+                errorMessage
+            );
         } finally {
+            isSendingRef.current = false;
             setIsLoading(false);
         }
     };
 
     /*
-     * ==========================================
-     * FORMULAIRE
-     * ==========================================
-     */
+    |--------------------------------------------------------------------------
+    | Formulaire
+    |--------------------------------------------------------------------------
+    */
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         sendMessage();
     };
 
     /*
-     * ==========================================
-     * CLAVIER
-     * ==========================================
-     *
-     * Entrée       → envoyer
-     * Shift + Entrée → nouvelle ligne
-     */
+    |--------------------------------------------------------------------------
+    | Clavier
+    |--------------------------------------------------------------------------
+    */
 
     const handleKeyDown = (event) => {
         if (
@@ -224,15 +455,16 @@ function AIChatbot() {
             !event.shiftKey
         ) {
             event.preventDefault();
+
             sendMessage();
         }
     };
 
     /*
-     * ==========================================
-     * LIENS MARKDOWN
-     * ==========================================
-     */
+    |--------------------------------------------------------------------------
+    | Liens Markdown
+    |--------------------------------------------------------------------------
+    */
 
     const renderMarkdownLink = ({
         href,
@@ -246,26 +478,36 @@ function AIChatbot() {
         if (url.includes("github.com")) {
             platform = "GitHub";
             icon = "GH";
-        } else if (url.includes("linkedin.com")) {
+        } else if (
+            url.includes("linkedin.com")
+        ) {
             platform = "LinkedIn";
             icon = "in";
-        } else if (url.includes("instagram.com")) {
+        } else if (
+            url.includes("instagram.com")
+        ) {
             platform = "Instagram";
             icon = "IG";
-        } else if (url.includes("facebook.com")) {
+        } else if (
+            url.includes("facebook.com")
+        ) {
             platform = "Facebook";
             icon = "f";
         } else if (url.includes("wa.me")) {
             platform = "WhatsApp";
             icon = "WA";
-        } else if (url.startsWith("mailto:")) {
+        } else if (
+            url.startsWith("mailto:")
+        ) {
             platform = "Email";
             icon = "@";
         }
 
         /*
-         * Liens sociaux et moyens de contact
-         */
+        |--------------------------------------------------------------------------
+        | Lien social
+        |--------------------------------------------------------------------------
+        */
 
         if (platform) {
             return (
@@ -305,8 +547,10 @@ function AIChatbot() {
         }
 
         /*
-         * Lien classique
-         */
+        |--------------------------------------------------------------------------
+        | Lien classique
+        |--------------------------------------------------------------------------
+        */
 
         return (
             <a
@@ -319,17 +563,21 @@ function AIChatbot() {
         );
     };
 
+    /*
+    |--------------------------------------------------------------------------
+    | Interface
+    |--------------------------------------------------------------------------
+    */
+
     return (
         <>
-            {/* ======================================
-                BOUTON FLOTTANT
-            ====================================== */}
-
             {!isOpen && (
                 <button
                     type="button"
                     className="ai-chatbot-button"
-                    onClick={() => setIsOpen(true)}
+                    onClick={() =>
+                        setIsOpen(true)
+                    }
                     aria-label={ui.open}
                     title={ui.open}
                 >
@@ -344,10 +592,6 @@ function AIChatbot() {
                     <span className="ai-chatbot-online-dot" />
                 </button>
             )}
-
-            {/* ======================================
-                FENÊTRE DU CHATBOT
-            ====================================== */}
 
             {isOpen && (
                 <div
@@ -367,9 +611,7 @@ function AIChatbot() {
                         aria-modal="true"
                         aria-labelledby="ai-chatbot-title"
                     >
-                        {/* ==================================
-                            HEADER
-                        ================================== */}
+                        {/* HEADER */}
 
                         <header className="ai-chatbot-header">
                             <div className="ai-chatbot-header-info">
@@ -402,40 +644,43 @@ function AIChatbot() {
                             </button>
                         </header>
 
-                        {/* ==================================
-                            MESSAGES
-                        ================================== */}
+                        {/* MESSAGES */}
 
                         <div className="ai-chatbot-messages">
-                            {messages.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className={`ai-message ai-message-${item.role}`}
-                                >
-                                    {item.role ===
-                                        "assistant" && (
-                                            <div className="ai-message-avatar">
-                                                ✦
-                                            </div>
-                                        )}
+                            {messages.map(
+                                (item) => (
+                                    <div
+                                        key={
+                                            item.id
+                                        }
+                                        className={`ai-message ai-message-${item.role}`}
+                                    >
+                                        {item.role ===
+                                            "assistant" && (
+                                                <div className="ai-message-avatar">
+                                                    ✦
+                                                </div>
+                                            )}
 
-                                    <div className="ai-message-content">
-                                        <ReactMarkdown
-                                            components={{
-                                                a: renderMarkdownLink,
-                                            }}
-                                        >
-                                            {item.content}
-                                        </ReactMarkdown>
+                                        <div className="ai-message-content">
+                                            <ReactMarkdown
+                                                components={{
+                                                    a: renderMarkdownLink,
+                                                }}
+                                            >
+                                                {
+                                                    item.content
+                                                }
+                                            </ReactMarkdown>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            )}
 
-                            {/* ==================================
-                                QUESTIONS RAPIDES
-                            ================================== */}
+                            {/* QUESTIONS RAPIDES */}
 
-                            {messages.length === 1 &&
+                            {messages.length ===
+                                1 &&
                                 !isLoading && (
                                     <div className="ai-quick-questions">
                                         <span>
@@ -454,9 +699,17 @@ function AIChatbot() {
                                                             question
                                                         }
                                                         type="button"
+                                                        disabled={
+                                                            isLoading
+                                                        }
                                                         onClick={() =>
                                                             sendMessage(
+                                                                question,
+                                                                LOCAL_ANSWERS[
+                                                                language
+                                                                ]?.[
                                                                 question
+                                                                ]
                                                             )
                                                         }
                                                     >
@@ -470,9 +723,7 @@ function AIChatbot() {
                                     </div>
                                 )}
 
-                            {/* ==================================
-                                INDICATEUR DE CHARGEMENT
-                            ================================== */}
+                            {/* CHARGEMENT */}
 
                             {isLoading && (
                                 <div className="ai-message ai-message-assistant">
@@ -494,23 +745,29 @@ function AIChatbot() {
                                 </div>
                             )}
 
-                            <div ref={messagesEndRef} />
+                            <div
+                                ref={
+                                    messagesEndRef
+                                }
+                            />
                         </div>
 
-                        {/* ==================================
-                            FORMULAIRE
-                        ================================== */}
+                        {/* FORMULAIRE */}
 
                         <form
                             className="ai-chatbot-form"
-                            onSubmit={handleSubmit}
+                            onSubmit={
+                                handleSubmit
+                            }
                         >
                             <textarea
                                 ref={inputRef}
                                 value={message}
                                 onChange={(event) =>
                                     setMessage(
-                                        event.target.value
+                                        event
+                                            .target
+                                            .value
                                     )
                                 }
                                 onKeyDown={
@@ -520,7 +777,9 @@ function AIChatbot() {
                                     ui.placeholder
                                 }
                                 rows="1"
-                                disabled={isLoading}
+                                disabled={
+                                    isLoading
+                                }
                                 aria-label={
                                     ui.placeholder
                                 }
@@ -532,16 +791,18 @@ function AIChatbot() {
                                     !message.trim() ||
                                     isLoading
                                 }
-                                aria-label={ui.send}
-                                title={ui.send}
+                                aria-label={
+                                    ui.send
+                                }
+                                title={
+                                    ui.send
+                                }
                             >
                                 ↑
                             </button>
                         </form>
 
-                        {/* ==================================
-                            FOOTER
-                        ================================== */}
+                        {/* FOOTER */}
 
                         <div className="ai-chatbot-footer">
                             Powered by Gemini
