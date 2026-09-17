@@ -277,7 +277,6 @@ html.dark .navbar {
     transform: translateY(-1px);
 }
 
-
 /* =========================================================
    NAVIGATION
    ========================================================= */
@@ -291,112 +290,31 @@ html.dark .navbar {
     gap: 0.25rem;
 }
 
-.navigation a {
-    position: relative;
-
-    padding: 0.65rem 0.8rem;
-
-    color: #394554;
-
-    font-size: 0.95rem;
-    font-weight: 600;
-
-    text-decoration: none;
-
-    border-radius: 10px;
-
-    transition:
-        color var(--transition-rapide),
-        background-color var(--transition-rapide);
-}
-
-html.dark .navigation a {
-    color: #cbd5e1;
-}
-
-.navigation a:hover {
-    color: var(--c-primaire);
-    background: var(--c-primaire-clair);
-}
-
-html.dark .navigation a:hover {
-    color: #ffffff;
-}
-
-.navigation a::after {
-    content: "";
-
-    position: absolute;
-    left: 50%;
-    bottom: 4px;
-
-    width: 0;
-    height: 2px;
-
-    border-radius: 999px;
-
-    background: var(--c-primaire);
-
-    transform: translateX(-50%);
-
-    transition:
-        width var(--transition-rapide);
-}
-
-.navigation a:hover::after {
-    width: 20px;
-}
-
-
-/* =========================================================
-   ACTIONS NAVBAR — LANGUE + THÈME
-   ========================================================= */
-
-.navbar-actions {
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-
-    gap: 0.55rem;
-}
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-.navigation {
-    margin-left: auto;
-
-    display: flex;
-    align-items: center;
-
-    gap: 0.25rem;
-}
-
-
-/* =========================================================
-   LIENS DE NAVIGATION + MES TARIFS
-   ========================================================= */
-
+/* Liens + bouton Mes tarifs */
 .navigation a,
 .navigation .nav-tarifs {
     position: relative;
 
-    padding: 0.65rem 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    height: 42px;
+    padding: 0 0.65rem;
 
     color: #394554;
 
     font-family: inherit;
     font-size: 0.95rem;
     font-weight: 600;
+    line-height: 1;
 
     text-decoration: none;
 
+    border: none;
     border-radius: 10px;
 
     background: transparent;
-    border: none;
 
     cursor: pointer;
 
@@ -404,7 +322,6 @@ html.dark .navigation a:hover {
         color var(--transition-rapide),
         background-color var(--transition-rapide);
 }
-
 
 /* =========================================================
    MODE SOMBRE
@@ -414,7 +331,6 @@ html.dark .navigation a,
 html.dark .navigation .nav-tarifs {
     color: #cbd5e1;
 }
-
 
 /* =========================================================
    SURVOL
@@ -432,9 +348,8 @@ html.dark .navigation .nav-tarifs:hover {
     color: #ffffff;
 }
 
-
 /* =========================================================
-   SOULIGNEMENT
+   SOULIGNEMENT ANIMÉ
    ========================================================= */
 
 .navigation a::after,
@@ -442,7 +357,6 @@ html.dark .navigation .nav-tarifs:hover {
     content: "";
 
     position: absolute;
-
     left: 50%;
     bottom: 4px;
 
@@ -464,14 +378,26 @@ html.dark .navigation .nav-tarifs:hover {
     width: 20px;
 }
 
-
 /* =========================================================
-   ACCESSIBILITÉ
+   BOUTON MES TARIFS — ACCESSIBILITÉ
    ========================================================= */
 
 .navigation .nav-tarifs:focus-visible {
     outline: 2px solid var(--c-primaire);
     outline-offset: 3px;
+}
+
+/* =========================================================
+   ACTIONS NAVBAR — LANGUE + THÈME
+   ========================================================= */
+
+.navbar-actions {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.55rem;
 }
 
 
@@ -3112,7 +3038,6 @@ html.dark .hero::before {
     }
 }
 
-
 /* =========================================================
    19. RESPONSIVE — TABLETTE LARGE
    ========================================================= */
@@ -3214,11 +3139,27 @@ html.dark .hero::before {
         display: flex;
     }
 
-    .navigation a {
+    /* =====================================================
+       LIENS + BOUTON MES TARIFS — MENU MOBILE
+       ===================================================== */
+
+    .navigation a,
+    .navigation .nav-tarifs {
+        width: 100%;
+
+        height: auto;
+        min-height: 42px;
+
         padding: 0.8rem 1rem;
+
+        justify-content: flex-start;
+
+        text-align: left;
     }
 
-    .navigation a::after {
+    /* Aucun soulignement dans le menu mobile */
+    .navigation a::after,
+    .navigation .nav-tarifs::after {
         display: none;
     }
 
@@ -3926,6 +3867,7 @@ html.dark textarea:focus-visible {
     outline-color:
         rgba(93, 157, 224, 0.45);
 }
+
 
 
 /* =========================================================
