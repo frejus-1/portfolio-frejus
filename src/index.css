@@ -721,7 +721,6 @@ html.dark .menu-toggle span {
     border-color: var(--c-primaire);
 }
 
-
 /* =========================================================
    8. HERO
    ========================================================= */
@@ -730,60 +729,88 @@ html.dark .menu-toggle span {
     position: relative;
     isolation: isolate;
 
-    width: min(var(--container), calc(100% - 4rem));
+    width: min(var(--container),
+            calc(100% - 4rem));
 
     min-height: 100vh;
 
     margin: 0 auto;
 
-    padding-top: 11rem;
-    padding-bottom: 6rem;
+    padding:
+        9rem 0 6rem;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr) minmax(0, 1fr);
+        minmax(0, 1.05fr) minmax(0, 0.95fr);
 
     align-items: center;
 
-    gap: 7rem;
+    gap: clamp(3rem, 6vw, 7rem);
 
     overflow: hidden;
+
+    border-radius: 0;
 }
+
+
+/* =========================================================
+   CONTENU DU HERO
+   ========================================================= */
 
 .hero-content {
     position: relative;
-    z-index: 2;
+
+    z-index: 3;
 
     width: 100%;
+
     max-width: 760px;
 
     animation:
         apparition 0.8s ease both;
 }
 
+
+/* PETIT TEXTE D'INTRODUCTION */
+
 .hero-intro {
-    margin: 0 0 1rem;
+    margin:
+        0 0 1rem;
 
     color: var(--c-primaire);
 
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.95rem;
 
-    letter-spacing: 0.08em;
+    font-weight: 800;
+
+    letter-spacing: 0.1em;
+
+    line-height: 1.4;
+
     text-transform: uppercase;
 }
+
+
+/* TITRE PRINCIPAL */
 
 .hero h1 {
     margin: 0;
 
     color: var(--c-texte);
 
-    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-size:
+        clamp(3.2rem,
+            7vw,
+            6rem);
+
+    font-weight: 800;
 
     line-height: 0.98;
 
     letter-spacing: -0.06em;
+
+    text-wrap: balance;
 }
 
 .hero h1 span {
@@ -792,15 +819,31 @@ html.dark .menu-toggle span {
     color: var(--c-primaire);
 }
 
+
+/* SOUS-TITRE */
+
 .hero h2 {
-    margin: 1.7rem 0 1.2rem;
+    max-width: 680px;
+
+    margin:
+        1.7rem 0 1.2rem;
 
     color: var(--c-texte);
 
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-size:
+        clamp(1.45rem,
+            2.5vw,
+            2.2rem);
+
+    font-weight: 700;
 
     line-height: 1.2;
+
+    text-wrap: balance;
 }
+
+
+/* DESCRIPTION */
 
 .hero-description {
     max-width: 690px;
@@ -809,35 +852,63 @@ html.dark .menu-toggle span {
 
     color: var(--c-texte-doux);
 
-    font-size: 1.2rem;
+    font-size:
+        clamp(1rem,
+            1.4vw,
+            1.2rem);
 
     line-height: 1.8;
 
     overflow-wrap: break-word;
 }
 
+
+/* =========================================================
+   BOUTONS DU HERO
+   ========================================================= */
+
 .hero-actions {
     margin-top: 2rem;
+    margin-left: 2rem;
 
     display: flex;
+
     flex-wrap: wrap;
+
+    align-items: center;
 
     gap: 0.9rem;
 }
 
+.hero-actions .button {
+    min-height: 48px;
+}
+
+
+/* =========================================================
+   RÉSEAUX SOCIAUX
+   ========================================================= */
+
 .hero-socials {
+    margin-left: 1.5rem;
     margin-top: 1.8rem;
 
     display: flex;
+
     flex-wrap: wrap;
 
-    gap: 1.5rem;
+    align-items: center;
+
+    gap: 1.4rem;
 }
 
 .hero-socials a {
+    position: relative;
+
     color: var(--c-texte-doux);
 
-    font-size: 0.99rem;
+    font-size: 0.95rem;
+
     font-weight: 700;
 
     text-decoration: none;
@@ -850,7 +921,8 @@ html.dark .menu-toggle span {
 .hero-socials a:hover {
     color: var(--c-primaire);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -860,47 +932,126 @@ html.dark .menu-toggle span {
 
 .hero-visual {
     position: relative;
-    z-index: 2;
+
+    z-index: 3;
 
     min-width: 0;
+
     min-height: 500px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     animation:
         apparition 0.9s ease 0.15s both;
 }
 
+
+/* =========================================================
+   CARTE CODE
+   ========================================================= */
+
 .code-card {
-    width: min(100%, 570px);
+    position: relative;
+
+    width: min(100%,
+            570px);
 
     max-width: 100%;
 
     padding: 1.2rem;
 
-    background: var(--c-fond-carte);
+    background:
+        rgba(195, 192, 192, 0.40);
 
-    border: 1px solid var(--c-bordure);
-    border-radius: var(--rayon-l);
+    border:
+        1px solid rgba(255,
+            255,
+            255,
+            0.65);
 
-    box-shadow: var(--ombre-forte);
+    border-radius:
+        var(--rayon-l);
 
-    transform: rotate(1deg);
+    box-shadow:
+        0 25px 70px rgba(15,
+            23,
+            42,
+            0.22);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    transform:
+        rotate(1deg);
 
     transition:
         background-color var(--transition),
+
         border-color var(--transition),
+
+        box-shadow var(--transition),
+
         transform 0.4s ease;
 }
 
 .code-card:hover {
-    transform: rotate(0deg) translateY(-5px);
+    transform:
+        rotate(0deg) translateY(-6px);
+
+    box-shadow:
+        0 30px 80px rgba(15,
+            23,
+            42,
+            0.28);
 }
+
+
+/* MODE SOMBRE */
+
+html.dark .code-card {
+    background:
+        rgba(17,
+            24,
+            39,
+            0.82);
+
+    border-color:
+        rgba(148,
+            163,
+            184,
+            0.18);
+
+    box-shadow:
+        0 25px 70px rgba(0,
+            0,
+            0,
+            0.38);
+}
+
+html.dark .code-card:hover {
+    box-shadow:
+        0 30px 80px rgba(0,
+            0,
+            0,
+            0.48);
+}
+
+
+/* =========================================================
+   EN-TÊTE CARTE CODE
+   ========================================================= */
 
 .code-header {
     display: flex;
+
+    align-items: center;
 
     gap: 0.45rem;
 
@@ -909,28 +1060,40 @@ html.dark .menu-toggle span {
 
 .code-header span {
     width: 10px;
+
     height: 10px;
 
     display: block;
 
-    background: var(--c-bordure-forte);
+    flex-shrink: 0;
+
+    background:
+        var(--c-bordure-forte);
 
     border-radius: 50%;
 }
 
+
+/* =========================================================
+   CONTENU CODE
+   ========================================================= */
+
 .code-content {
     width: 100%;
+
     max-width: 100%;
 
     padding: 1.3rem;
 
     overflow-x: auto;
 
-    background: #111827;
+    background:
+        #111827;
 
     border-radius: 14px;
 
-    color: #dbeafe;
+    color:
+        #dbeafe;
 
     font-family:
         "SFMono-Regular",
@@ -939,6 +1102,7 @@ html.dark .menu-toggle span {
         monospace;
 
     font-size: 0.85rem;
+
     line-height: 1.9;
 
     scrollbar-width: thin;
@@ -946,6 +1110,8 @@ html.dark .menu-toggle span {
 
 .code-content p {
     margin: 0;
+
+    white-space: nowrap;
 }
 
 .code-indent {
@@ -953,67 +1119,113 @@ html.dark .menu-toggle span {
 }
 
 .code-keyword {
-    color: #60a5fa;
+    color:
+        #60a5fa;
 }
 
 .code-content p span:not(.code-keyword) {
-    color: #86efac;
+    color:
+        #86efac;
 }
 
 
 /* =========================================================
-   BADGES HERO
+   BADGES FLOTTANTS
    ========================================================= */
 
 .floating-badge {
     position: absolute;
-    z-index: 4;
+
+    z-index: 5;
 
     max-width: max-content;
 
-    padding: 0.7rem 1rem;
+    padding:
+        0.65rem 0.95rem;
 
-    background: var(--c-fond-carte);
+    background:
+        rgba(206, 204, 204, 0.9);
 
-    border: 1px solid var(--c-bordure);
+    border:
+        1px solid rgba(26, 24, 24, 0.7);
 
     border-radius: 999px;
 
-    box-shadow: var(--ombre-carte);
+    box-shadow:
+        0 12px 30px rgba(15,
+            23,
+            42,
+            0.16);
 
-    color: var(--c-texte);
+    color:
+        var(--c-texte);
 
-    font-size: 0.75rem;
+    font-size:
+        0.75rem;
+
     font-weight: 800;
 
     white-space: nowrap;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
 
     animation:
         flottement 4s ease-in-out infinite;
 }
 
+
+/* MODE SOMBRE */
+
+html.dark .floating-badge {
+    background:
+        rgba(13, 23, 46, 0.82);
+
+    border-color:
+        rgba(218, 223, 229, 0.199);
+
+    color:
+        #8c9ab8;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================================
+   POSITION DES BADGES
+   ========================================================= */
+
 .badge-react {
     top: 10%;
+
     right: 4%;
 }
 
 .badge-spring {
     right: 0;
+
     bottom: 20%;
 
-    animation-delay: 0.7s;
+    animation-delay:
+        0.7s;
 }
 
 .badge-flutter {
     left: 2%;
+
     bottom: 12%;
 
-    animation-delay: 1.2s;
+    animation-delay:
+        1.2s;
 }
 
 
 /* =========================================================
-   PHOTO HERO
+   ARRIÈRE-PLAN PHOTO DU HERO
    ========================================================= */
 
 .hero::before {
@@ -1021,77 +1233,134 @@ html.dark .menu-toggle span {
 
     position: absolute;
 
-    top: -15%;
-    right: -8%;
-
-    width: 55%;
-    height: 130%;
+    inset: -20px;
 
     background-image:
         linear-gradient(90deg,
-            var(--c-fond) 0%,
-            rgba(255, 255, 255, 0.82) 18%,
-            rgba(255, 255, 255, 0.25) 55%,
-            rgba(255, 255, 255, 0) 100%),
+            rgba(255,
+                255,
+                255,
+                0.68) 0%,
+
+            rgba(255,
+                255,
+                255,
+                0.42) 30%,
+
+            rgba(255,
+                255,
+                255,
+                0.20) 60%,
+
+            rgba(255,
+                255,
+                255,
+                0.08) 100%),
+
         url("./assets/frejus.png");
 
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+    background-size:
+        cover;
 
-    opacity: 1;
+    background-position:
+        center;
 
-    filter: grayscale(20%);
+    background-repeat:
+        no-repeat;
 
-    transform: scale(1.05);
+    opacity:
+        0.9;
 
-    transform-origin: center;
+    filter:
+        blur(5px) grayscale(8%);
 
-    z-index: -2;
+    transform:
+        scale(1.04);
+
+    transform-origin:
+        center;
+
+    z-index:
+        -2;
 
     animation:
-        hero-background-float 10s ease-in-out infinite;
+        hero-background-float 12s ease-in-out infinite;
 }
+
+
+/* =========================================================
+   ARRIÈRE-PLAN — MODE SOMBRE
+   ========================================================= */
 
 html.dark .hero::before {
     background-image:
         linear-gradient(90deg,
-            var(--c-fond) 0%,
-            rgba(13, 17, 23, 0.88) 20%,
-            rgba(13, 17, 23, 0.35) 60%,
-            rgba(13, 17, 23, 0) 100%),
+            rgba(13,
+                17,
+                23,
+                0.78) 0%,
+
+            rgba(13,
+                17,
+                23,
+                0.55) 30%,
+
+            rgba(13,
+                17,
+                23,
+                0.30) 60%,
+
+            rgba(13,
+                17,
+                23,
+                0.12) 100%),
+
         url("./assets/frejus.png");
 
-    opacity: 1;
+    opacity:
+        0.92;
 
-    filter: grayscale(15%);
+    filter:
+        blur(5px) grayscale(15%) brightness(0.72);
 }
+
+
+/* =========================================================
+   LUEUR COLORÉE
+   ========================================================= */
 
 .hero::after {
     content: "";
 
     position: absolute;
 
-    width: 420px;
-    height: 420px;
+    inset: 0;
 
-    right: 5%;
-    top: 50%;
+    background:
+        radial-gradient(circle at 78% 45%,
+            rgba(29,
+                78,
+                137,
+                0.14),
+            transparent 48%);
 
-    background: var(--c-primaire);
+    pointer-events: none;
 
-    opacity: 0.08;
+    z-index:
+        -1;
+}
 
-    border-radius: 50%;
 
-    filter: blur(70px);
+/* MODE SOMBRE */
 
-    transform: translateY(-50%);
-
-    z-index: -1;
-
-    animation:
-        hero-glow 6s ease-in-out infinite;
+html.dark .hero::after {
+    background:
+        radial-gradient(circle at 78% 45%,
+            rgba(93,
+                157,
+                224,
+                0.18),
+            transparent 48%);
 }
 
 
