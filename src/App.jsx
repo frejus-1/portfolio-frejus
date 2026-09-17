@@ -20,10 +20,12 @@ import ScrollProgress from "./components/ScrollProgress";
 import DeveloperEasterEgg from "./components/DeveloperEasterEgg";
 import Gifts from "./components/Gifts";
 import AIChatbot from "./components/AIChatbot";
+import Tarifs from "./components/Tarifs";
 
 function Home() {
     const [terminalOpen, setTerminalOpen] = useState(false);
     const [giftsOpen, setGiftsOpen] = useState(false);
+    const [tarifsOpen, setTarifsOpen] = useState(false);
 
     const { t } = useLanguage();
 
@@ -49,7 +51,9 @@ function Home() {
         <>
             <ScrollProgress />
 
-            <Navbar />
+            <Navbar
+                onOpenTarifs={() => setTarifsOpen(true)}
+            />
 
             <main>
                 <Hero />
@@ -94,6 +98,17 @@ function Home() {
                 onClose={() => setGiftsOpen(false)}
             />
 
+            {/* ==============================
+                TARIFS - MODAL
+            ============================== */}
+            <Tarifs
+                isOpen={tarifsOpen}
+                onClose={() => setTarifsOpen(false)}
+            />
+
+            {/* ==============================
+                AI CHATBOT
+            ============================== */}
             <AIChatbot />
 
             {/* ==============================
@@ -132,3 +147,4 @@ function App() {
 }
 
 export default App;
+

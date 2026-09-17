@@ -1,0 +1,678 @@
+/* ==========================================
+   TARIFS - MODAL
+========================================== */
+
+.tarifs-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 24px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    background: rgba(10, 20, 35, 0.68);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    animation: tarifsOverlayIn 0.3s ease forwards;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.tarifs-modal {
+    position: relative;
+
+    width: min(1050px, calc(100% - 10px));
+    max-height: 92vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior: contain;
+
+    padding: 42px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+
+    background: var(--c-fond, #ffffff);
+    color: var(--c-texte, #22252a);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.12);
+
+    animation:
+        tarifsModalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-primaire, #1d4e89) transparent;
+}
+
+
+/* ==========================================
+   BARRE DE DÉFILEMENT
+========================================== */
+
+.tarifs-modal::-webkit-scrollbar {
+    width: 7px;
+}
+
+.tarifs-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tarifs-modal::-webkit-scrollbar-thumb {
+    background: var(--c-primaire, #1d4e89);
+    border-radius: 20px;
+}
+
+.tarifs-modal::-webkit-scrollbar-thumb:hover {
+    background: var(--c-primaire-fonce, #153a66);
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.tarifs-header {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 34px;
+    padding-right: 55px;
+}
+
+.tarifs-surtitle {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: var(--c-primaire, #1d4e89);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.tarifs-header h2 {
+    margin: 0 0 10px;
+
+    color: var(--c-texte, #22252a);
+
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+}
+
+.tarifs-header p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: var(--c-texte-doux, #647080);
+
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   BOUTON FERMER
+========================================== */
+
+.tarifs-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(100, 112, 128, 0.2);
+    border-radius: 50%;
+
+    background: var(--c-fond-alt, #f5f7fa);
+    color: var(--c-texte, #22252a);
+
+    font-size: 1.7rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.tarifs-close:hover {
+    transform: rotate(90deg) scale(1.08);
+
+    background: var(--c-primaire, #1d4e89);
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(29, 78, 137, 0.25);
+}
+
+.tarifs-close:focus-visible {
+    outline: 3px solid rgba(29, 78, 137, 0.3);
+    outline-offset: 3px;
+}
+
+
+/* ==========================================
+   GRILLE DES TARIFS
+========================================== */
+
+.tarifs-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* ==========================================
+   CARTE TARIF
+========================================== */
+
+.tarif-card {
+    position: relative;
+
+    min-height: 210px;
+
+    padding: 26px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(100, 112, 128, 0.14);
+    border-radius: 18px;
+
+    background: var(--c-fond-carte, #ffffff);
+
+    box-shadow:
+        0 8px 25px rgba(21, 58, 102, 0.06);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+
+/* Ligne supérieure animée */
+
+.tarif-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: var(--c-primaire, #1d4e89);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition:
+        transform 0.35s ease;
+}
+
+.tarif-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(29, 78, 137, 0.22);
+
+    box-shadow:
+        0 18px 35px rgba(21, 58, 102, 0.12),
+        0 5px 15px rgba(21, 58, 102, 0.06);
+}
+
+.tarif-card:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* ==========================================
+   NUMÉRO
+========================================== */
+
+.tarif-card-top {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-bottom: 12px;
+}
+
+.tarif-number {
+    color: var(--c-texte-doux, #647080);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    opacity: 0.7;
+}
+
+
+/* ==========================================
+   TITRE
+========================================== */
+
+.tarif-card h3 {
+    margin: 0 0 12px;
+
+    color: var(--c-texte, #22252a);
+
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
+
+/* ==========================================
+   PRIX
+========================================== */
+
+.tarif-price {
+    margin: 0 0 14px;
+
+    color: var(--c-primaire, #1d4e89);
+
+    font-size: 1.35rem;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.tarif-description {
+    margin: 0;
+
+    color: var(--c-texte-doux, #647080);
+
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.tarifs-footer {
+    margin-top: 28px;
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(100, 112, 128, 0.14);
+
+    text-align: center;
+}
+
+.tarifs-footer p {
+    margin: 4px 0;
+
+    color: var(--c-texte-doux, #647080);
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes tarifsOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes tarifsModalIn {
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* ==========================================
+   MODE SOMBRE
+========================================== */
+
+.dark .tarifs-modal {
+    background: var(--c-fond, #111827);
+    color: var(--c-texte, #f1f5f9);
+
+    border-color: rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.dark .tarifs-header h2 {
+    color: var(--c-texte, #f1f5f9);
+}
+
+.dark .tarifs-header p {
+    color: #94a3b8;
+}
+
+.dark .tarif-card {
+    background: rgba(255, 255, 255, 0.035);
+
+    border-color: rgba(255, 255, 255, 0.08);
+
+    box-shadow: none;
+}
+
+.dark .tarif-card:hover {
+    background: rgba(255, 255, 255, 0.055);
+
+    border-color: rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.2);
+}
+
+.dark .tarif-card h3 {
+    color: #f1f5f9;
+}
+
+.dark .tarif-description,
+.dark .tarif-number {
+    color: #94a3b8;
+}
+
+.dark .tarifs-footer {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .tarifs-footer p {
+    color: #94a3b8;
+}
+
+.dark .tarifs-close {
+    background: rgba(255, 255, 255, 0.06);
+    color: #f1f5f9;
+
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .tarifs-close:hover {
+    background: var(--c-primaire, #1d4e89);
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   TABLETTE
+========================================== */
+
+@media (max-width: 800px) {
+    .tarifs-overlay {
+        padding: 18px;
+    }
+
+    .tarifs-modal {
+        width: 100%;
+
+        max-height: 94vh;
+
+        padding: 32px 26px;
+    }
+
+    .tarifs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tarif-card {
+        min-height: auto;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 520px) {
+    .tarifs-overlay {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+    .tarifs-modal {
+        width: 100%;
+
+        max-height: 94vh;
+
+        padding: 28px 18px 24px;
+
+        border-radius:
+            24px 24px 0 0;
+
+        animation-name: tarifsMobileIn;
+    }
+
+    .tarifs-header {
+        gap: 15px;
+
+        margin-bottom: 25px;
+
+        padding-right: 48px;
+    }
+
+    .tarifs-header h2 {
+        font-size: 1.9rem;
+    }
+
+    .tarifs-header p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .tarifs-close {
+        width: 40px;
+        height: 40px;
+
+        font-size: 1.5rem;
+    }
+
+    .tarif-card {
+        padding: 22px;
+    }
+
+    .tarif-card h3 {
+        font-size: 1.08rem;
+    }
+
+    .tarif-price {
+        font-size: 1.2rem;
+    }
+
+    .tarif-description {
+        font-size: 0.88rem;
+    }
+
+    .tarifs-footer {
+        margin-top: 22px;
+    }
+}
+
+
+/* ==========================================
+   ANIMATION MOBILE
+========================================== */
+
+@keyframes tarifsMobileIn {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================
+   ACCESSIBILITÉ
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tarifs-overlay,
+    .tarifs-modal,
+    .tarif-card,
+    .tarif-card::before,
+    .tarifs-close {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* ========================================== BOUTON WHATSAPP ========================================== */
+.tarif-whatsapp-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 22px;
+    padding: 12px 16px;
+    border: 1px solid rgba(37, 211, 102, 0.25);
+    border-radius: 10px;
+    background: rgba(37, 211, 102, 0.08);
+    color: #168a42;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarif-whatsapp-icon {
+    width: 19px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tarif-whatsapp-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.tarif-whatsapp-button:hover {
+    transform: translateY(-2px);
+    background: #25d366;
+    border-color: #25d366;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.22);
+}
+
+.tarif-whatsapp-button:active {
+    transform: translateY(0);
+}
+
+.tarif-whatsapp-button:focus-visible {
+    outline: 3px solid rgba(37, 211, 102, 0.25);
+    outline-offset: 3px;
+}
+
+/* ========================================== MODE SOMBRE — WHATSAPP ========================================== */
+.dark .tarif-whatsapp-button {
+    background: rgba(37, 211, 102, 0.08);
+    border-color: rgba(37, 211, 102, 0.2);
+    color: #4ade80;
+}
+
+.dark .tarif-whatsapp-button:hover {
+    background: #25d366;
+    border-color: #25d366;
+    color: #ffffff;
+}
+
+/* ========================================== MOBILE — WHATSAPP ========================================== */
+@media (max-width: 520px) {
+    .tarif-whatsapp-button {
+        padding: 11px 14px;
+        font-size: 0.88rem;
+    }
+}
+
+/* ========================================== ACCESSIBILITÉ ========================================== */
+@media (prefers-reduced-motion: reduce) {
+    .tarif-whatsapp-button {
+        transition: none;
+    }
+}
+
+.tarifs-modal button:focus-visible {
+    outline: 3px solid var(--c-primaire, #1d4e89);
+    outline-offset: 3px;
+}
+
+.tarif-whatsapp-button:focus-visible {
+    outline: 3px solid #25d366;
+    outline-offset: 3px;
+}

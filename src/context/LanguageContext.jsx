@@ -14,12 +14,17 @@ const translations = {
        ================================================== */
 
     fr: {
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
         nav: {
             home: "Accueil",
             about: "À propos",
             skills: "Compétences",
             projects: "Projets",
             journey: "Parcours",
+            rates: "Mes tarifs",
             contact: "Contact",
         },
 
@@ -29,6 +34,7 @@ const translations = {
 
         hero: {
             greeting: "Bonjour, je suis",
+
             role: "Développeur Full Stack Web & Mobile",
 
             description:
@@ -457,6 +463,10 @@ const translations = {
                 "Commande inconnue",
         },
 
+        /* ==================================================
+           🎁 OFFRES SPÉCIALES
+           ================================================== */
+
         gifts: {
             label:
                 "Secret débloqué",
@@ -577,6 +587,126 @@ const translations = {
                 },
             ],
         },
+
+        /* ==================================================
+           TARIFS
+           ================================================== */
+
+        tarifs: {
+            surtitle:
+                "Mes prestations",
+
+            title:
+                "Mes tarifs",
+
+            description:
+                "Des solutions adaptées à vos besoins et à votre projet.",
+
+            close:
+                "Fermer les tarifs",
+
+            whatsappButton:
+                "Discuter l'offre",
+
+            whatsappMessage:
+                "Bonjour Fréjus, je suis intéressé(e) par votre service « {service} » au prix de {price}. Je souhaiterais avoir plus d'informations concernant cette offre.",
+
+            footer1:
+                "Les tarifs sont indicatifs et peuvent varier selon la complexité du projet.",
+
+            footer2:
+                "Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé.",
+
+            services: [
+                {
+                    title:
+                        "Landing Page",
+
+                    price:
+                        "50 000 FCFA",
+
+                    description:
+                        "Une page web moderne pour présenter une activité, un produit ou un service.",
+                },
+
+                {
+                    title:
+                        "Portfolio professionnel",
+
+                    price:
+                        "75 000 FCFA",
+
+                    description:
+                        "Un portfolio personnalisé pour mettre en valeur votre profil, vos compétences et vos projets.",
+                },
+
+                {
+                    title:
+                        "Site vitrine",
+
+                    price:
+                        "100 000 FCFA",
+
+                    description:
+                        "Un site professionnel et responsive pour présenter votre entreprise, activité ou organisation.",
+                },
+
+                {
+                    title:
+                        "Application Web",
+
+                    price:
+                        "250 000 FCFA",
+
+                    description:
+                        "Une application web interactive adaptée aux besoins spécifiques de votre projet.",
+                },
+
+                {
+                    title:
+                        "Application Mobile",
+
+                    price:
+                        "300 000 FCFA",
+
+                    description:
+                        "Une application mobile moderne développée pour répondre à vos besoins.",
+                },
+
+                {
+                    title:
+                        "Backend & API",
+
+                    price:
+                        "100 000 FCFA",
+
+                    description:
+                        "Développement de services backend et d'API pour connecter vos applications à vos données.",
+                },
+
+                {
+                    title:
+                        "Maintenance & corrections",
+
+                    price:
+                        "10 000 FCFA",
+
+                    description:
+                        "Correction de bugs, améliorations et petites modifications sur vos applications ou sites.",
+                },
+
+                {
+                    title:
+                        "Projet sur mesure",
+
+                    price:
+                        "Sur devis",
+
+                    description:
+                        "Une solution personnalisée selon les fonctionnalités et objectifs de votre projet.",
+                },
+            ],
+        },
     },
 
     /* ==================================================
@@ -584,12 +714,17 @@ const translations = {
        ================================================== */
 
     en: {
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
         nav: {
             home: "Home",
             about: "About",
             skills: "Skills",
             projects: "Projects",
             journey: "Journey",
+            rates: "My rates",
             contact: "Contact",
         },
 
@@ -1050,8 +1185,8 @@ const translations = {
         },
 
         /* ==================================================
-   🎁 SPECIAL OFFERS
-   ================================================== */
+           🎁 SPECIAL OFFERS
+           ================================================== */
 
         gifts: {
             label:
@@ -1078,14 +1213,9 @@ const translations = {
             items: [
                 {
                     id: "website",
-
                     icon: "🌐",
-
-                    discount:
-                        "-20%",
-
-                    code:
-                        "WEB20",
+                    discount: "-20%",
+                    code: "WEB20",
 
                     title:
                         "Website development",
@@ -1099,14 +1229,9 @@ const translations = {
 
                 {
                     id: "mobile",
-
                     icon: "📱",
-
-                    discount:
-                        "-15%",
-
-                    code:
-                        "APP15",
+                    discount: "-15%",
+                    code: "APP15",
 
                     title:
                         "Mobile application",
@@ -1120,14 +1245,9 @@ const translations = {
 
                 {
                     id: "backend",
-
                     icon: "⚙️",
-
-                    discount:
-                        "-10%",
-
-                    code:
-                        "API10",
+                    discount: "-10%",
+                    code: "API10",
 
                     title:
                         "Backend & API",
@@ -1141,14 +1261,9 @@ const translations = {
 
                 {
                     id: "design",
-
                     icon: "🎨",
-
-                    discount:
-                        "-25%",
-
-                    code:
-                        "DESIGN25",
+                    discount: "-25%",
+                    code: "DESIGN25",
 
                     title:
                         "UI / UX design",
@@ -1162,14 +1277,9 @@ const translations = {
 
                 {
                     id: "training",
-
                     icon: "🎓",
-
-                    discount:
-                        "-15%",
-
-                    code:
-                        "LEARN15",
+                    discount: "-15%",
+                    code: "LEARN15",
 
                     title:
                         "Training & guidance",
@@ -1183,14 +1293,9 @@ const translations = {
 
                 {
                     id: "deployment",
-
                     icon: "🚀",
-
-                    discount:
-                        "-15%",
-
-                    code:
-                        "DEPLOY15",
+                    discount: "-15%",
+                    code: "DEPLOY15",
 
                     title:
                         "Deployment",
@@ -1204,6 +1309,125 @@ const translations = {
             ],
         },
 
+        /* ==================================================
+           RATES
+           ================================================== */
+
+        tarifs: {
+            surtitle:
+                "My services",
+
+            title:
+                "My rates",
+
+            description:
+                "Solutions tailored to your needs and your project.",
+
+            close:
+                "Close rates",
+
+            whatsappButton:
+                "Discuss this offer",
+
+            whatsappMessage:
+                "Hello Fréjus, I am interested in your « {service} » service priced at {price}. I would like to get more information about this offer.",
+
+            footer1:
+                "Prices are indicative and may vary depending on the complexity of the project.",
+
+            footer2:
+                "Contact me to discuss your needs and get a personalized quote.",
+
+            services: [
+                {
+                    title:
+                        "Landing Page",
+
+                    price:
+                        "50,000 FCFA",
+
+                    description:
+                        "A modern web page to showcase a business, product, or service.",
+                },
+
+                {
+                    title:
+                        "Professional Portfolio",
+
+                    price:
+                        "75,000 FCFA",
+
+                    description:
+                        "A customized portfolio to showcase your profile, skills, and projects.",
+                },
+
+                {
+                    title:
+                        "Business Website",
+
+                    price:
+                        "100,000 FCFA",
+
+                    description:
+                        "A professional and responsive website to present your business, activity, or organization.",
+                },
+
+                {
+                    title:
+                        "Web Application",
+
+                    price:
+                        "250,000 FCFA",
+
+                    description:
+                        "An interactive web application tailored to your project's specific needs.",
+                },
+
+                {
+                    title:
+                        "Mobile Application",
+
+                    price:
+                        "300,000 FCFA",
+
+                    description:
+                        "A modern mobile application developed to meet your needs.",
+                },
+
+                {
+                    title:
+                        "Backend & API",
+
+                    price:
+                        "100,000 FCFA",
+
+                    description:
+                        "Backend services and APIs to connect your applications to your data.",
+                },
+
+                {
+                    title:
+                        "Maintenance & Fixes",
+
+                    price:
+                        "10,000 FCFA",
+
+                    description:
+                        "Bug fixes, improvements, and minor modifications to your websites or applications.",
+                },
+
+                {
+                    title:
+                        "Custom Project",
+
+                    price:
+                        "Upon request",
+
+                    description:
+                        "A customized solution based on the features and objectives of your project.",
+                },
+            ],
+        },
     },
 };
 
@@ -1254,3 +1478,4 @@ export function LanguageProvider({ children }) {
         </LanguageContext.Provider>
     );
 }
+

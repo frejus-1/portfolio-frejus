@@ -361,6 +361,120 @@ html.dark .navigation a:hover {
     gap: 0.55rem;
 }
 
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.25rem;
+}
+
+
+/* =========================================================
+   LIENS DE NAVIGATION + MES TARIFS
+   ========================================================= */
+
+.navigation a,
+.navigation .nav-tarifs {
+    position: relative;
+
+    padding: 0.65rem 0.8rem;
+
+    color: #394554;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        color var(--transition-rapide),
+        background-color var(--transition-rapide);
+}
+
+
+/* =========================================================
+   MODE SOMBRE
+   ========================================================= */
+
+html.dark .navigation a,
+html.dark .navigation .nav-tarifs {
+    color: #cbd5e1;
+}
+
+
+/* =========================================================
+   SURVOL
+   ========================================================= */
+
+.navigation a:hover,
+.navigation .nav-tarifs:hover {
+    color: var(--c-primaire);
+
+    background: var(--c-primaire-clair);
+}
+
+html.dark .navigation a:hover,
+html.dark .navigation .nav-tarifs:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SOULIGNEMENT
+   ========================================================= */
+
+.navigation a::after,
+.navigation .nav-tarifs::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 4px;
+
+    width: 0;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background: var(--c-primaire);
+
+    transform: translateX(-50%);
+
+    transition:
+        width var(--transition-rapide);
+}
+
+.navigation a:hover::after,
+.navigation .nav-tarifs:hover::after {
+    width: 20px;
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ
+   ========================================================= */
+
+.navigation .nav-tarifs:focus-visible {
+    outline: 2px solid var(--c-primaire);
+    outline-offset: 3px;
+}
+
+
 
 /* Boutons langue + thème */
 
@@ -5889,6 +6003,7 @@ html.dark .circle-three {
    ========================================================= */
 
 @media (max-width: 700px) {
+
     /* Image du hero plus visible et mieux centrée */
     .hero::before {
         background-position: center center;
@@ -6091,6 +6206,7 @@ html.dark .circle-three {
         bottom: 214px;
     }
 }
+
 
 /* =========================================================
    FIN DU FICHIER

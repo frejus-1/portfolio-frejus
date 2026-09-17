@@ -15,7 +15,7 @@ function getInitialTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
-function Navbar() {
+function Navbar({ onOpenTarifs }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [darkMode, setDarkMode] = useState(getInitialTheme);
     const [scrolled, setScrolled] = useState(false);
@@ -26,10 +26,18 @@ function Navbar() {
         setMenuOpen(false);
     };
 
+    const handleOpenTarifs = () => {
+        closeMenu();
+        onOpenTarifs();
+    };
+
     useEffect(() => {
         const isDark = getInitialTheme();
 
-        document.documentElement.classList.toggle("dark", isDark);
+        document.documentElement.classList.toggle(
+            "dark",
+            isDark
+        );
     }, []);
 
     useEffect(() => {
@@ -121,6 +129,19 @@ function Navbar() {
                     {t.nav.journey}
                 </a>
 
+                {/* ==============================
+                    MES TARIFS - MODAL
+                ============================== */}
+                <button
+                    type="button"
+                    className="nav-tarifs"
+                    onClick={handleOpenTarifs}
+                >
+                    {language === "fr"
+                        ? "Mes tarifs"
+                        : "My rates"}
+                </button>
+
                 <a href="#contact" onClick={closeMenu}>
                     {t.nav.contact}
                 </a>
@@ -172,4 +193,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default Navbar
