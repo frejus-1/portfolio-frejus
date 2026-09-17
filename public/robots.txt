@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-frejus.vercel.app/sitemap.xml
+Sitemap: https://frejus-adjanohoun.vercel.app/sitemap.xml
