@@ -4875,7 +4875,7 @@ html.dark .circle-three {
 @media (max-width: 600px) {
     .terminal-floating-button {
         right: 16px;
-        bottom: 150px;
+        bottom: 220px;
 
         width: 56px;
         height: 56px;
@@ -5196,7 +5196,7 @@ html.dark .circle-three {
 
     .terminal-floating-button {
         right: 16px;
-        bottom: 150px;
+        bottom: 220px;
 
         width: 56px;
         height: 56px;
@@ -5881,6 +5881,217 @@ html.dark .circle-three {
     font-size: 0.78rem;
     letter-spacing: 0.05em;
 }
+
+
+/* =========================================================
+   CORRECTIONS RESPONSIVE — PETITS ÉCRANS
+   Modifications ciblées : iPhone 7 et écrans plus petits
+   ========================================================= */
+
+@media (max-width: 700px) {
+    /* Image du hero plus visible et mieux centrée */
+    .hero::before {
+        background-position: center center;
+        opacity: 0.32;
+    }
+
+    html.dark .hero::before {
+        background-position: center center;
+        opacity: 0.38;
+    }
+
+    /* Le terminal reste séparé des boutons flottants */
+    .terminal-floating-button {
+        bottom: 220px;
+    }
+}
+
+@media (max-width: 390px) {
+    .navbar {
+        width: calc(100% - 0.75rem);
+        padding: 0.55rem 0.6rem;
+        gap: 0.25rem;
+    }
+
+    .logo {
+        font-size: 1.18rem;
+    }
+
+    .navbar-actions {
+        gap: 0.25rem;
+    }
+
+    .language-toggle,
+    .theme-toggle,
+    .menu-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .hero,
+    .section {
+        width: calc(100% - 0.9rem);
+    }
+
+    .hero {
+        padding-top: 8rem;
+        padding-bottom: 3rem;
+        gap: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.35rem;
+        letter-spacing: -0.05em;
+    }
+
+    .hero h2 {
+        font-size: 1.1rem;
+        margin-top: 1.35rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    .hero-actions .button {
+        min-height: 46px;
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-socials {
+        gap: 0.75rem;
+        margin-top: 1.4rem;
+    }
+
+    .hero-socials a {
+        font-size: 0.88rem;
+    }
+
+    .hero-visual {
+        min-height: 270px;
+    }
+
+    .code-card {
+        width: 100%;
+        padding: 0.45rem;
+        border-radius: 14px;
+    }
+
+    .code-content {
+        padding: 0.7rem;
+        font-size: 0.56rem;
+        line-height: 1.7;
+    }
+
+    .floating-badge {
+        padding: 0.4rem 0.55rem;
+        font-size: 0.55rem;
+    }
+
+    .badge-react {
+        top: 2%;
+        right: 0;
+    }
+
+    .badge-spring {
+        right: 0;
+        bottom: 7%;
+    }
+
+    .badge-flutter {
+        left: 0;
+        bottom: 2%;
+    }
+
+    .section-heading h2 {
+        font-size: 2rem;
+    }
+
+    .about-highlight,
+    .skill-card,
+    .project-card-content {
+        padding: 1.2rem;
+    }
+
+    .project-card-image {
+        height: 180px;
+    }
+
+    .timeline-card {
+        padding: 1.25rem;
+    }
+
+    .contact-container {
+        width: calc(100% - 0.9rem);
+    }
+
+    .contact-form-wrapper {
+        padding: 1rem;
+    }
+
+    .contact-item-value {
+        font-size: 0.76rem;
+    }
+
+    .site-footer {
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+    }
+
+    .footer-container {
+        width: calc(100% - 1rem);
+    }
+
+    .terminal-floating-button {
+        right: 12px;
+        bottom: 220px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .whatsapp-button {
+        right: 12px;
+        bottom: 76px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .back-to-top {
+        right: 12px;
+        bottom: 12px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 2.15rem;
+    }
+
+    .hero h2 {
+        font-size: 1.02rem;
+    }
+
+    .hero-description {
+        font-size: 0.86rem;
+    }
+
+    .code-content {
+        font-size: 0.52rem;
+    }
+
+    .floating-badge {
+        font-size: 0.52rem;
+    }
+
+    .terminal-floating-button {
+        bottom: 214px;
+    }
+}
+
 /* =========================================================
    FIN DU FICHIER
    ========================================================= */
