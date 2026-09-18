@@ -9,33 +9,51 @@ function Timeline() {
             number: "01",
             category: t.timeline.item1Category,
             title: t.timeline.item1Title,
+            location: t.timeline.item1Location,
             description: t.timeline.item1Description,
+            link: "https://esfbenin.net/",
             technologies: [
+                "Informatique",
                 "Programmation",
                 "Bases de données",
-                "Développement web",
-            ],
-        },
-        {
-            number: "02",
-            category: t.timeline.item2Category,
-            title: t.timeline.item2Title,
-            description: t.timeline.item2Description,
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-                "Laravel",
             ],
         },
         {
             number: "03",
             category: t.timeline.item3Category,
             title: t.timeline.item3Title,
+            location: t.timeline.item3Location,
             description: t.timeline.item3Description,
+            link: "https://cosit-benin.com/",
+            technologies: [
+                "HTML",
+                "CSS",
+                "JavaScript",
+            ],
+        },
+        {
+            number: "02",
+            category: t.timeline.item2Category,
+            title: t.timeline.item2Title,
+            location: t.timeline.item2Location,
+            description: t.timeline.item2Description,
+            link: "https://iatf-university.org/",
+            technologies: [
+                "Système Informatique",
+                "Développement Web",
+                "Développement Logiciel",
+            ],
+        },
+        {
+            number: "04",
+            category: t.timeline.item4Category,
+            title: t.timeline.item4Title,
+            location: t.timeline.item4Location,
+            description: t.timeline.item4Description,
             technologies: [
                 "React",
                 "Spring Boot",
+                "Laravel",
                 "Flutter",
                 "MySQL",
             ],
@@ -92,7 +110,24 @@ function Timeline() {
                                     {item.category}
                                 </span>
 
-                                <h3>{item.title}</h3>
+                                <h3>
+                                    {item.link ? (
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="timeline-title-link"
+                                        >
+                                            {item.title}
+                                        </a>
+                                    ) : (
+                                        item.title
+                                    )}
+                                </h3>
+
+                                <span className="timeline-location">
+                                    {item.location}
+                                </span>
 
                                 <p>
                                     {item.description}
@@ -107,6 +142,20 @@ function Timeline() {
                                         )
                                     )}
                                 </div>
+
+                                {item.link && (
+                                    <a
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="timeline-link"
+                                    >
+                                        {t.timeline.visitWebsite}
+                                        <span aria-hidden="true">
+                                            ↗
+                                        </span>
+                                    </a>
+                                )}
                             </div>
                         </article>
                     </ScrollReveal>
@@ -117,3 +166,4 @@ function Timeline() {
 }
 
 export default Timeline;
+

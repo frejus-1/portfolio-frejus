@@ -220,43 +220,39 @@ const translations = {
         /* ==================================================
            PARCOURS
            ================================================== */
-
         timeline: {
-            title: "Parcours",
-
-            heading:
-                "Un parcours construit par la pratique.",
-
+            title: "Mon parcours",
+            heading: "Formation & expérience",
             subtitle:
-                "Une progression basée sur l'apprentissage, la réalisation de projets et l'exploration de nouvelles technologies.",
+                "Un parcours construit entre formation académique, expérience professionnelle et projets personnels.",
 
-            item1Category:
-                "Formation",
-
-            item1Title:
-                "Système Informatique et Logiciel",
-
+            item1Category: "2024 – 2025",
+            item1Title: "École Supérieure Le Faucon",
+            item1Location: "Abomey-Calavi, Bénin",
             item1Description:
-                "Formation universitaire à l'IATF avec un apprentissage progressif du développement logiciel, des bases de données et des technologies web et mobile.",
+                "Début de mes études supérieures avec une première année consacrée à l'acquisition de bases en informatique, programmation et systèmes.",
 
-            item2Category:
-                "Développement Web",
-
-            item2Title:
-                "Création de projets web",
-
-            item2Description:
-                "Mise en pratique des connaissances à travers différents projets frontend et backend, avec une attention particulière portée à la structure, au responsive design et à l'expérience utilisateur.",
-
-            item3Category:
-                "Full Stack & Mobile",
-
-            item3Title:
-                "Approfondissement des technologies",
-
+            item3Category: "2025 — 2 mois",
+            item3Title: "Stage — COSIT Bénin",
+            item3Location: "Abomey-Calavi, Bénin",
             item3Description:
-                "Exploration de nouvelles technologies pour développer des applications complètes, du frontend au backend, ainsi que des applications mobiles.",
+                "Première expérience professionnelle dans le développement web, avec une mise en pratique de HTML, CSS et JavaScript.",
+
+            item2Category: "2025 – Aujourd'hui",
+            item2Title: "IATF — Système Informatique et Logiciel",
+            item2Location: "Ouèdo, Abomey-Calavi, Bénin",
+            item2Description:
+                "Formation en Système Informatique et Logiciel. Actuellement en deuxième année, avec une approche combinant enseignements, pratique et réalisation de projets.",
+
+            item4Category: "2025 – Aujourd'hui",
+            item4Title: "Projets & développement personnel",
+            item4Location: "Développement personnel",
+            item4Description:
+                "Développement de plusieurs projets pour renforcer mes compétences en développement Full Stack Web & Mobile : CampusLib, MyInter, ToDo, Orienter Education et mon portfolio personnel.",
+
+            visitWebsite: "Visiter le site",
         },
+
 
         /* ==================================================
            CONTACT
@@ -951,43 +947,41 @@ const translations = {
            JOURNEY
            ================================================== */
 
+
         timeline: {
-            title:
-                "Journey",
-
-            heading:
-                "A journey built through practice.",
-
+            title: "My journey",
+            heading: "Education & experience",
             subtitle:
-                "A progression based on learning, building projects and exploring new technologies.",
+                "A journey built through academic training, professional experience and personal projects.",
 
-            item1Category:
-                "Education",
-
-            item1Title:
-                "Computer Science and Software Engineering",
-
+            item1Category: "2024 – 2025",
+            item1Title: "École Supérieure Le Faucon",
+            item1Location: "Abomey-Calavi, Benin",
             item1Description:
-                "University education at IATF with progressive learning in software development, databases, and web and mobile technologies.",
+                "Started my higher education with a first year focused on building strong foundations in computer science, programming and systems.",
 
-            item2Category:
-                "Web Development",
-
-            item2Title:
-                "Building web projects",
-
-            item2Description:
-                "Putting knowledge into practice through various frontend and backend projects, with a strong focus on structure, responsive design and user experience.",
-
-            item3Category:
-                "Full Stack & Mobile",
-
-            item3Title:
-                "Exploring advanced technologies",
-
+            item3Category: "2025 — 2 months",
+            item3Title: "Internship — COSIT Bénin",
+            item3Location: "Abomey-Calavi, Benin",
             item3Description:
-                "Exploring new technologies to build complete applications, from frontend to backend, as well as mobile applications.",
+                "My first professional experience in web development, where I practiced HTML, CSS and JavaScript.",
+
+            item2Category: "2025 – Present",
+            item2Title: "IATF — Computer Science & Software Engineering",
+            item2Location: "Ouèdo, Abomey-Calavi, Benin",
+            item2Description:
+                "Currently pursuing a Computer Science and Software Engineering program, combining academic learning, practical work and project development.",
+
+            item4Category: "2025 – Present",
+            item4Title: "Projects & personal development",
+            item4Location: "Personal development",
+            item4Description:
+                "Developing several projects to strengthen my Full Stack Web & Mobile skills, including CampusLib, MyInter, ToDo, Orienter Education and my personal portfolio.",
+
+            visitWebsite: "Visit website",
         },
+
+
 
         /* ==================================================
            CONTACT

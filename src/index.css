@@ -2449,6 +2449,57 @@ RESPONSIVE
     border-color: var(--c-primaire-clair);
 }
 
+/* ==========================================
+   LIENS TIMELINE
+   ========================================== */
+
+.timeline-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.timeline-title-link:hover {
+    color: var(--c-primaire);
+}
+
+.timeline-location {
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    color: var(--c-texte-doux);
+    font-size: 0.85rem;
+}
+
+.timeline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 18px;
+    color: var(--c-primaire);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        gap 0.25s ease,
+        color 0.25s ease;
+}
+
+.timeline-link:hover {
+    gap: 11px;
+    color: var(--c-primaire-fonce);
+}
+
+.timeline-link span {
+    font-size: 1rem;
+    transition: transform 0.25s ease;
+}
+
+.timeline-link:hover span {
+    transform: translate(2px, -2px);
+}
+
+
 
 /* =========================================================
    13. CONTACT
