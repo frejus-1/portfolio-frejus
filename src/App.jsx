@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
 
 import { useLanguage } from "./context/useLanguage";
 
@@ -21,11 +25,17 @@ import DeveloperEasterEgg from "./components/DeveloperEasterEgg";
 import Gifts from "./components/Gifts";
 import AIChatbot from "./components/AIChatbot";
 import Tarifs from "./components/Tarifs";
+import CodeBackground from "./components/CodeBackground";
 
 function Home() {
-    const [terminalOpen, setTerminalOpen] = useState(false);
-    const [giftsOpen, setGiftsOpen] = useState(false);
-    const [tarifsOpen, setTarifsOpen] = useState(false);
+    const [terminalOpen, setTerminalOpen] =
+        useState(false);
+
+    const [giftsOpen, setGiftsOpen] =
+        useState(false);
+
+    const [tarifsOpen, setTarifsOpen] =
+        useState(false);
 
     const { t } = useLanguage();
 
@@ -49,76 +59,128 @@ function Home() {
 
     return (
         <>
+            {/* ==========================================
+                BACKGROUND ANIMÉ GLOBAL
+                Bulles de code + lueurs + grille
+            ========================================== */}
+
+            <CodeBackground />
+
+            {/* ==========================================
+                PROGRESSION DU SCROLL
+            ========================================== */}
+
             <ScrollProgress />
 
+            {/* ==========================================
+                NAVIGATION
+            ========================================== */}
+
             <Navbar
-                onOpenTarifs={() => setTarifsOpen(true)}
+                onOpenTarifs={() =>
+                    setTarifsOpen(true)
+                }
             />
+
+            {/* ==========================================
+                CONTENU PRINCIPAL
+            ========================================== */}
 
             <main>
                 <Hero />
+
                 <About />
+
                 <Skills />
+
                 <Projects />
+
                 <Timeline />
+
                 <Contact />
             </main>
 
+            {/* ==========================================
+                FOOTER
+            ========================================== */}
+
             <Footer />
 
-            {/* ==============================
+            {/* ==========================================
                 TERMINAL
-            ============================== */}
+            ========================================== */}
+
             <Terminal
                 isOpen={terminalOpen}
-                onClose={() => setTerminalOpen(false)}
+                onClose={() =>
+                    setTerminalOpen(false)
+                }
             />
+
+            {/* ==========================================
+                BOUTON TERMINAL FLOTTANT
+            ========================================== */}
 
             <button
                 type="button"
                 className="terminal-floating-button"
-                onClick={() => setTerminalOpen(true)}
+                onClick={() =>
+                    setTerminalOpen(true)
+                }
                 aria-label={t.terminal.title}
             >
                 <span>⌨</span>
-                <span>Terminal</span>
+
+                <span>
+                    Terminal
+                </span>
             </button>
 
-            {/* ==============================
+            {/* ==========================================
                 EASTER EGG
                 frejus → secret → cadeaux
-            ============================== */}
+            ========================================== */}
+
             <DeveloperEasterEgg />
 
-            {/* ==============================
+            {/* ==========================================
                 CADEAUX - MODAL
-            ============================== */}
+            ========================================== */}
+
             <Gifts
                 isOpen={giftsOpen}
-                onClose={() => setGiftsOpen(false)}
+                onClose={() =>
+                    setGiftsOpen(false)
+                }
             />
 
-            {/* ==============================
+            {/* ==========================================
                 TARIFS - MODAL
-            ============================== */}
+            ========================================== */}
+
             <Tarifs
                 isOpen={tarifsOpen}
-                onClose={() => setTarifsOpen(false)}
+                onClose={() =>
+                    setTarifsOpen(false)
+                }
             />
 
-            {/* ==============================
+            {/* ==========================================
                 AI CHATBOT
-            ============================== */}
+            ========================================== */}
+
             <AIChatbot />
 
-            {/* ==============================
+            {/* ==========================================
                 WHATSAPP
-            ============================== */}
+            ========================================== */}
+
             <WhatsAppButton />
 
-            {/* ==============================
+            {/* ==========================================
                 RETOUR EN HAUT
-            ============================== */}
+            ========================================== */}
+
             <BackToTop />
         </>
     );
@@ -127,19 +189,37 @@ function Home() {
 function App() {
     return (
         <>
+            {/* ==========================================
+                CHARGEMENT INITIAL
+            ========================================== */}
+
             <PageLoader />
+
+            {/* ==========================================
+                ROUTER
+            ========================================== */}
 
             <BrowserRouter>
                 <Routes>
+
+                    {/* ==============================
+                        PAGE D'ACCUEIL
+                    ============================== */}
+
                     <Route
                         path="/"
                         element={<Home />}
                     />
 
+                    {/* ==============================
+                        PAGE 404
+                    ============================== */}
+
                     <Route
                         path="*"
                         element={<NotFound />}
                     />
+
                 </Routes>
             </BrowserRouter>
         </>

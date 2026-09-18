@@ -1,0 +1,1570 @@
+/* ==================================================
+   CODE BACKGROUND GLOBAL
+   ================================================== */
+
+.code-background {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    opacity: 0.9;
+}
+
+/* ==================================================
+   LUEURS
+   ================================================== */
+
+.code-glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    pointer-events: none;
+
+    will-change: transform;
+
+    opacity: 0.14;
+}
+
+.glow-1 {
+    width: 420px;
+    height: 420px;
+
+    top: -100px;
+    left: -100px;
+
+    background: var(--c-primaire);
+
+    animation:
+        glowMove1 18s ease-in-out infinite alternate;
+}
+
+.glow-2 {
+    width: 350px;
+    height: 350px;
+
+    top: 20%;
+    right: -100px;
+
+    background: var(--c-secondaire);
+
+    animation:
+        glowMove2 22s ease-in-out infinite alternate;
+}
+
+.glow-3 {
+    width: 500px;
+    height: 500px;
+
+    left: 25%;
+    bottom: -250px;
+
+    background: var(--c-primaire);
+
+    animation:
+        glowMove3 25s ease-in-out infinite alternate;
+}
+
+.glow-4 {
+    width: 300px;
+    height: 300px;
+
+    left: 45%;
+    top: 25%;
+
+    background: var(--c-primaire);
+
+    opacity: 0.08;
+
+    animation:
+        glowMove4 16s ease-in-out infinite alternate;
+}
+
+.glow-5 {
+    width: 280px;
+    height: 280px;
+
+    right: 25%;
+    bottom: 10%;
+
+    background: var(--c-secondaire);
+
+    opacity: 0.08;
+
+    animation:
+        glowMove5 20s ease-in-out infinite alternate;
+}
+
+/* ==================================================
+   ANIMATIONS DES LUEURS
+   ================================================== */
+
+@keyframes glowMove1 {
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(160px, 100px, 0) scale(1.15);
+    }
+
+    100% {
+        transform:
+            translate3d(80px, 240px, 0) scale(0.9);
+    }
+}
+
+@keyframes glowMove2 {
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(-180px, 120px, 0) scale(1.2);
+    }
+
+    100% {
+        transform:
+            translate3d(-80px, -120px, 0) scale(0.85);
+    }
+}
+
+@keyframes glowMove3 {
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(-120px, -150px, 0) scale(1.2);
+    }
+
+    100% {
+        transform:
+            translate3d(180px, -80px, 0) scale(0.9);
+    }
+}
+
+@keyframes glowMove4 {
+    0% {
+        transform:
+            translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform:
+            translate3d(130px, -100px, 0);
+    }
+
+    100% {
+        transform:
+            translate3d(-100px, 100px, 0);
+    }
+}
+
+@keyframes glowMove5 {
+    0% {
+        transform:
+            translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform:
+            translate3d(-120px, -100px, 0);
+    }
+
+    100% {
+        transform:
+            translate3d(80px, 80px, 0);
+    }
+}
+
+/* ==================================================
+   BULLES
+   ================================================== */
+
+.code-bubbles {
+    position: absolute;
+    inset: 0;
+}
+
+/* Base */
+
+.code-bubble {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 17px;
+
+    border-radius: 999px;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.03em;
+
+    color: var(--c-primaire);
+
+    background:
+        color-mix(in srgb,
+            var(--c-primaire) 6%,
+            transparent);
+
+    border: 1px solid color-mix(in srgb,
+            var(--c-primaire) 11%,
+            transparent);
+
+    box-shadow:
+        0 8px 35px color-mix(in srgb,
+            var(--c-primaire) 7%,
+            transparent);
+
+    backdrop-filter: blur(6px);
+
+    -webkit-backdrop-filter: blur(6px);
+
+    opacity: 0.3;
+
+    white-space: nowrap;
+
+    user-select: none;
+
+    will-change:
+        transform,
+        opacity;
+
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+/* ==================================================
+   POSITIONS
+   ================================================== */
+
+.bubble-1 {
+    top: 7%;
+    left: 5%;
+    animation: bubbleA 17s infinite;
+}
+
+.bubble-2 {
+    top: 16%;
+    left: 27%;
+    animation: bubbleB 21s infinite;
+}
+
+.bubble-3 {
+    top: 10%;
+    right: 8%;
+    animation: bubbleC 19s infinite;
+}
+
+.bubble-4 {
+    top: 25%;
+    left: 12%;
+    animation: bubbleD 23s infinite;
+}
+
+.bubble-5 {
+    top: 32%;
+    left: 42%;
+    animation: bubbleE 27s infinite;
+}
+
+.bubble-6 {
+    top: 30%;
+    right: 18%;
+    animation: bubbleF 18s infinite;
+}
+
+.bubble-7 {
+    top: 43%;
+    left: 4%;
+    animation: bubbleG 24s infinite;
+}
+
+.bubble-8 {
+    top: 48%;
+    left: 25%;
+    animation: bubbleH 20s infinite;
+}
+
+.bubble-9 {
+    top: 40%;
+    right: 5%;
+    animation: bubbleI 26s infinite;
+}
+
+.bubble-10 {
+    top: 58%;
+    left: 45%;
+    animation: bubbleJ 22s infinite;
+}
+
+.bubble-11 {
+    top: 65%;
+    left: 8%;
+    animation: bubbleK 19s infinite;
+}
+
+.bubble-12 {
+    top: 68%;
+    right: 15%;
+    animation: bubbleL 25s infinite;
+}
+
+.bubble-13 {
+    top: 75%;
+    left: 32%;
+    animation: bubbleM 28s infinite;
+}
+
+.bubble-14 {
+    top: 82%;
+    right: 5%;
+    animation: bubbleN 21s infinite;
+}
+
+.bubble-15 {
+    top: 88%;
+    left: 12%;
+    animation: bubbleO 24s infinite;
+}
+
+.bubble-16 {
+    top: 5%;
+    left: 52%;
+    animation: bubbleP 20s infinite;
+}
+
+.bubble-17 {
+    top: 20%;
+    left: 70%;
+    animation: bubbleQ 29s infinite;
+}
+
+.bubble-18 {
+    top: 36%;
+    left: 70%;
+    animation: bubbleR 18s infinite;
+}
+
+.bubble-19 {
+    top: 52%;
+    left: 63%;
+    animation: bubbleS 23s infinite;
+}
+
+.bubble-20 {
+    top: 62%;
+    left: 55%;
+    animation: bubbleT 27s infinite;
+}
+
+.bubble-21 {
+    top: 73%;
+    left: 68%;
+    animation: bubbleU 19s infinite;
+}
+
+.bubble-22 {
+    top: 85%;
+    left: 45%;
+    animation: bubbleV 26s infinite;
+}
+
+.bubble-23 {
+    top: 12%;
+    left: 42%;
+    animation: bubbleW 22s infinite;
+}
+
+.bubble-24 {
+    top: 28%;
+    left: 56%;
+    animation: bubbleX 24s infinite;
+}
+
+.bubble-25 {
+    top: 47%;
+    left: 52%;
+    animation: bubbleY 21s infinite;
+}
+
+.bubble-26 {
+    top: 60%;
+    left: 18%;
+    animation: bubbleZ 30s infinite;
+}
+
+.bubble-27 {
+    top: 78%;
+    left: 50%;
+    animation: bubbleAA 18s infinite;
+}
+
+.bubble-28 {
+    top: 90%;
+    left: 75%;
+    animation: bubbleAB 25s infinite;
+}
+
+.bubble-29 {
+    top: 38%;
+    left: 85%;
+    animation: bubbleAC 20s infinite;
+}
+
+.bubble-30 {
+    top: 18%;
+    left: 88%;
+    animation: bubbleAD 28s infinite;
+}
+
+.bubble-31 {
+    top: 54%;
+    left: 88%;
+    animation: bubbleAE 23s infinite;
+}
+
+.bubble-32 {
+    top: 70%;
+    left: 3%;
+    animation: bubbleAF 26s infinite;
+}
+
+.bubble-33 {
+    top: 92%;
+    left: 25%;
+    animation: bubbleAG 19s infinite;
+}
+
+.bubble-34 {
+    top: 2%;
+    left: 78%;
+    animation: bubbleAH 27s infinite;
+}
+
+.bubble-35 {
+    top: 45%;
+    left: 15%;
+    animation: bubbleAI 22s infinite;
+}
+
+.bubble-36 {
+    top: 83%;
+    left: 58%;
+    animation: bubbleAJ 24s infinite;
+}
+
+.bubble-37 {
+    top: 25%;
+    left: 82%;
+    animation: bubbleAK 20s infinite;
+}
+
+.bubble-38 {
+    top: 57%;
+    left: 35%;
+    animation: bubbleAL 29s infinite;
+}
+
+.bubble-39 {
+    top: 10%;
+    left: 15%;
+    animation: bubbleAM 21s infinite;
+}
+
+.bubble-40 {
+    top: 93%;
+    left: 85%;
+    animation: bubbleAN 26s infinite;
+}
+
+.bubble-41 {
+    top: 50%;
+    left: 75%;
+    animation: bubbleAO 18s infinite;
+}
+
+.bubble-42 {
+    top: 76%;
+    left: 85%;
+    animation: bubbleAP 23s infinite;
+}
+
+.bubble-43 {
+    top: 33%;
+    left: 3%;
+    animation: bubbleAQ 27s infinite;
+}
+
+.bubble-44 {
+    top: 15%;
+    left: 60%;
+    animation: bubbleAR 25s infinite;
+}
+
+.bubble-45 {
+    top: 67%;
+    left: 40%;
+    animation: bubbleAS 20s infinite;
+}
+
+.bubble-46 {
+    top: 40%;
+    left: 33%;
+    animation: bubbleAT 28s infinite;
+}
+
+.bubble-47 {
+    top: 80%;
+    left: 15%;
+    animation: bubbleAU 24s infinite;
+}
+
+.bubble-48 {
+    top: 60%;
+    left: 78%;
+    animation: bubbleAV 22s infinite;
+}
+
+/* ==================================================
+   ANIMATIONS BULLES
+   ================================================== */
+
+@keyframes bubbleA {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(-3deg) scale(1);
+        opacity: 0.18;
+    }
+
+    50% {
+        transform: translate3d(100px, -70px, 0) rotate(8deg) scale(1.2);
+        opacity: 0.4;
+    }
+}
+
+@keyframes bubbleB {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(2deg);
+    }
+
+    50% {
+        transform: translate3d(-120px, 80px, 0) rotate(-8deg) scale(0.8);
+    }
+}
+
+@keyframes bubbleC {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, 100px, 0) rotate(10deg) scale(1.15);
+    }
+}
+
+@keyframes bubbleD {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(80px, -100px, 0) rotate(-7deg);
+    }
+}
+
+@keyframes bubbleE {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(-140px, 90px, 0) scale(1.25);
+    }
+}
+
+@keyframes bubbleF {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, 70px, 0) rotate(-12deg);
+    }
+}
+
+@keyframes bubbleG {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(130px, -90px, 0) scale(0.8);
+    }
+}
+
+@keyframes bubbleH {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-80px, -100px, 0) rotate(12deg);
+    }
+}
+
+@keyframes bubbleI {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-130px, 50px, 0) scale(1.2);
+    }
+}
+
+@keyframes bubbleJ {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(90px, -120px, 0) rotate(-8deg);
+    }
+}
+
+@keyframes bubbleK {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, -60px, 0) scale(1.15);
+    }
+}
+
+@keyframes bubbleL {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, -90px, 0) rotate(9deg);
+    }
+}
+
+@keyframes bubbleM {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-110px, 60px, 0) scale(0.85);
+    }
+}
+
+@keyframes bubbleN {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-80px, -100px, 0) rotate(-10deg);
+    }
+}
+
+@keyframes bubbleO {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(120px, -50px, 0) scale(1.2);
+    }
+}
+
+@keyframes bubbleP {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-90px, 100px, 0) rotate(7deg);
+    }
+}
+
+@keyframes bubbleQ {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(70px, 120px, 0) scale(0.8);
+    }
+}
+
+@keyframes bubbleR {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-120px, -80px, 0) rotate(12deg);
+    }
+}
+
+@keyframes bubbleS {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(130px, 70px, 0) scale(1.15);
+    }
+}
+
+@keyframes bubbleT {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, -110px, 0) rotate(-9deg);
+    }
+}
+
+@keyframes bubbleU {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(80px, -90px, 0) scale(1.2);
+    }
+}
+
+@keyframes bubbleV {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-130px, 80px, 0) rotate(8deg);
+    }
+}
+
+@keyframes bubbleW {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, 100px, 0) scale(0.85);
+    }
+}
+
+@keyframes bubbleX {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, -90px, 0) rotate(-7deg);
+    }
+}
+
+@keyframes bubbleY {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(120px, -70px, 0) scale(1.2);
+    }
+}
+
+@keyframes bubbleZ {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-80px, 100px, 0) rotate(10deg);
+    }
+}
+
+@keyframes bubbleAA {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(130px, -80px, 0) scale(0.8);
+    }
+}
+
+@keyframes bubbleAB {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-120px, -100px, 0) rotate(-11deg);
+    }
+}
+
+@keyframes bubbleAC {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, 80px, 0) scale(1.15);
+    }
+}
+
+@keyframes bubbleAD {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-140px, 90px, 0) rotate(9deg);
+    }
+}
+
+@keyframes bubbleAE {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, -100px, 0) scale(0.85);
+    }
+}
+
+@keyframes bubbleAF {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(120px, 70px, 0) rotate(-8deg);
+    }
+}
+
+@keyframes bubbleAG {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, -70px, 0) scale(1.2);
+    }
+}
+
+@keyframes bubbleAH {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-110px, 100px, 0) rotate(6deg);
+    }
+}
+
+@keyframes bubbleAI {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, -80px, 0) scale(0.8);
+    }
+}
+
+@keyframes bubbleAJ {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-90px, -110px, 0) rotate(-9deg);
+    }
+}
+
+@keyframes bubbleAK {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-120px, 70px, 0) scale(1.15);
+    }
+}
+
+@keyframes bubbleAL {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(130px, -60px, 0) rotate(8deg);
+    }
+}
+
+@keyframes bubbleAM {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(80px, 100px, 0) scale(0.85);
+    }
+}
+
+@keyframes bubbleAN {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, -80px, 0) rotate(-10deg);
+    }
+}
+
+@keyframes bubbleAO {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(120px, 100px, 0) scale(1.2);
+    }
+}
+
+@keyframes bubbleAP {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-130px, -90px, 0) rotate(7deg);
+    }
+}
+
+@keyframes bubbleAQ {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, 80px, 0) scale(0.8);
+    }
+}
+
+@keyframes bubbleAR {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-90px, -120px, 0) rotate(-8deg);
+    }
+}
+
+@keyframes bubbleAS {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(110px, -70px, 0) scale(1.15);
+    }
+}
+
+@keyframes bubbleAT {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-120px, 90px, 0) rotate(11deg);
+    }
+}
+
+@keyframes bubbleAU {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(90px, -100px, 0) scale(0.85);
+    }
+}
+
+@keyframes bubbleAV {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-100px, 70px, 0) rotate(-7deg);
+    }
+}
+
+/* ==================================================
+   PARTICULES
+   ================================================== */
+
+.code-particles {
+    position: absolute;
+    inset: 0;
+}
+
+.code-particle {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: var(--c-primaire);
+
+    opacity: 0.2;
+
+    filter: blur(1px);
+
+    animation:
+        particleFloat 8s ease-in-out infinite alternate;
+}
+
+.particle-1 {
+    top: 8%;
+    left: 20%;
+    animation-delay: -1s;
+}
+
+.particle-2 {
+    top: 14%;
+    left: 44%;
+    animation-delay: -3s;
+}
+
+.particle-3 {
+    top: 21%;
+    left: 78%;
+    animation-delay: -5s;
+}
+
+.particle-4 {
+    top: 27%;
+    left: 9%;
+    animation-delay: -2s;
+}
+
+.particle-5 {
+    top: 32%;
+    left: 62%;
+    animation-delay: -6s;
+}
+
+.particle-6 {
+    top: 38%;
+    left: 31%;
+    animation-delay: -4s;
+}
+
+.particle-7 {
+    top: 44%;
+    left: 91%;
+    animation-delay: -1s;
+}
+
+.particle-8 {
+    top: 51%;
+    left: 12%;
+    animation-delay: -5s;
+}
+
+.particle-9 {
+    top: 56%;
+    left: 47%;
+    animation-delay: -3s;
+}
+
+.particle-10 {
+    top: 61%;
+    left: 83%;
+    animation-delay: -7s;
+}
+
+.particle-11 {
+    top: 67%;
+    left: 27%;
+    animation-delay: -2s;
+}
+
+.particle-12 {
+    top: 72%;
+    left: 58%;
+    animation-delay: -6s;
+}
+
+.particle-13 {
+    top: 78%;
+    left: 6%;
+    animation-delay: -4s;
+}
+
+.particle-14 {
+    top: 84%;
+    left: 72%;
+    animation-delay: -1s;
+}
+
+.particle-15 {
+    top: 90%;
+    left: 39%;
+    animation-delay: -5s;
+}
+
+.particle-16 {
+    top: 11%;
+    left: 93%;
+    animation-delay: -3s;
+}
+
+.particle-17 {
+    top: 24%;
+    left: 36%;
+    animation-delay: -7s;
+}
+
+.particle-18 {
+    top: 35%;
+    left: 84%;
+    animation-delay: -2s;
+}
+
+.particle-19 {
+    top: 46%;
+    left: 57%;
+    animation-delay: -6s;
+}
+
+.particle-20 {
+    top: 58%;
+    left: 5%;
+    animation-delay: -4s;
+}
+
+.particle-21 {
+    top: 64%;
+    left: 94%;
+    animation-delay: -1s;
+}
+
+.particle-22 {
+    top: 70%;
+    left: 43%;
+    animation-delay: -5s;
+}
+
+.particle-23 {
+    top: 76%;
+    left: 76%;
+    animation-delay: -3s;
+}
+
+.particle-24 {
+    top: 87%;
+    left: 18%;
+    animation-delay: -7s;
+}
+
+.particle-25 {
+    top: 93%;
+    left: 63%;
+    animation-delay: -2s;
+}
+
+.particle-26 {
+    top: 18%;
+    left: 3%;
+    animation-delay: -6s;
+}
+
+.particle-27 {
+    top: 29%;
+    left: 52%;
+    animation-delay: -4s;
+}
+
+.particle-28 {
+    top: 41%;
+    left: 73%;
+    animation-delay: -1s;
+}
+
+.particle-29 {
+    top: 53%;
+    left: 34%;
+    animation-delay: -5s;
+}
+
+.particle-30 {
+    top: 69%;
+    left: 88%;
+    animation-delay: -3s;
+}
+
+.particle-31 {
+    top: 81%;
+    left: 50%;
+    animation-delay: -7s;
+}
+
+.particle-32 {
+    top: 96%;
+    left: 9%;
+    animation-delay: -2s;
+}
+
+.particle-33 {
+    top: 4%;
+    left: 67%;
+    animation-delay: -6s;
+}
+
+.particle-34 {
+    top: 48%;
+    left: 96%;
+    animation-delay: -4s;
+}
+
+.particle-35 {
+    top: 74%;
+    left: 22%;
+    animation-delay: -1s;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(0.6);
+
+        opacity: 0.08;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform:
+            translate3d(40px, -60px, 0) scale(1.5);
+
+        opacity: 0.08;
+    }
+}
+
+/* ==================================================
+   GRILLE
+   ================================================== */
+
+.code-background-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(color-mix(in srgb,
+                var(--c-primaire) 3%,
+                transparent) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            color-mix(in srgb,
+                var(--c-primaire) 3%,
+                transparent) 1px,
+            transparent 1px);
+
+    background-size: 70px 70px;
+
+    mask-image:
+        radial-gradient(ellipse at center,
+            black 0%,
+            transparent 78%);
+
+    -webkit-mask-image:
+        radial-gradient(ellipse at center,
+            black 0%,
+            transparent 78%);
+
+    opacity: 0.3;
+}
+
+/* ==================================================
+   VIGNETTE
+   ================================================== */
+
+.code-background-vignette {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(ellipse at center,
+            transparent 25%,
+            var(--c-fond) 120%);
+
+    opacity: 0.25;
+}
+
+/* ==================================================
+   MODE SOMBRE
+   ================================================== */
+
+.dark .code-background {
+    opacity: 1;
+}
+
+.dark .code-bubble {
+    background:
+        color-mix(in srgb,
+            var(--c-primaire) 9%,
+            transparent);
+
+    border-color:
+        color-mix(in srgb,
+            var(--c-primaire) 16%,
+            transparent);
+
+    color: var(--c-primaire);
+
+    opacity: 0.34;
+}
+
+.dark .code-glow {
+    opacity: 0.2;
+}
+
+.dark .code-background-grid {
+    opacity: 0.42;
+}
+
+.dark .code-background-vignette {
+    opacity: 0.08;
+}
+
+/* ==================================================
+   RÉDUCTION DES ANIMATIONS
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .code-glow,
+    .code-bubble,
+    .code-particle {
+        animation: none !important;
+    }
+}
+
+/* ==================================================
+   TABLETTE
+   ================================================== */
+
+@media (max-width: 768px) {
+    .code-background {
+        opacity: 0.65;
+    }
+
+    .code-bubble {
+        padding: 8px 13px;
+
+        font-size: 0.65rem;
+
+        opacity: 0.2;
+    }
+
+    .code-glow {
+        filter: blur(85px);
+    }
+
+    .bubble-7,
+    .bubble-15,
+    .bubble-23,
+    .bubble-31,
+    .bubble-40 {
+        display: none;
+    }
+
+    .code-background-grid {
+        background-size: 55px 55px;
+    }
+}
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 480px) {
+    .code-background {
+        opacity: 0.45;
+    }
+
+    .code-bubble {
+        padding: 7px 10px;
+
+        font-size: 0.58rem;
+
+        opacity: 0.15;
+    }
+
+    .code-glow {
+        filter: blur(70px);
+    }
+
+    .bubble-3,
+    .bubble-6,
+    .bubble-9,
+    .bubble-12,
+    .bubble-18,
+    .bubble-24,
+    .bubble-30,
+    .bubble-36,
+    .bubble-42,
+    .bubble-48 {
+        display: none;
+    }
+
+    .code-background-grid {
+        display: none;
+    }
+
+    .code-particle {
+        width: 3px;
+        height: 3px;
+    }
+}
