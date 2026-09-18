@@ -80,8 +80,16 @@ function About() {
                         </div>
 
                         <div className="about-profile-identity">
+
+                            {/* ==================================
+                                PHOTO DE PROFIL
+                            ================================== */}
+
                             <div className="about-profile-initial">
-                                F
+                                <img
+                                    src="/images/frejus.png"
+                                    alt="Fréjus Adjanohoun"
+                                />
                             </div>
 
                             <div>
@@ -97,7 +105,9 @@ function About() {
 
                         <div className="about-profile-line"></div>
 
-                        {/* Informations */}
+                        {/* ==================================
+                            INFORMATIONS
+                        ================================== */}
 
                         <div className="about-profile-info">
 
@@ -134,7 +144,9 @@ function About() {
 
                         <div className="about-profile-line"></div>
 
-                        {/* Technologies */}
+                        {/* ==================================
+                            TECHNOLOGIES
+                        ================================== */}
 
                         <div className="about-profile-stack">
                             <span>
