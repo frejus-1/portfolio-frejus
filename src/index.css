@@ -1331,6 +1331,263 @@ html.dark .hero::after {
             transparent 48%);
 }
 
+/* ==========================================
+MODAL TÉLÉCHARGEMENT CV
+========================================== */
+
+.cv-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(8px);
+
+    animation: cvModalFadeIn 0.25s ease forwards;
+
+}
+
+.cv-modal {
+    position: relative;
+
+    width: min(100%, 480px);
+
+    padding: 35px;
+
+    background: var(--c-fond, #ffffff);
+    color: var(--c-texte, #22252a);
+
+    border: 1px solid rgba(29, 78, 137, 0.12);
+    border-radius: 24px;
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+
+    animation: cvModalSlideUp 0.3s ease forwards;
+
+}
+
+.cv-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--c-fond-alt, #f5f7fa);
+    color: var(--c-texte, #22252a);
+
+    font-size: 26px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+
+}
+
+.cv-modal-close:hover {
+    transform: rotate(90deg);
+    background: #e8edf4;
+}
+
+.cv-modal-icon {
+    width: 60px;
+    height: 60px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 18px;
+
+    background: rgba(29, 78, 137, 0.1);
+
+    font-size: 28px;
+
+
+}
+
+.cv-modal h3 {
+    margin: 0 0 10px;
+
+
+    text-align: center;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.cv-modal-description {
+    margin: 0 auto 25px;
+    max-width: 380px;
+
+    text-align: center;
+
+    color: var(--c-texte-doux, #647080);
+
+    line-height: 1.6;
+}
+
+.cv-modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cv-download-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px;
+
+    border: 1px solid rgba(29, 78, 137, 0.14);
+    border-radius: 16px;
+
+    color: inherit;
+    text-decoration: none;
+
+    background: var(--c-fond-alt, #f5f7fa);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.cv-download-option:hover {
+    transform: translateY(-3px);
+    border-color: var(--c-primaire, #1d4e89);
+
+    box-shadow: 0 10px 25px rgba(29, 78, 137, 0.12);
+
+    background: var(--c-fond, #ffffff);
+
+}
+
+.cv-language {
+    flex-shrink: 0;
+
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--c-primaire, #1d4e89);
+    color: #ffffff;
+
+    font-size: 0.85rem;
+    font-weight: 800;
+
+}
+
+.cv-option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+
+    flex: 1;
+
+}
+
+.cv-option-content strong {
+    font-size: 0.98rem;
+}
+
+.cv-option-content small {
+    color: var(--c-texte-doux, #647080);
+    font-size: 0.82rem;
+}
+
+.cv-download-icon {
+    font-size: 1.4rem;
+    font-weight: 700;
+
+
+    color: var(--c-primaire, #1d4e89);
+
+    transition: transform 0.2s ease;
+}
+
+.cv-download-option:hover .cv-download-icon {
+    transform: translateY(3px);
+}
+
+@keyframes cvModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes cvModalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+/* ==========================================
+RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+    .cv-modal {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .cv-modal h3 {
+        font-size: 1.3rem;
+    }
+
+    .cv-download-option {
+        padding: 13px;
+    }
+
+    .cv-language {
+        width: 44px;
+        height: 44px;
+    }
+}
+
 
 /* =========================================================
    9. À PROPOS

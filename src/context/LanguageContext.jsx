@@ -44,6 +44,17 @@ const translations = {
             contact: "Me contacter",
             cv: "Télécharger mon CV",
 
+            cvModal: {
+                title: "Télécharger mon CV",
+                description:
+                    "Choisissez la version du CV que vous souhaitez télécharger.",
+                french: "CV en français",
+                frenchDescription: "Version française",
+                english: "CV en anglais",
+                englishDescription: "Version anglaise",
+                close: "Fermer",
+            },
+
             typingWords: [
                 "Développeur Full Stack",
                 "Développeur React",
@@ -750,6 +761,17 @@ const translations = {
 
             cv:
                 "Download my CV",
+
+            cvModal: {
+                title: "Download my CV",
+                description:
+                    "Choose the CV version you would like to download.",
+                french: "CV in French",
+                frenchDescription: "French version",
+                english: "CV in English",
+                englishDescription: "English version",
+                close: "Close",
+            },
 
             typingWords: [
                 "Full Stack Developer",
