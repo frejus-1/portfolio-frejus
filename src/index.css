@@ -8979,29 +8979,38 @@ html.dark .circle-three {
 .tools-showcase-heading {
     max-width: 700px;
     margin: 0 auto 35px;
+    padding: 0 20px;
     text-align: center;
 }
 
 .tools-label {
     display: inline-block;
     margin-bottom: 10px;
+
     color: var(--c-primaire);
+
     font-size: 0.8rem;
     font-weight: 800;
+
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .tools-showcase-heading h3 {
     margin: 0 0 12px;
+
     font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.2;
 }
 
 .tools-showcase-heading p {
     margin: 0;
+
     color: var(--c-texte-doux);
+
     line-height: 1.7;
 }
+
 
 /* ==========================================
    ZONE DE DÉFILEMENT
@@ -9009,40 +9018,62 @@ html.dark .circle-three {
 
 .tools-marquee {
     position: relative;
+
     display: flex;
     flex-direction: column;
+
     gap: 18px;
+
     width: 100%;
+
     overflow: hidden;
+
     padding: 10px 0 25px;
 }
 
-/* Fondu sur les côtés */
+
+/* ==========================================
+   FONDU SUR LES CÔTÉS
+   ========================================== */
 
 .tools-marquee::before,
 .tools-marquee::after {
     content: "";
+
     position: absolute;
+
     top: 0;
     bottom: 0;
+
     z-index: 5;
+
     width: 120px;
+
     pointer-events: none;
 }
 
 .tools-marquee::before {
     left: 0;
-    background: linear-gradient(to right,
+
+    background:
+        linear-gradient(
+            to right,
             var(--c-fond),
-            transparent);
+            transparent
+        );
 }
 
 .tools-marquee::after {
     right: 0;
-    background: linear-gradient(to left,
+
+    background:
+        linear-gradient(
+            to left,
             var(--c-fond),
-            transparent);
+            transparent
+        );
 }
+
 
 /* ==========================================
    TRACKS
@@ -9051,18 +9082,32 @@ html.dark .circle-three {
 .tools-marquee-track {
     display: flex;
     align-items: center;
+
     gap: 18px;
+
     width: max-content;
+
     will-change: transform;
 }
 
+
+/*
+   Défilement lent et élégant.
+
+   La durée est volontairement élevée afin
+   d'éviter un mouvement trop rapide.
+*/
+
 .tools-marquee-left {
-    animation: toolsScrollLeft 32s linear infinite;
+    animation:
+        toolsScrollLeft 55s linear infinite;
 }
 
 .tools-marquee-right {
-    animation: toolsScrollRight 36s linear infinite;
+    animation:
+        toolsScrollRight 60s linear infinite;
 }
+
 
 /* ==========================================
    CARTE OUTIL
@@ -9070,21 +9115,38 @@ html.dark .circle-three {
 
 .tool-item {
     position: relative;
+
     display: flex;
     align-items: center;
+
     gap: 13px;
+
     min-width: 175px;
+
     padding: 15px 20px;
 
     border: 1px solid rgba(29, 78, 137, 0.1);
+
     border-radius: 18px;
 
-    background: var(--c-fond-carte, #ffffff);
+    background:
+        var(--c-fond-carte, #ffffff);
 
     box-shadow:
         0 8px 25px rgba(15, 23, 42, 0.06);
 
     cursor: default;
+
+    /*
+       L'animation de flottement est gérée
+       avec une variable CSS afin d'éviter
+       les conflits avec le hover.
+    */
+
+    --tool-float-y: 0px;
+
+    transform:
+        translate3d(0, var(--tool-float-y), 0);
 
     transition:
         transform 0.35s ease,
@@ -9092,15 +9154,28 @@ html.dark .circle-three {
         box-shadow 0.35s ease;
 }
 
-.tool-item:hover {
-    transform:
-        translateY(-8px) rotate(-2deg) scale(1.04);
 
-    border-color: var(--c-primaire);
+/* ==========================================
+   HOVER CARTE
+   ========================================== */
+
+.tool-item:hover {
+    --tool-float-y: -8px;
+
+    transform:
+        translate3d(0, var(--tool-float-y), 0)
+        rotate(-2deg)
+        scale(1.04);
+
+    border-color:
+        var(--c-primaire);
 
     box-shadow:
         0 18px 40px rgba(29, 78, 137, 0.15);
+
+    z-index: 10;
 }
+
 
 /* ==========================================
    ICÔNE
@@ -9119,11 +9194,14 @@ html.dark .circle-three {
     border-radius: 13px;
 
     background:
-        linear-gradient(135deg,
+        linear-gradient(
+            135deg,
             rgba(29, 78, 137, 0.12),
-            rgba(29, 78, 137, 0.04));
+            rgba(29, 78, 137, 0.04)
+        );
 
-    color: var(--c-primaire);
+    color:
+        var(--c-primaire);
 
     font-size: 1.7rem;
 
@@ -9132,44 +9210,71 @@ html.dark .circle-three {
         background 0.35s ease;
 }
 
+
+/* ==========================================
+   HOVER ICÔNE
+   ========================================== */
+
 .tool-item:hover .tool-icon {
     transform:
-        rotate(8deg) scale(1.12);
+        rotate(8deg)
+        scale(1.12);
 
     background:
         rgba(29, 78, 137, 0.12);
 }
 
+
+/* ==========================================
+   NOM DE L'OUTIL
+   ========================================== */
+
 .tool-item span {
-    color: var(--c-texte);
+    color:
+        var(--c-texte);
+
     font-size: 0.92rem;
     font-weight: 700;
+
     white-space: nowrap;
 }
 
+
 /* ==========================================
-   ANIMATIONS
+   ANIMATION — DÉFILEMENT GAUCHE
    ========================================== */
 
 @keyframes toolsScrollLeft {
+
     from {
-        transform: translateX(0);
+        transform:
+            translate3d(0, 0, 0);
     }
 
     to {
-        transform: translateX(-33.333%);
+        transform:
+            translate3d(-33.333%, 0, 0);
     }
 }
+
+
+/* ==========================================
+   ANIMATION — DÉFILEMENT DROITE
+   ========================================== */
 
 @keyframes toolsScrollRight {
+
     from {
-        transform: translateX(-33.333%);
+        transform:
+            translate3d(-33.333%, 0, 0);
     }
 
     to {
-        transform: translateX(0);
+        transform:
+            translate3d(0, 0, 0);
     }
 }
+
 
 /* ==========================================
    PAUSE AU SURVOL
@@ -9179,66 +9284,93 @@ html.dark .circle-three {
     animation-play-state: paused;
 }
 
+
 /* ==========================================
-   ANIMATION LÉGÈRE DES CARTES
+   FLOTTEMENT TRÈS LÉGER DES CARTES
    ========================================== */
 
+/*
+   Ancien comportement :
+   - 4 secondes
+   - -4px
+
+   Nouveau comportement :
+   - 6 secondes
+   - seulement -2px
+
+   Le mouvement est donc beaucoup plus discret.
+*/
+
 .tool-item {
-    animation: toolFloat 4s ease-in-out infinite;
+    animation:
+        toolFloat 6s ease-in-out infinite;
 }
 
 .tool-item:nth-child(2n) {
-    animation-delay: -1s;
+    animation-delay: -1.5s;
 }
 
 .tool-item:nth-child(3n) {
-    animation-delay: -2s;
+    animation-delay: -3s;
 }
 
 .tool-item:nth-child(4n) {
-    animation-delay: -3s;
+    animation-delay: -4.5s;
 }
+
+
+/* ==========================================
+   ANIMATION FLOTTEMENT
+   ========================================== */
 
 @keyframes toolFloat {
 
     0%,
     100% {
-        margin-top: 0;
+        --tool-float-y: 0px;
     }
 
     50% {
-        margin-top: -4px;
+        --tool-float-y: -2px;
     }
 }
+
 
 /* ==========================================
    MODE SOMBRE
    ========================================== */
 
 .dark .tool-item {
-    border-color: rgba(255, 255, 255, 0.08);
-    background: var(--c-fond-carte);
+    border-color:
+        rgba(255, 255, 255, 0.08);
+
+    background:
+        var(--c-fond-carte);
 
     box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .dark .tool-item:hover {
-    border-color: var(--c-primaire);
+    border-color:
+        var(--c-primaire);
 
     box-shadow:
         0 18px 40px rgba(0, 0, 0, 0.3);
 }
 
 .dark .tool-icon {
-    background: rgba(255, 255, 255, 0.06);
+    background:
+        rgba(255, 255, 255, 0.06);
 }
 
+
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE — TABLETTE
    ========================================== */
 
 @media (max-width: 768px) {
+
     .tools-showcase {
         margin-top: 20px;
         padding-top: 25px;
@@ -9247,6 +9379,15 @@ html.dark .circle-three {
     .tools-showcase-heading {
         margin-bottom: 25px;
         padding: 0 20px;
+    }
+
+    .tools-showcase-heading h3 {
+        font-size:
+            clamp(1.55rem, 5vw, 2rem);
+    }
+
+    .tools-showcase-heading p {
+        font-size: 0.92rem;
     }
 
     .tools-marquee {
@@ -9259,15 +9400,20 @@ html.dark .circle-three {
 
     .tool-item {
         min-width: 145px;
+
         padding: 12px 15px;
+
         gap: 10px;
+
         border-radius: 15px;
     }
 
     .tool-icon {
         width: 40px;
         height: 40px;
+
         font-size: 1.45rem;
+
         border-radius: 10px;
     }
 
@@ -9281,24 +9427,133 @@ html.dark .circle-three {
     }
 }
 
+
+/* ==========================================
+   RESPONSIVE — PETIT MOBILE
+   ========================================== */
+
 @media (max-width: 480px) {
+
     .tools-showcase {
         margin-top: 15px;
         padding-top: 20px;
     }
 
-    .tool-item {
-        min-width: 135px;
+    .tools-showcase-heading {
+        padding:
+            0 15px;
     }
 
+    .tools-showcase-heading h3 {
+        font-size:
+            1.55rem;
+    }
+
+    .tools-showcase-heading p {
+        font-size:
+            0.88rem;
+
+        line-height:
+            1.6;
+    }
+
+    .tool-item {
+        min-width:
+            135px;
+
+        padding:
+            11px 13px;
+    }
+
+    .tool-icon {
+        width:
+            38px;
+
+        height:
+            38px;
+
+        font-size:
+            1.3rem;
+    }
+
+    .tool-item span {
+        font-size:
+            0.78rem;
+    }
+
+    /*
+       Important :
+       on conserve une vitesse lente
+       également sur mobile.
+    */
+
     .tools-marquee-left {
-        animation-duration: 25s;
+        animation-duration:
+            48s;
     }
 
     .tools-marquee-right {
-        animation-duration: 29s;
+        animation-duration:
+            53s;
+    }
+
+    .tools-marquee::before,
+    .tools-marquee::after {
+        width:
+            40px;
     }
 }
+
+
+/* ==========================================
+   TRÈS PETITS ÉCRANS
+   ========================================== */
+
+@media (max-width: 360px) {
+
+    .tools-marquee-track {
+        gap:
+            10px;
+    }
+
+    .tool-item {
+        min-width:
+            125px;
+
+        padding:
+            10px 12px;
+
+        gap:
+            8px;
+    }
+
+    .tool-icon {
+        width:
+            36px;
+
+        height:
+            36px;
+
+        font-size:
+            1.2rem;
+    }
+
+    .tool-item span {
+        font-size:
+            0.75rem;
+    }
+
+    .tools-marquee-left {
+        animation-duration:
+            45s;
+    }
+
+    .tools-marquee-right {
+        animation-duration:
+            50s;
+    }
+}
+
 
 /* ==========================================
    ACCESSIBILITÉ
@@ -9309,15 +9564,22 @@ html.dark .circle-three {
     .tools-marquee-left,
     .tools-marquee-right,
     .tool-item {
-        animation: none;
+        animation:
+            none;
     }
 
     .tools-marquee-track {
-        transform: translateX(0);
+        transform:
+            translate3d(0, 0, 0);
+    }
+
+    .tool-item {
+        --tool-float-y: 0px;
+
+        transform:
+            translate3d(0, 0, 0);
     }
 }
-
-
 /* =========================================================
    FIN DU FICHIER
    ========================================================= */
