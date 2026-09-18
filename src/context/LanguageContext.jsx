@@ -74,32 +74,68 @@ const translations = {
             heading:
                 "Construire, apprendre et progresser.",
 
+            introLabel:
+                "À propos de moi",
+
+            mainTitle:
+                "Je transforme mes idées en applications concrètes.",
+
             paragraph1:
-                "Je suis Fréjus Adjanohoun, étudiant en Système Informatique et Logiciel à l'IATF et passionné par le développement web et mobile.",
+                "Je suis Fréjus Adjanohoun, étudiant en Système Informatique et Logiciel à l'IATF et développeur Full Stack Web & Mobile Junior.",
 
             paragraph2:
-                "Je m'intéresse particulièrement à la conception d'applications modernes, aux interfaces web, aux API et au développement d'applications mobiles.",
+                "Je m'intéresse particulièrement à la conception d'applications modernes, aux interfaces web, aux API et au développement d'applications mobiles. En parallèle de ma formation en Système Informatique et Logiciel, je suis également des cours en sécurité informatique afin de développer progressivement mes connaissances et mes compétences dans ce domaine. Je souhaite ainsi élargir mon profil tout en restant principalement concentré sur ma formation et le développement logiciel.",
 
             paragraph3:
-                "Mon objectif est de continuer à renforcer mes compétences techniques à travers des projets concrets et de participer à la réalisation de solutions utiles, accessibles et bien conçues.",
+                "À travers mes projets et mes expériences, je cherche à renforcer mes compétences, découvrir de nouvelles technologies et participer progressivement à la création de solutions utiles, accessibles et bien conçues.",
 
-            webTitle:
-                "Développement Web",
+            profileLabel:
+                "Developer Profile",
 
-            webDescription:
-                "Création d'interfaces modernes et responsive avec les technologies du web.",
+            status:
+                "Ouvert aux opportunités",
 
-            backendTitle:
-                "Backend & API",
+            profileRole:
+                "Développeur Full Stack Web & Mobile Junior",
 
-            backendDescription:
-                "Conception de services backend et découverte de l'architecture des applications modernes.",
+            locationLabel:
+                "Localisation",
 
-            mobileTitle:
-                "Développement Mobile",
+            location:
+                "Bénin",
 
-            mobileDescription:
-                "Exploration du développement d'applications mobiles avec Flutter et Dart.",
+            educationLabel:
+                "Formation",
+
+            education:
+                "IATF — Système Informatique et Logiciel",
+
+            focusLabel:
+                "Spécialisation",
+
+            focus:
+                "Web · Mobile · Backend",
+
+            stackLabel:
+                "Technologies principales",
+
+            value1Title:
+                "Curieux",
+
+            value1Description:
+                "J'aime apprendre de nouvelles technologies et comprendre comment les utiliser pour résoudre des problèmes concrets.",
+
+            value2Title:
+                "Orienté projet",
+
+            value2Description:
+                "Je privilégie la pratique et transforme progressivement mes connaissances en applications fonctionnelles.",
+
+            value3Title:
+                "En évolution",
+
+            value3Description:
+                "Chaque projet est pour moi une occasion de progresser, d'expérimenter et de renforcer mes compétences.",
         },
 
         /* ==================================================
@@ -220,39 +256,65 @@ const translations = {
         /* ==================================================
            PARCOURS
            ================================================== */
+
         timeline: {
             title: "Mon parcours",
+
             heading: "Formation & expérience",
+
             subtitle:
                 "Un parcours construit entre formation académique, expérience professionnelle et projets personnels.",
 
             item1Category: "2024 – 2025",
-            item1Title: "École Supérieure Le Faucon",
-            item1Location: "Abomey-Calavi, Bénin",
+
+            item1Title:
+                "École Supérieure Le Faucon",
+
+            item1Location:
+                "Abomey-Calavi, Bénin",
+
             item1Description:
                 "Début de mes études supérieures avec une première année consacrée à l'acquisition de bases en informatique, programmation et systèmes.",
 
-            item3Category: "2025 — 2 mois",
-            item3Title: "Stage — COSIT Bénin",
-            item3Location: "Abomey-Calavi, Bénin",
+            item3Category:
+                "2025 — 2 mois",
+
+            item3Title:
+                "Stage — COSIT Bénin",
+
+            item3Location:
+                "Abomey-Calavi, Bénin",
+
             item3Description:
                 "Première expérience professionnelle dans le développement web, avec une mise en pratique de HTML, CSS et JavaScript.",
 
-            item2Category: "2025 – Aujourd'hui",
-            item2Title: "IATF — Système Informatique et Logiciel",
-            item2Location: "Ouèdo, Abomey-Calavi, Bénin",
+            item2Category:
+                "2025 – Aujourd'hui",
+
+            item2Title:
+                "IATF — Système Informatique et Logiciel",
+
+            item2Location:
+                "Ouèdo, Abomey-Calavi, Bénin",
+
             item2Description:
                 "Formation en Système Informatique et Logiciel. Actuellement en deuxième année, avec une approche combinant enseignements, pratique et réalisation de projets.",
 
-            item4Category: "2025 – Aujourd'hui",
-            item4Title: "Projets & développement personnel",
-            item4Location: "Développement personnel",
+            item4Category:
+                "2025 – Aujourd'hui",
+
+            item4Title:
+                "Projets & développement personnel",
+
+            item4Location:
+                "Développement personnel",
+
             item4Description:
                 "Développement de plusieurs projets pour renforcer mes compétences en développement Full Stack Web & Mobile : CampusLib, MyInter, ToDo, Orienter Education et mon portfolio personnel.",
 
-            visitWebsite: "Visiter le site",
+            visitWebsite:
+                "Visiter le site",
         },
-
 
         /* ==================================================
            CONTACT
@@ -789,32 +851,68 @@ const translations = {
             heading:
                 "Building, learning and growing.",
 
+            introLabel:
+                "About me",
+
+            mainTitle:
+                "I turn my ideas into concrete applications.",
+
             paragraph1:
-                "I am Fréjus Adjanohoun, a Computer Science and Software Engineering student at IATF, passionate about web and mobile development.",
+                "I am Fréjus Adjanohoun, a Computer Science and Software Engineering student at IATF and a Junior Full Stack Web & Mobile Developer.",
 
             paragraph2:
-                "I am particularly interested in designing modern applications, web interfaces, APIs and mobile application development.",
+                "I am particularly interested in building modern applications, web interfaces, APIs and mobile applications. Alongside my studies in Computer Science and Software Engineering, I am also taking cybersecurity courses to progressively develop my knowledge and skills in this field. My goal is to broaden my profile while remaining primarily focused on my academic training and software development.",
 
             paragraph3:
-                "My goal is to continue strengthening my technical skills through practical projects and contribute to building useful, accessible and well-designed solutions.",
+                "Through my projects and experiences, I aim to strengthen my technical skills, explore new technologies and progressively contribute to creating useful, accessible and well-designed solutions.",
 
-            webTitle:
-                "Web Development",
+            profileLabel:
+                "Developer Profile",
 
-            webDescription:
-                "Creating modern and responsive interfaces using web technologies.",
+            status:
+                "Open to opportunities",
 
-            backendTitle:
-                "Backend & API",
+            profileRole:
+                "Junior Full Stack Web & Mobile Developer",
 
-            backendDescription:
-                "Designing backend services and exploring modern application architecture.",
+            locationLabel:
+                "Location",
 
-            mobileTitle:
-                "Mobile Development",
+            location:
+                "Benin",
 
-            mobileDescription:
-                "Exploring mobile application development with Flutter and Dart.",
+            educationLabel:
+                "Education",
+
+            education:
+                "IATF — Computer Science & Software Engineering",
+
+            focusLabel:
+                "Focus",
+
+            focus:
+                "Web · Mobile · Backend",
+
+            stackLabel:
+                "Main technologies",
+
+            value1Title:
+                "Curious",
+
+            value1Description:
+                "I enjoy learning new technologies and understanding how to use them to solve real-world problems.",
+
+            value2Title:
+                "Project-oriented",
+
+            value2Description:
+                "I focus on practice and progressively turn my knowledge into functional applications.",
+
+            value3Title:
+                "Always evolving",
+
+            value3Description:
+                "Every project is an opportunity for me to learn, experiment and strengthen my skills.",
         },
 
         /* ==================================================
@@ -947,41 +1045,66 @@ const translations = {
            JOURNEY
            ================================================== */
 
-
         timeline: {
             title: "My journey",
-            heading: "Education & experience",
+
+            heading:
+                "Education & experience",
+
             subtitle:
                 "A journey built through academic training, professional experience and personal projects.",
 
-            item1Category: "2024 – 2025",
-            item1Title: "École Supérieure Le Faucon",
-            item1Location: "Abomey-Calavi, Benin",
+            item1Category:
+                "2024 – 2025",
+
+            item1Title:
+                "École Supérieure Le Faucon",
+
+            item1Location:
+                "Abomey-Calavi, Benin",
+
             item1Description:
                 "Started my higher education with a first year focused on building strong foundations in computer science, programming and systems.",
 
-            item3Category: "2025 — 2 months",
-            item3Title: "Internship — COSIT Bénin",
-            item3Location: "Abomey-Calavi, Benin",
+            item3Category:
+                "2025 — 2 months",
+
+            item3Title:
+                "Internship — COSIT Bénin",
+
+            item3Location:
+                "Abomey-Calavi, Benin",
+
             item3Description:
                 "My first professional experience in web development, where I practiced HTML, CSS and JavaScript.",
 
-            item2Category: "2025 – Present",
-            item2Title: "IATF — Computer Science & Software Engineering",
-            item2Location: "Ouèdo, Abomey-Calavi, Benin",
+            item2Category:
+                "2025 – Present",
+
+            item2Title:
+                "IATF — Computer Science & Software Engineering",
+
+            item2Location:
+                "Ouèdo, Abomey-Calavi, Benin",
+
             item2Description:
                 "Currently pursuing a Computer Science and Software Engineering program, combining academic learning, practical work and project development.",
 
-            item4Category: "2025 – Present",
-            item4Title: "Projects & personal development",
-            item4Location: "Personal development",
+            item4Category:
+                "2025 – Present",
+
+            item4Title:
+                "Projects & personal development",
+
+            item4Location:
+                "Personal development",
+
             item4Description:
                 "Developing several projects to strengthen my Full Stack Web & Mobile skills, including CampusLib, MyInter, ToDo, Orienter Education and my personal portfolio.",
 
-            visitWebsite: "Visit website",
+            visitWebsite:
+                "Visit website",
         },
-
-
 
         /* ==================================================
            CONTACT
