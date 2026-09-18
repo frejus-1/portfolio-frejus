@@ -1,18 +1,38 @@
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "../context/useLanguage";
 
+const WHATSAPP_NUMBER = "2290152905310";
+
 function Footer() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     const currentYear = new Date().getFullYear();
 
     const navigationLinks = [
-        { label: t.nav.home, href: "#accueil" },
-        { label: t.nav.about, href: "#apropos" },
-        { label: t.nav.skills, href: "#competences" },
-        { label: t.nav.projects, href: "#projets" },
-        { label: t.nav.journey, href: "#parcours" },
-        { label: t.nav.contact, href: "#contact" },
+        {
+            label: t.nav.home,
+            href: "#accueil",
+        },
+        {
+            label: t.nav.about,
+            href: "#apropos",
+        },
+        {
+            label: t.nav.skills,
+            href: "#competences",
+        },
+        {
+            label: t.nav.projects,
+            href: "#projets",
+        },
+        {
+            label: t.nav.journey,
+            href: "#parcours",
+        },
+        {
+            label: t.nav.contact,
+            href: "#contact",
+        },
     ];
 
     const socialLinks = [
@@ -32,11 +52,23 @@ function Footer() {
             label: "Instagram",
             href: "https://www.instagram.com/adjanohounf/",
         },
-        {
-            label: "WhatsApp",
-            href: "https://wa.me/2290152905310",
-        },
     ];
+
+    /*
+     * Message WhatsApp selon la langue du portfolio
+     */
+    const whatsappMessage =
+        language === "en"
+            ? "Hello Fréjus, I am contacting you from your portfolio. I would like to discuss a project with you."
+            : "Bonjour Fréjus, je vous contacte depuis votre portfolio. J’aimerais échanger avec vous au sujet d’un projet.";
+
+    /*
+     * URL WhatsApp complète avec message prérempli
+     */
+    const whatsappUrl =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+            whatsappMessage
+        )}`;
 
     return (
         <footer className="site-footer">
@@ -48,6 +80,7 @@ function Footer() {
                     {/* BRAND */}
                     <ScrollReveal direction="left">
                         <div className="footer-brand">
+
                             <a
                                 href="#accueil"
                                 className="footer-logo"
@@ -58,20 +91,23 @@ function Footer() {
                             <p>
                                 {t.footer.description}
                             </p>
+
                         </div>
                     </ScrollReveal>
 
                     {/* NAVIGATION */}
-                    <ScrollReveal direction="up" delay={200}>
+                    <ScrollReveal
+                        direction="up"
+                        delay={200}
+                    >
                         <div className="footer-navigation">
+
                             <h3>
                                 {t.footer.navigation}
                             </h3>
 
                             <nav
-                                aria-label={
-                                    t.footer.navigationLabel
-                                }
+                                aria-label={t.footer.navigationLabel}
                             >
                                 {navigationLinks.map((link) => (
                                     <a
@@ -82,17 +118,23 @@ function Footer() {
                                     </a>
                                 ))}
                             </nav>
+
                         </div>
                     </ScrollReveal>
 
                     {/* RÉSEAUX SOCIAUX */}
-                    <ScrollReveal direction="right" delay={400}>
+                    <ScrollReveal
+                        direction="right"
+                        delay={400}
+                    >
                         <div className="footer-socials">
+
                             <h3>
                                 {t.footer.socials}
                             </h3>
 
                             <div className="footer-social-list">
+
                                 {socialLinks.map((social) => (
                                     <a
                                         key={social.label}
@@ -104,15 +146,32 @@ function Footer() {
                                         <span>↗</span>
                                     </a>
                                 ))}
+
+                                {/* WHATSAPP */}
+                                <a
+                                    href={whatsappUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="footer-social-link"
+                                >
+                                    WhatsApp
+                                    <span>↗</span>
+                                </a>
+
                             </div>
+
                         </div>
                     </ScrollReveal>
 
                 </div>
 
                 {/* BAS DU FOOTER */}
-                <ScrollReveal direction="up" delay={600}>
+                <ScrollReveal
+                    direction="up"
+                    delay={600}
+                >
                     <div className="footer-bottom">
+
                         <p>
                             © {currentYear} Fréjus Adjanohoun.
                             {` ${t.footer.rights}`}
@@ -125,6 +184,7 @@ function Footer() {
                             {t.footer.backTop}
                             <span>↑</span>
                         </a>
+
                     </div>
                 </ScrollReveal>
 

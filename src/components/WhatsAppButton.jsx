@@ -1,11 +1,23 @@
 import { useLanguage } from "../context/useLanguage";
 
+const WHATSAPP_NUMBER = "2290152905310";
+
 function WhatsAppButton() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+
+    const whatsappMessage =
+        language === "en"
+            ? "Hello Fréjus, I am contacting you from your portfolio. I would like to discuss a project with you."
+            : "Bonjour Fréjus, je vous contacte depuis votre portfolio. J’aimerais échanger avec vous au sujet d’un projet.";
+
+    const whatsappUrl =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+            whatsappMessage
+        )}`;
 
     return (
         <a
-            href="https://wa.me/2290152905310"
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-button"

@@ -4,15 +4,29 @@ import { useLanguage } from "../context/useLanguage";
 
 const FORM_ENDPOINT = "https://formspree.io/f/meaojonv";
 
-const whatsappMessage = encodeURIComponent(
-    "Bonjour Fréjus, je vous contacte depuis votre portfolio."
-);
+const WHATSAPP_NUMBER = "2290152905310";
 
 function Contact() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     const [formStatus, setFormStatus] = useState("idle");
     const [errorMessage, setErrorMessage] = useState("");
+
+    /*
+     * Message WhatsApp selon la langue du portfolio
+     */
+    const whatsappMessage =
+        language === "en"
+            ? "Hello Fréjus, I am contacting you from your portfolio. I would like to discuss a project with you."
+            : "Bonjour Fréjus, je vous contacte depuis votre portfolio. J’aimerais échanger avec vous au sujet d’un projet.";
+
+    /*
+     * URL WhatsApp avec message prérempli
+     */
+    const whatsappUrl =
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+            whatsappMessage
+        )}`;
 
     const contactItems = [
         {
@@ -23,7 +37,7 @@ function Contact() {
         {
             label: t.contact.whatsapp,
             value: "+229 01 52 90 53 10",
-            href: `https://wa.me/2290152905310?text=${whatsappMessage}`,
+            href: whatsappUrl,
         },
         {
             label: t.contact.github,
@@ -85,8 +99,10 @@ function Contact() {
     return (
         <section id="contact" className="section contact-section">
             <div className="contact-container">
+
                 <ScrollReveal direction="left">
                     <div className="contact-content">
+
                         <p className="section-label">
                             {t.contact.title}
                         </p>
@@ -101,6 +117,7 @@ function Contact() {
                         </p>
 
                         <div className="contact-list">
+
                             {contactItems.map((item, index) => (
                                 <ScrollReveal
                                     key={item.label}
@@ -126,6 +143,7 @@ function Contact() {
                                         </span>
 
                                         <span className="contact-item-content">
+
                                             <span className="contact-item-label">
                                                 {item.label}
                                             </span>
@@ -133,6 +151,7 @@ function Contact() {
                                             <span className="contact-item-value">
                                                 {item.value}
                                             </span>
+
                                         </span>
 
                                         <span className="contact-item-arrow">
@@ -141,13 +160,16 @@ function Contact() {
                                     </a>
                                 </ScrollReveal>
                             ))}
+
                         </div>
                     </div>
                 </ScrollReveal>
 
                 <ScrollReveal direction="right" delay={150}>
                     <div className="contact-form-wrapper">
+
                         <div className="contact-form-header">
+
                             <span>
                                 {t.contact.sendMessage}
                             </span>
@@ -155,13 +177,16 @@ function Contact() {
                             <span className="contact-form-status">
                                 {t.contact.available}
                             </span>
+
                         </div>
 
                         <form
                             className="contact-form"
                             onSubmit={handleSubmit}
                         >
+
                             <div className="form-group">
+
                                 <label htmlFor="nom">
                                     {t.contact.name}
                                 </label>
@@ -173,9 +198,11 @@ function Contact() {
                                     placeholder={t.contact.namePlaceholder}
                                     required
                                 />
+
                             </div>
 
                             <div className="form-group">
+
                                 <label htmlFor="email">
                                     {t.contact.email}
                                 </label>
@@ -187,9 +214,11 @@ function Contact() {
                                     placeholder="votre@email.com"
                                     required
                                 />
+
                             </div>
 
                             <div className="form-group">
+
                                 <label htmlFor="sujet">
                                     {t.contact.subject}
                                 </label>
@@ -201,9 +230,11 @@ function Contact() {
                                     placeholder={t.contact.subjectPlaceholder}
                                     required
                                 />
+
                             </div>
 
                             <div className="form-group">
+
                                 <label htmlFor="message">
                                     {t.contact.message}
                                 </label>
@@ -215,6 +246,7 @@ function Contact() {
                                     placeholder={t.contact.messagePlaceholder}
                                     required
                                 ></textarea>
+
                             </div>
 
                             <input
@@ -236,6 +268,7 @@ function Contact() {
                             )}
 
                             <div className="contact-form-actions">
+
                                 <button
                                     type="submit"
                                     className="button button-primary contact-submit"
@@ -251,7 +284,7 @@ function Contact() {
                                 </button>
 
                                 <a
-                                    href={`https://wa.me/2290152905310?text=${whatsappMessage}`}
+                                    href={whatsappUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="button button-whatsapp"
@@ -259,10 +292,14 @@ function Contact() {
                                     {t.contact.whatsapp}
                                     <span>↗</span>
                                 </a>
+
                             </div>
+
                         </form>
+
                     </div>
                 </ScrollReveal>
+
             </div>
         </section>
     );
