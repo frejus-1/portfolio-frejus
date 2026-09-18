@@ -19,7 +19,7 @@ const projects = [
         technologies: ["HTML", "CSS", "JavaScript"],
         image: "/images/programmation-web.png",
         github: "https://github.com/frejus-1/programmation_web",
-        demo: "https://programmation-web-five.vercel.app/",
+        demo: "https://programmation-xi.vercel.app/",
     },
     {
         id: 3,
