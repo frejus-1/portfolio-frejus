@@ -4401,50 +4401,106 @@ RESPONSIVE
     }
 }
 
-
 /* =========================================================
    16. ANIMATIONS AU DÉFILEMENT
    ========================================================= */
+
+/*
+   État initial
+   ---------------------------------------------------------
+   Les éléments commencent légèrement décalés et transparents.
+*/
 
 .scroll-reveal {
     opacity: 0;
 
     transition:
-        opacity 0.7s ease var(--reveal-delay),
-        transform 0.7s ease var(--reveal-delay);
+        opacity 0.55s ease var(--reveal-delay),
+        transform 0.55s ease var(--reveal-delay);
 
-    will-change:
-        opacity,
-        transform;
+    /*
+       On évite will-change ici.
+       Il ne doit pas être appliqué en permanence à
+       tous les éléments de la page.
+    */
 }
+
+
+/* =========================================================
+   DIRECTION — HAUT
+   ========================================================= */
 
 .scroll-reveal-up {
     transform:
-        translateY(45px);
+        translate3d(0, 35px, 0);
 }
+
+
+/* =========================================================
+   DIRECTION — BAS
+   ========================================================= */
 
 .scroll-reveal-down {
     transform:
-        translateY(-45px);
+        translate3d(0, -35px, 0);
 }
+
+
+/* =========================================================
+   DIRECTION — GAUCHE
+   ========================================================= */
 
 .scroll-reveal-left {
     transform:
-        translateX(-45px);
+        translate3d(-35px, 0, 0);
 }
+
+
+/* =========================================================
+   DIRECTION — DROITE
+   ========================================================= */
 
 .scroll-reveal-right {
     transform:
-        translateX(45px);
+        translate3d(35px, 0, 0);
 }
+
+
+/* =========================================================
+   ÉTAT VISIBLE
+   ========================================================= */
 
 .scroll-reveal-visible {
     opacity: 1;
 
     transform:
-        translate(0, 0);
+        translate3d(0, 0, 0);
 }
 
+
+/* =========================================================
+   ACCESSIBILITÉ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .scroll-reveal,
+    .scroll-reveal-up,
+    .scroll-reveal-down,
+    .scroll-reveal-left,
+    .scroll-reveal-right {
+        opacity: 1;
+
+        transform:
+            none;
+
+        transition:
+            none;
+
+        animation:
+            none;
+    }
+}
 
 /* =========================================================
    17. RETOUR HAUT + PROGRESSION

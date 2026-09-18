@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 
 function ScrollReveal({
@@ -19,13 +18,16 @@ function ScrollReveal({
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    setVisible(true);
-                    observer.unobserve(element);
+                if (!entry.isIntersecting) {
+                    return;
                 }
+
+                setVisible(true);
+                observer.unobserve(entry.target);
             },
             {
-                threshold: 0.12,
+                threshold: 0.08,
+                rootMargin: "0px 0px -40px 0px",
             }
         );
 
@@ -39,9 +41,14 @@ function ScrollReveal({
     return (
         <div
             ref={elementRef}
-            className={`scroll-reveal scroll-reveal-${direction} ${
-                visible ? "scroll-reveal-visible" : ""
-            } ${className}`}
+            className={[
+                "scroll-reveal",
+                `scroll-reveal-${direction}`,
+                visible ? "scroll-reveal-visible" : "",
+                className,
+            ]
+                .filter(Boolean)
+                .join(" ")}
             style={{
                 "--reveal-delay": `${delay}ms`,
             }}
@@ -51,4 +58,5 @@ function ScrollReveal({
     );
 }
 
-export default ScrollReveal
+export default ScrollReveal;
+
