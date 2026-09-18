@@ -6727,6 +6727,365 @@ html.dark .circle-three {
     }
 }
 
+/* ==========================================
+   OUTILS & TECHNOLOGIES — MARQUEE
+   ========================================== */
+
+.tools-showcase {
+    position: relative;
+    margin-top: 25px;
+    padding: 30px 0 10px;
+    overflow: hidden;
+}
+
+.tools-showcase-heading {
+    max-width: 700px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
+.tools-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--c-primaire);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.tools-showcase-heading h3 {
+    margin: 0 0 12px;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.tools-showcase-heading p {
+    margin: 0;
+    color: var(--c-texte-doux);
+    line-height: 1.7;
+}
+
+/* ==========================================
+   ZONE DE DÉFILEMENT
+   ========================================== */
+
+.tools-marquee {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0 25px;
+}
+
+/* Fondu sur les côtés */
+
+.tools-marquee::before,
+.tools-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+    width: 120px;
+    pointer-events: none;
+}
+
+.tools-marquee::before {
+    left: 0;
+    background: linear-gradient(
+        to right,
+        var(--c-fond),
+        transparent
+    );
+}
+
+.tools-marquee::after {
+    right: 0;
+    background: linear-gradient(
+        to left,
+        var(--c-fond),
+        transparent
+    );
+}
+
+/* ==========================================
+   TRACKS
+   ========================================== */
+
+.tools-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: max-content;
+    will-change: transform;
+}
+
+.tools-marquee-left {
+    animation: toolsScrollLeft 32s linear infinite;
+}
+
+.tools-marquee-right {
+    animation: toolsScrollRight 36s linear infinite;
+}
+
+/* ==========================================
+   CARTE OUTIL
+   ========================================== */
+
+.tool-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 175px;
+    padding: 15px 20px;
+
+    border: 1px solid rgba(29, 78, 137, 0.1);
+    border-radius: 18px;
+
+    background: var(--c-fond-carte, #ffffff);
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+
+    cursor: default;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.tool-item:hover {
+    transform:
+        translateY(-8px)
+        rotate(-2deg)
+        scale(1.04);
+
+    border-color: var(--c-primaire);
+
+    box-shadow:
+        0 18px 40px rgba(29, 78, 137, 0.15);
+}
+
+/* ==========================================
+   ICÔNE
+   ========================================== */
+
+.tool-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(29, 78, 137, 0.12),
+            rgba(29, 78, 137, 0.04)
+        );
+
+    color: var(--c-primaire);
+
+    font-size: 1.7rem;
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease;
+}
+
+.tool-item:hover .tool-icon {
+    transform:
+        rotate(8deg)
+        scale(1.12);
+
+    background:
+        rgba(29, 78, 137, 0.12);
+}
+
+.tool-item span {
+    color: var(--c-texte);
+    font-size: 0.92rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+
+@keyframes toolsScrollLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-33.333%);
+    }
+}
+
+@keyframes toolsScrollRight {
+    from {
+        transform: translateX(-33.333%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================
+   PAUSE AU SURVOL
+   ========================================== */
+
+.tools-marquee:hover .tools-marquee-track {
+    animation-play-state: paused;
+}
+
+/* ==========================================
+   ANIMATION LÉGÈRE DES CARTES
+   ========================================== */
+
+.tool-item {
+    animation: toolFloat 4s ease-in-out infinite;
+}
+
+.tool-item:nth-child(2n) {
+    animation-delay: -1s;
+}
+
+.tool-item:nth-child(3n) {
+    animation-delay: -2s;
+}
+
+.tool-item:nth-child(4n) {
+    animation-delay: -3s;
+}
+
+@keyframes toolFloat {
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -4px;
+    }
+}
+
+/* ==========================================
+   MODE SOMBRE
+   ========================================== */
+
+.dark .tool-item {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: var(--c-fond-carte);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dark .tool-item:hover {
+    border-color: var(--c-primaire);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark .tool-icon {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+    .tools-showcase {
+        margin-top: 20px;
+        padding-top: 25px;
+    }
+
+    .tools-showcase-heading {
+        margin-bottom: 25px;
+        padding: 0 20px;
+    }
+
+    .tools-marquee {
+        gap: 13px;
+    }
+
+    .tools-marquee-track {
+        gap: 12px;
+    }
+
+    .tool-item {
+        min-width: 145px;
+        padding: 12px 15px;
+        gap: 10px;
+        border-radius: 15px;
+    }
+
+    .tool-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.45rem;
+        border-radius: 10px;
+    }
+
+    .tool-item span {
+        font-size: 0.82rem;
+    }
+
+    .tools-marquee::before,
+    .tools-marquee::after {
+        width: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-showcase {
+        margin-top: 15px;
+        padding-top: 20px;
+    }
+
+    .tool-item {
+        min-width: 135px;
+    }
+
+    .tools-marquee-left {
+        animation-duration: 25s;
+    }
+
+    .tools-marquee-right {
+        animation-duration: 29s;
+    }
+}
+
+/* ==========================================
+   ACCESSIBILITÉ
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .tools-marquee-left,
+    .tools-marquee-right,
+    .tool-item {
+        animation: none;
+    }
+
+    .tools-marquee-track {
+        transform: translateX(0);
+    }
+}
+
 
 /* =========================================================
    FIN DU FICHIER

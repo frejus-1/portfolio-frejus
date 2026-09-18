@@ -1,6 +1,27 @@
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "../context/useLanguage";
 
+import {
+    SiHtml5,
+    SiJavascript,
+    SiReact,
+    SiVite,
+    SiSpringboot,
+    SiPhp,
+    SiLaravel,
+    SiFlutter,
+    SiDart,
+    SiMysql,
+    SiGit,
+    SiGithub,
+    SiVercel,
+} from "react-icons/si";
+
+import {
+    FaCss3Alt,
+    FaJava,
+    FaCode,
+} from "react-icons/fa";
 function Skills() {
     const { t } = useLanguage();
 
@@ -47,6 +68,88 @@ function Skills() {
         },
     ];
 
+    const tools = [
+        {
+            name: "HTML5",
+            icon: SiHtml5,
+        },
+        {
+            name: "CSS3",
+            icon: FaCss3Alt,
+        },
+        {
+            name: "JavaScript",
+            icon: SiJavascript,
+        },
+        {
+            name: "React",
+            icon: SiReact,
+        },
+        {
+            name: "Vite",
+            icon: SiVite,
+        },
+        {
+            name: "Java",
+            icon: FaJava,
+        },
+        {
+            name: "Spring Boot",
+            icon: SiSpringboot,
+        },
+        {
+            name: "PHP",
+            icon: SiPhp,
+        },
+        {
+            name: "Laravel",
+            icon: SiLaravel,
+        },
+        {
+            name: "Flutter",
+            icon: SiFlutter,
+        },
+        {
+            name: "Dart",
+            icon: SiDart,
+        },
+        {
+            name: "MySQL",
+            icon: SiMysql,
+        },
+        {
+            name: "Git",
+            icon: SiGit,
+        },
+        {
+            name: "GitHub",
+            icon: SiGithub,
+        },
+        {
+            name: "VS Code",
+            icon: FaCode,
+        },
+        {
+            name: "Vercel",
+            icon: SiVercel,
+        },
+    ];
+
+    const firstRow = tools.slice(0, 8);
+    const secondRow = tools.slice(8);
+
+    const duplicatedFirstRow = [
+        ...firstRow,
+        ...firstRow,
+        ...firstRow,
+    ];
+
+    const duplicatedSecondRow = [
+        ...secondRow,
+        ...secondRow,
+        ...secondRow,
+    ];
+
     return (
         <section
             id="competences"
@@ -68,6 +171,7 @@ function Skills() {
                 </div>
             </ScrollReveal>
 
+            {/* Cartes de compétences */}
             <div className="skills-grid">
                 {skillGroups.map((group, index) => (
                     <ScrollReveal
@@ -88,7 +192,9 @@ function Skills() {
                                 <span className="skill-card-line"></span>
                             </div>
 
-                            <h3>{group.title}</h3>
+                            <h3>
+                                {group.title}
+                            </h3>
 
                             <p>
                                 {group.description}
@@ -108,6 +214,78 @@ function Skills() {
                     </ScrollReveal>
                 ))}
             </div>
+
+            {/* Technologies utilisées */}
+            <ScrollReveal
+                direction="up"
+                delay={250}
+            >
+                <div className="tools-showcase">
+                    <div className="tools-showcase-heading">
+                        <span className="tools-label">
+                            {t.skills.toolsLabel}
+                        </span>
+
+                        <h3>
+                            {t.skills.toolsHeading}
+                        </h3>
+
+                        <p>
+                            {t.skills.toolsDescription}
+                        </p>
+                    </div>
+
+                    <div className="tools-marquee">
+                        {/* Première ligne */}
+                        <div className="tools-marquee-track tools-marquee-left">
+                            {duplicatedFirstRow.map(
+                                (tool, index) => {
+                                    const Icon = tool.icon;
+
+                                    return (
+                                        <div
+                                            className="tool-item"
+                                            key={`${tool.name}-first-${index}`}
+                                        >
+                                            <div className="tool-icon">
+                                                <Icon />
+                                            </div>
+
+                                            <span>
+                                                {tool.name}
+                                            </span>
+                                        </div>
+                                    );
+                                }
+                            )}
+                        </div>
+
+                        {/* Deuxième ligne */}
+                        <div className="tools-marquee-track tools-marquee-right">
+                            {duplicatedSecondRow.map(
+                                (tool, index) => {
+                                    const Icon = tool.icon;
+
+                                    return (
+                                        <div
+                                            className="tool-item"
+                                            key={`${tool.name}-second-${index}`}
+                                        >
+                                            <div className="tool-icon">
+                                                <Icon />
+                                            </div>
+
+                                            <span>
+                                                {tool.name}
+                                            </span>
+                                        </div>
+                                    );
+                                }
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </ScrollReveal>
         </section>
     );
 }
