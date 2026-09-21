@@ -174,6 +174,17 @@ const translations = {
 
             dataDescription:
                 "Gestion des données et utilisation des outils de développement.",
+
+            /* AJOUTS POUR LA SECTION TECHNOLOGIES & OUTILS */
+
+            toolsLabel:
+                "Technologies & outils",
+
+            toolsHeading:
+                "Les outils que j'utilise au quotidien.",
+
+            toolsDescription:
+                "Les technologies et outils que j'explore et que je mets progressivement en pratique dans mes projets.",
         },
 
         /* ==================================================
@@ -260,12 +271,14 @@ const translations = {
         timeline: {
             title: "Mon parcours",
 
-            heading: "Formation & expérience",
+            heading:
+                "Formation & expérience",
 
             subtitle:
                 "Un parcours construit entre formation académique, expérience professionnelle et projets personnels.",
 
-            item1Category: "2024 – 2025",
+            item1Category:
+                "2024 – 2025",
 
             item1Title:
                 "École Supérieure Le Faucon",
@@ -821,14 +834,26 @@ const translations = {
                 "Download my CV",
 
             cvModal: {
-                title: "Download my CV",
+                title:
+                    "Download my CV",
+
                 description:
                     "Choose the CV version you would like to download.",
-                french: "CV in French",
-                frenchDescription: "French version",
-                english: "CV in English",
-                englishDescription: "English version",
-                close: "Close",
+
+                french:
+                    "CV in French",
+
+                frenchDescription:
+                    "French version",
+
+                english:
+                    "CV in English",
+
+                englishDescription:
+                    "English version",
+
+                close:
+                    "Close",
             },
 
             typingWords: [
@@ -952,6 +977,17 @@ const translations = {
 
             dataDescription:
                 "Managing data and using development tools.",
+
+            /* AJOUTS POUR LA SECTION TECHNOLOGIES & OUTILS */
+
+            toolsLabel:
+                "Technologies & Tools",
+
+            toolsHeading:
+                "The tools I use every day.",
+
+            toolsDescription:
+                "The technologies and tools I explore and gradually put into practice through my projects.",
         },
 
         /* ==================================================
@@ -1046,7 +1082,8 @@ const translations = {
            ================================================== */
 
         timeline: {
-            title: "My journey",
+            title:
+                "My journey",
 
             heading:
                 "Education & experience",
@@ -1576,10 +1613,9 @@ const translations = {
 
 export function LanguageProvider({ children }) {
     const [language, setLanguage] = useState(() => {
-        const savedLanguage =
-            localStorage.getItem(
-                "portfolio-language"
-            );
+        const savedLanguage = localStorage.getItem(
+            "portfolio-language"
+        );
 
         return savedLanguage === "en"
             ? "en"
@@ -1600,15 +1636,42 @@ export function LanguageProvider({ children }) {
             language
         );
 
-        document.documentElement.lang =
-            language;
+        document.documentElement.lang = language;
     }, [language]);
+
+    /*
+     * Récupère une traduction à partir d'un chemin.
+     *
+     * Exemple :
+     * t("nav.home")
+     * t("hero.greeting")
+     * t("timeline.title")
+     * t("projectsData.campuslib")
+     */
+    const t = (path) => {
+        const keys = path.split(".");
+
+        let value = translations[language];
+
+        for (const key of keys) {
+            if (
+                value === null ||
+                value === undefined
+            ) {
+                return path;
+            }
+
+            value = value[key];
+        }
+
+        return value ?? path;
+    };
 
     const value = {
         language,
         setLanguage,
         toggleLanguage,
-        t: translations[language],
+        t,
     };
 
     return (
@@ -1617,4 +1680,3 @@ export function LanguageProvider({ children }) {
         </LanguageContext.Provider>
     );
 }
-

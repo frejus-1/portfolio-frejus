@@ -75,12 +75,12 @@ function Tarifs({ isOpen, onClose }) {
             const focusableElements =
                 modal.querySelectorAll(
                     `
-button: not([disabled]),
-    a[href],
-    input: not([disabled]),
-        textarea: not([disabled]),
-            select: not([disabled]),
-                [tabindex]: not([tabindex = "-1"])
+                    button:not([disabled]),
+                    a[href],
+                    input:not([disabled]),
+                    textarea:not([disabled]),
+                    select:not([disabled]),
+                    [tabindex]:not([tabindex="-1"])
                     `
                 );
 
@@ -105,7 +105,7 @@ button: not([disabled]),
             if (
                 !event.shiftKey &&
                 document.activeElement ===
-                lastElement
+                    lastElement
             ) {
                 event.preventDefault();
                 firstElement.focus();
@@ -119,7 +119,7 @@ button: not([disabled]),
             if (
                 event.shiftKey &&
                 document.activeElement ===
-                firstElement
+                    firstElement
             ) {
                 event.preventDefault();
                 lastElement.focus();
@@ -155,10 +155,6 @@ button: not([disabled]),
             /*
              * Restaurer le focus sur le bouton
              * qui avait ouvert la modal.
-             *
-             * Vérification importante :
-             * l'élément peut avoir été supprimé
-             * entre-temps.
              */
             if (
                 previousFocusRef.current &&
@@ -198,16 +194,17 @@ button: not([disabled]),
      * automatiquement préremplie.
      */
     const handleWhatsApp = (service) => {
-        const message =
-            t.tarifs.whatsappMessage
-                .replace(
-                    "{service}",
-                    service.title
-                )
-                .replace(
-                    "{price}",
-                    service.price
-                );
+        const message = t(
+            "tarifs.whatsappMessage"
+        )
+            .replace(
+                "{service}",
+                service.title
+            )
+            .replace(
+                "{price}",
+                service.price
+            );
 
         const whatsappUrl =
             `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -220,6 +217,12 @@ button: not([disabled]),
             "noopener,noreferrer"
         );
     };
+
+    /*
+     * Liste des services traduits
+     */
+    const services =
+        t("tarifs.services") || [];
 
     return (
         <div
@@ -242,15 +245,21 @@ button: not([disabled]),
                 <div className="tarifs-header">
                     <div>
                         <span className="tarifs-surtitle">
-                            {t.tarifs.surtitle}
+                            {t(
+                                "tarifs.surtitle"
+                            )}
                         </span>
 
                         <h2 id="tarifs-title">
-                            {t.tarifs.title}
+                            {t(
+                                "tarifs.title"
+                            )}
                         </h2>
 
                         <p id="tarifs-description">
-                            {t.tarifs.description}
+                            {t(
+                                "tarifs.description"
+                            )}
                         </p>
                     </div>
 
@@ -259,8 +268,12 @@ button: not([disabled]),
                         type="button"
                         className="tarifs-close"
                         onClick={onClose}
-                        aria-label={t.tarifs.close}
-                        title={t.tarifs.close}
+                        aria-label={t(
+                            "tarifs.close"
+                        )}
+                        title={t(
+                            "tarifs.close"
+                        )}
                     >
                         ×
                     </button>
@@ -271,17 +284,20 @@ button: not([disabled]),
                 ================================= */}
 
                 <div className="tarifs-grid">
-                    {t.tarifs.services.map(
+                    {services.map(
                         (service, index) => (
                             <article
                                 className="tarif-card"
-                                key={`${service.title} -${index} `}
+                                key={`${service.title}-${index}`}
                             >
                                 <div className="tarif-card-top">
                                     <span className="tarif-number">
                                         {String(
                                             index + 1
-                                        ).padStart(2, "0")}
+                                        ).padStart(
+                                            2,
+                                            "0"
+                                        )}
                                     </span>
                                 </div>
 
@@ -294,7 +310,9 @@ button: not([disabled]),
                                 </p>
 
                                 <p className="tarif-description">
-                                    {service.description}
+                                    {
+                                        service.description
+                                    }
                                 </p>
 
                                 <button
@@ -321,7 +339,9 @@ button: not([disabled]),
                                     </span>
 
                                     <span>
-                                        {t.tarifs.whatsappButton}
+                                        {t(
+                                            "tarifs.whatsappButton"
+                                        )}
                                     </span>
                                 </button>
                             </article>
@@ -335,11 +355,15 @@ button: not([disabled]),
 
                 <div className="tarifs-footer">
                     <p>
-                        {t.tarifs.footer1}
+                        {t(
+                            "tarifs.footer1"
+                        )}
                     </p>
 
                     <p>
-                        {t.tarifs.footer2}
+                        {t(
+                            "tarifs.footer2"
+                        )}
                     </p>
                 </div>
             </div>
@@ -348,4 +372,3 @@ button: not([disabled]),
 }
 
 export default Tarifs;
-

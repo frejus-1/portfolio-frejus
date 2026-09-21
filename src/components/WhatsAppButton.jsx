@@ -21,7 +21,7 @@ function WhatsAppButton() {
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-button"
-            aria-label={t.whatsapp.label}
+            aria-label={t("whatsapp.label")}
         >
             <span className="whatsapp-icon">
                 <svg
@@ -35,7 +35,7 @@ function WhatsAppButton() {
             </span>
 
             <span className="whatsapp-text">
-                {t.whatsapp.button}
+                {t("whatsapp.button")}
             </span>
         </a>
     );

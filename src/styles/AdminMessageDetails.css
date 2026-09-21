@@ -1,0 +1,2221 @@
+/* =========================================================
+   ADMIN MESSAGE DETAILS
+   ========================================================= */
+
+.admin-message-details {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   NOTIFICATIONS DANS LA PAGE
+   ========================================================= */
+
+.admin-page-notification {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+
+    box-sizing: border-box;
+
+    padding: 1rem 1.25rem;
+
+    margin-bottom: 1.5rem;
+
+    border: 1px solid transparent;
+
+    border-radius: 16px;
+
+    animation:
+        adminNotificationIn
+        0.35s ease both;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   SUCCÈS
+   --------------------------------------------------------- */
+
+.admin-page-notification.success {
+    background:
+        rgba(34, 197, 94, 0.08);
+
+    border-color:
+        rgba(34, 197, 94, 0.25);
+}
+
+.admin-page-notification.success
+.admin-page-notification-icon {
+    background:
+        #22c55e;
+
+    color:
+        #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   ERREUR
+   --------------------------------------------------------- */
+
+.admin-page-notification.error {
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border-color:
+        rgba(239, 68, 68, 0.25);
+}
+
+.admin-page-notification.error
+.admin-page-notification-icon {
+    background:
+        #ef4444;
+
+    color:
+        #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   ICÔNE
+   --------------------------------------------------------- */
+
+.admin-page-notification-icon {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENU
+   --------------------------------------------------------- */
+
+.admin-page-notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-page-notification-content strong {
+    display: block;
+
+    margin-bottom: 0.2rem;
+
+    color:
+        var(--c-texte, #20252b);
+
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.admin-page-notification-content p {
+    margin: 0;
+
+    color:
+        var(--c-texte-doux, #647080);
+
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+
+/* ---------------------------------------------------------
+   FERMER
+   --------------------------------------------------------- */
+
+.admin-page-notification-close {
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    border-radius: 8px;
+
+    color:
+        var(--c-texte-doux, #647080);
+
+    font: inherit;
+    font-size: 1.35rem;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.admin-page-notification-close:hover {
+    background:
+        rgba(15, 23, 42, 0.07);
+
+    color:
+        var(--c-texte, #20252b);
+}
+
+
+/* =========================================================
+   CONFIRMATION SUPPRESSION
+   ========================================================= */
+
+.admin-delete-confirmation {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+
+    box-sizing: border-box;
+
+    padding: 1.1rem 1.25rem;
+
+    margin-bottom: 1.5rem;
+
+    background:
+        rgba(245, 158, 11, 0.08);
+
+    border:
+        1px solid rgba(245, 158, 11, 0.25);
+
+    border-radius: 16px;
+
+    animation:
+        adminNotificationIn
+        0.35s ease both;
+}
+
+.admin-delete-confirmation-icon {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        #f59e0b;
+
+    color:
+        #ffffff;
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.admin-delete-confirmation-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-delete-confirmation-content strong {
+    display: block;
+
+    margin-bottom: 0.25rem;
+
+    color:
+        var(--c-texte, #20252b);
+
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.admin-delete-confirmation-content p {
+    margin: 0;
+
+    color:
+        var(--c-texte-doux, #647080);
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTIONS CONFIRMATION
+   ========================================================= */
+
+.admin-delete-confirmation-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    flex-shrink: 0;
+}
+
+.admin-delete-cancel,
+.admin-delete-confirm {
+    min-height: 40px;
+
+    padding:
+        0.65rem 1rem;
+
+    border-radius: 10px;
+
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.admin-delete-cancel {
+    border:
+        1px solid var(--c-bordure, #e5e7eb);
+
+    background:
+        var(--c-fond-carte, #ffffff);
+
+    color:
+        var(--c-texte, #30343b);
+}
+
+.admin-delete-cancel:hover:not(:disabled) {
+    background:
+        var(--c-fond-alt, #f8fafc);
+
+    transform:
+        translateY(-1px);
+}
+
+.admin-delete-confirm {
+    border:
+        1px solid #ef4444;
+
+    background:
+        #ef4444;
+
+    color:
+        #ffffff;
+}
+
+.admin-delete-confirm:hover:not(:disabled) {
+    background:
+        #dc2626;
+
+    border-color:
+        #dc2626;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 6px 15px rgba(239, 68, 68, 0.2);
+}
+
+.admin-delete-cancel:disabled,
+.admin-delete-confirm:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.admin-message-details-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+}
+
+.admin-message-details-header > div:first-child {
+    min-width: 0;
+}
+
+.admin-message-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+
+    color: var(--c-primaire, #1d4e89);
+
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-message-details-header h1 {
+    margin: 0;
+
+    color: var(--c-texte, #20252b);
+
+    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+
+/* =========================================================
+   BOUTON RETOUR
+   ========================================================= */
+
+.admin-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+
+    min-height: 38px;
+    padding: 0.55rem 0.85rem;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--c-texte-doux, #647080);
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-back-button:hover {
+    background: rgba(29, 78, 137, 0.06);
+    border-color: rgba(29, 78, 137, 0.1);
+    color: var(--c-primaire, #1d4e89);
+
+    transform: translateX(-3px);
+}
+
+.admin-back-button:active {
+    transform: translateX(-1px);
+}
+
+
+/* =========================================================
+   ACTIONS HEADER
+   ========================================================= */
+
+.admin-message-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   BOUTONS HEADER
+   ========================================================= */
+
+.admin-message-reply-button,
+.admin-message-delete-button {
+    min-height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0 1rem;
+
+    border-radius: 11px;
+
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 750;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* ---------------------------------------------------------
+   RÉPONDRE
+   --------------------------------------------------------- */
+
+.admin-message-reply-button {
+    border: 1px solid var(--c-primaire, #1d4e89);
+
+    background: var(--c-primaire, #1d4e89);
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 14px rgba(29, 78, 137, 0.16);
+}
+
+.admin-message-reply-button:hover:not(:disabled) {
+    background: var(--c-primaire-dark, #153a66);
+    border-color: var(--c-primaire-dark, #153a66);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(29, 78, 137, 0.24);
+}
+
+.admin-message-reply-button:active:not(:disabled) {
+    transform: translateY(0);
+
+    box-shadow:
+        0 3px 8px rgba(29, 78, 137, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   SUPPRIMER
+   --------------------------------------------------------- */
+
+.admin-message-delete-button {
+    border: 1px solid rgba(179, 38, 30, 0.2);
+
+    background: rgba(179, 38, 30, 0.05);
+    color: var(--c-danger, #b3261e);
+}
+
+.admin-message-delete-button:hover:not(:disabled) {
+    background: var(--c-danger, #b3261e);
+    border-color: var(--c-danger, #b3261e);
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(179, 38, 30, 0.2);
+}
+
+.admin-message-delete-button:active:not(:disabled) {
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+/* ---------------------------------------------------------
+   ÉTAT DÉSACTIVÉ
+   --------------------------------------------------------- */
+
+.admin-message-delete-button:disabled,
+.admin-message-reply-button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   CARTE DU MESSAGE
+   ========================================================= */
+
+.admin-message-detail-card {
+    overflow: hidden;
+
+    border: 1px solid var(--c-bordure, #e5e7eb);
+    border-radius: 18px;
+
+    background: var(--c-fond-carte, #ffffff);
+
+    box-shadow:
+        0 10px 30px rgba(20, 40, 70, 0.06);
+}
+
+
+/* =========================================================
+   PROFIL EXPÉDITEUR
+   ========================================================= */
+
+.admin-message-detail-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1.5rem;
+
+    border-bottom:
+        1px solid var(--c-bordure, #e5e7eb);
+}
+
+.admin-message-avatar {
+    width: 52px;
+    height: 52px;
+
+    flex: 0 0 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--c-primaire, #1d4e89),
+            var(--c-primaire-dark, #153a66)
+        );
+
+    color: #ffffff;
+
+    font-size: 1rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 5px 15px rgba(29, 78, 137, 0.2);
+}
+
+.admin-message-detail-profile > div:nth-child(2) {
+    min-width: 0;
+
+    flex: 1;
+}
+
+.admin-message-detail-profile h2 {
+    margin: 0 0 0.25rem;
+
+    color: var(--c-texte, #20252b);
+
+    font-size: 1rem;
+    font-weight: 750;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-message-detail-profile a {
+    color: var(--c-primaire, #1d4e89);
+
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    word-break: break-word;
+
+    transition:
+        color 0.2s ease;
+}
+
+.admin-message-detail-profile a:hover {
+    color: var(--c-primaire-dark, #153a66);
+    text-decoration: underline;
+}
+
+.admin-message-date {
+    margin-left: auto;
+
+    color: var(--c-texte-doux, #7a8492);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SUJET
+   ========================================================= */
+
+.admin-message-subject {
+    padding: 1.5rem;
+
+    border-bottom:
+        1px solid var(--c-bordure, #e5e7eb);
+}
+
+.admin-message-subject span {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: var(--c-texte-doux, #7a8492);
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-message-subject h3 {
+    margin: 0;
+
+    color: var(--c-texte, #20252b);
+
+    font-size: 1.15rem;
+    font-weight: 750;
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   CONTENU DU MESSAGE
+   ========================================================= */
+
+.admin-message-content {
+    padding: 1.5rem;
+}
+
+.admin-message-content > span {
+    display: block;
+
+    margin-bottom: 0.65rem;
+
+    color: var(--c-texte-doux, #7a8492);
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-message-content-text {
+    margin: 0;
+
+    color: var(--c-texte, #30343b);
+
+    font-size: 0.9rem;
+    line-height: 1.85;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ACTIONS DU MESSAGE
+   ========================================================= */
+
+.admin-message-detail-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    padding: 1.2rem 1.5rem;
+
+    border-top:
+        1px solid var(--c-bordure, #e5e7eb);
+
+    background:
+        var(--c-fond-alt, #f8fafc);
+}
+
+
+/* ---------------------------------------------------------
+   GROS BOUTON RÉPONDRE
+   --------------------------------------------------------- */
+
+.admin-message-reply-large {
+    min-height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+
+    padding: 0 1.15rem;
+
+    border: 1px solid var(--c-primaire, #1d4e89);
+    border-radius: 11px;
+
+    background: var(--c-primaire, #1d4e89);
+    color: #ffffff;
+
+    font: inherit;
+    font-size: 0.77rem;
+    font-weight: 750;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 14px rgba(29, 78, 137, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-message-reply-large:hover:not(:disabled) {
+    background: var(--c-primaire-dark, #153a66);
+    border-color: var(--c-primaire-dark, #153a66);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(29, 78, 137, 0.23);
+}
+
+.admin-message-reply-large:active:not(:disabled) {
+    transform: translateY(0);
+
+    box-shadow:
+        0 3px 8px rgba(29, 78, 137, 0.15);
+}
+
+
+/* ---------------------------------------------------------
+   OUVRIR DANS GMAIL
+   --------------------------------------------------------- */
+
+.admin-message-email-link {
+    min-height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+
+    padding: 0 1.15rem;
+
+    border: 1px solid var(--c-bordure, #d9e1ea);
+    border-radius: 11px;
+
+    background: var(--c-fond-carte, #ffffff);
+    color: var(--c-texte, #30343b);
+
+    font: inherit;
+    font-size: 0.77rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    box-shadow:
+        0 2px 7px rgba(20, 40, 70, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-message-email-link:hover:not(:disabled) {
+    background: rgba(29, 78, 137, 0.055);
+    border-color: rgba(29, 78, 137, 0.28);
+
+    color: var(--c-primaire, #1d4e89);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(20, 40, 70, 0.08);
+}
+
+.admin-message-email-link:active:not(:disabled) {
+    transform: translateY(0);
+
+    box-shadow:
+        0 2px 6px rgba(20, 40, 70, 0.05);
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ DES BOUTONS
+   ========================================================= */
+
+.admin-back-button:focus-visible,
+.admin-message-reply-button:focus-visible,
+.admin-message-delete-button:focus-visible,
+.admin-message-reply-large:focus-visible,
+.admin-message-email-link:focus-visible,
+.admin-page-notification-close:focus-visible,
+.admin-delete-cancel:focus-visible,
+.admin-delete-confirm:focus-visible {
+    outline: 3px solid rgba(29, 78, 137, 0.2);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   CHARGEMENT
+   ========================================================= */
+
+.admin-message-loading {
+    min-height: 360px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+
+    color: var(--c-texte-doux, #7a8492);
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.admin-message-loading-spinner {
+    width: 34px;
+    height: 34px;
+
+    border: 3px solid rgba(29, 78, 137, 0.12);
+    border-top-color: var(--c-primaire, #1d4e89);
+
+    border-radius: 50%;
+
+    animation:
+        adminMessageSpin 0.8s linear infinite;
+}
+
+
+/* =========================================================
+   ERREUR
+   ========================================================= */
+
+.admin-message-error {
+    padding: 2rem;
+
+    border: 1px solid rgba(179, 38, 30, 0.15);
+    border-radius: 16px;
+
+    background: rgba(179, 38, 30, 0.05);
+
+    color: var(--c-danger, #b3261e);
+
+    text-align: center;
+}
+
+.admin-message-error-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 50%;
+
+    background:
+        rgba(179, 38, 30, 0.1);
+
+    color:
+        var(--c-danger, #b3261e);
+
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.admin-message-error h1 {
+    margin: 0 0 0.6rem;
+
+    color:
+        var(--c-texte, #20252b);
+
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.admin-message-error p {
+    margin: 0 auto 1.2rem;
+
+    max-width: 520px;
+
+    color:
+        var(--c-texte-doux, #647080);
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.admin-message-error button {
+    min-height: 42px;
+
+    padding: 0 1rem;
+
+    border:
+        1px solid var(--c-primaire, #1d4e89);
+
+    border-radius: 10px;
+
+    background:
+        var(--c-primaire, #1d4e89);
+
+    color:
+        #ffffff;
+
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.admin-message-error button:hover {
+    background:
+        var(--c-primaire-dark, #153a66);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   MODAL RÉPONSE
+   ========================================================= */
+
+.admin-reply-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.5rem;
+
+    background:
+        rgba(8, 15, 25, 0.65);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    animation:
+        adminReplyOverlayIn 0.2s ease;
+}
+
+.admin-reply-modal {
+    width: min(680px, 100%);
+    max-height: min(820px, 92vh);
+
+    overflow-y: auto;
+
+    border:
+        1px solid var(--c-bordure, #e5e7eb);
+
+    border-radius: 20px;
+
+    background:
+        var(--c-fond-carte, #ffffff);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.22);
+
+    animation:
+        adminReplyModalIn 0.25s ease;
+}
+
+
+/* =========================================================
+   HEADER MODAL
+   ========================================================= */
+
+.admin-reply-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding: 1.5rem;
+
+    border-bottom:
+        1px solid var(--c-bordure, #e5e7eb);
+}
+
+.admin-reply-modal-eyebrow {
+    display: block;
+
+    margin-bottom: 0.35rem;
+
+    color: var(--c-primaire, #1d4e89);
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-reply-modal-header h2 {
+    margin: 0;
+
+    color: var(--c-texte, #20252b);
+
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.admin-reply-modal-close {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--c-texte-doux, #6b7280);
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-reply-modal-close:hover:not(:disabled) {
+    background: rgba(179, 38, 30, 0.07);
+    border-color: rgba(179, 38, 30, 0.12);
+
+    color: var(--c-danger, #b3261e);
+
+    transform: rotate(3deg);
+}
+
+
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
+.admin-reply-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.15rem;
+
+    padding: 1.5rem;
+}
+
+.admin-reply-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.admin-reply-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+.admin-reply-label-row label {
+    color: var(--c-texte, #30343b);
+
+    font-size: 0.78rem;
+    font-weight: 750;
+}
+
+.admin-reply-counter {
+    color: var(--c-texte-doux, #8a94a2);
+
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DESTINATAIRE
+   ========================================================= */
+
+.admin-reply-recipient {
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    padding: 0.8rem 0.9rem;
+
+    border:
+        1px solid var(--c-bordure, #e5e7eb);
+
+    border-radius: 12px;
+
+    background:
+        var(--c-fond-alt, #f8fafc);
+}
+
+.admin-reply-recipient-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(29, 78, 137, 0.1);
+
+    color:
+        var(--c-primaire, #1d4e89);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.admin-reply-recipient div:last-child {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.15rem;
+}
+
+.admin-reply-recipient strong {
+    color: var(--c-texte, #30343b);
+
+    font-size: 0.75rem;
+    font-weight: 750;
+}
+
+.admin-reply-recipient span {
+    color: var(--c-texte-doux, #7a8492);
+
+    font-size: 0.7rem;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.admin-reply-field input,
+.admin-reply-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid var(--c-bordure, #dce2e8);
+
+    border-radius: 11px;
+
+    background:
+        var(--c-fond-carte, #ffffff);
+
+    color:
+        var(--c-texte, #30343b);
+
+    font: inherit;
+    font-size: 0.82rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.admin-reply-field input {
+    height: 46px;
+
+    padding: 0 0.9rem;
+}
+
+.admin-reply-field textarea {
+    min-height: 180px;
+
+    padding: 0.85rem 0.9rem;
+
+    resize: vertical;
+
+    line-height: 1.65;
+}
+
+.admin-reply-field input:focus,
+.admin-reply-field textarea:focus {
+    border-color:
+        var(--c-primaire, #1d4e89);
+
+    box-shadow:
+        0 0 0 3px rgba(29, 78, 137, 0.1);
+}
+
+.admin-reply-field input:disabled,
+.admin-reply-field textarea:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    background:
+        var(--c-fond-alt, #f4f6f8);
+}
+
+
+/* =========================================================
+   ALERTES RÉPONSE
+   ========================================================= */
+
+.admin-reply-alert {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 0.7rem;
+
+    padding: 0.8rem 0.9rem;
+
+    border-radius: 11px;
+
+    font-size: 0.76rem;
+}
+
+.admin-reply-alert span {
+    flex: 0 0 auto;
+
+    font-size: 0.95rem;
+}
+
+.admin-reply-alert p {
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+.admin-reply-alert.error {
+    border:
+        1px solid rgba(179, 38, 30, 0.16);
+
+    background:
+        rgba(179, 38, 30, 0.06);
+
+    color:
+        var(--c-danger, #b3261e);
+}
+
+.admin-reply-alert.error span {
+    color:
+        var(--c-danger, #b3261e);
+}
+
+.admin-reply-alert.success {
+    border:
+        1px solid rgba(31, 122, 78, 0.16);
+
+    background:
+        rgba(31, 122, 78, 0.06);
+
+    color:
+        #1f7a4e;
+}
+
+.admin-reply-alert.success span {
+    color:
+        #1f7a4e;
+}
+
+
+/* =========================================================
+   ACTIONS MODAL
+   ========================================================= */
+
+.admin-reply-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.7rem;
+
+    padding-top: 0.35rem;
+}
+
+.admin-reply-cancel,
+.admin-reply-send {
+    min-height: 43px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+
+    padding: 0 1rem;
+
+    border-radius: 10px;
+
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-reply-cancel {
+    border:
+        1px solid var(--c-bordure, #d9e1ea);
+
+    background:
+        var(--c-fond-carte, #ffffff);
+
+    color:
+        var(--c-texte-doux, #687382);
+}
+
+.admin-reply-cancel:hover:not(:disabled) {
+    background:
+        var(--c-fond-alt, #f4f6f8);
+
+    border-color:
+        #c7d0da;
+
+    color:
+        var(--c-texte, #30343b);
+
+    transform: translateY(-1px);
+}
+
+.admin-reply-send {
+    border:
+        1px solid var(--c-primaire, #1d4e89);
+
+    background:
+        var(--c-primaire, #1d4e89);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 14px rgba(29, 78, 137, 0.16);
+}
+
+.admin-reply-send:hover:not(:disabled) {
+    background:
+        var(--c-primaire-dark, #153a66);
+
+    border-color:
+        var(--c-primaire-dark, #153a66);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(29, 78, 137, 0.22);
+}
+
+.admin-reply-cancel:disabled,
+.admin-reply-send:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   SPINNER RÉPONSE
+   ========================================================= */
+
+.admin-reply-spinner {
+    width: 15px;
+    height: 15px;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        adminReplySpin 0.7s linear infinite;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes adminMessageSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes adminNotificationIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes adminReplyOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes adminReplyModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes adminReplySpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .admin-message-details {
+        padding: 1.5rem;
+    }
+
+    .admin-message-details-header {
+        align-items: flex-start;
+    }
+
+    .admin-message-header-actions {
+        gap: 0.55rem;
+    }
+
+    .admin-message-reply-button,
+    .admin-message-delete-button {
+        padding: 0 0.85rem;
+    }
+}
+
+
+/* =========================================================
+   PETIT TABLETTE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .admin-message-details-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-message-header-actions {
+        width: 100%;
+    }
+
+    .admin-message-reply-button,
+    .admin-message-delete-button {
+        flex: 1;
+    }
+
+    .admin-message-detail-actions {
+        flex-wrap: wrap;
+    }
+
+    .admin-delete-confirmation {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .admin-delete-confirmation-content {
+        min-width:
+            calc(100% - 56px);
+    }
+
+    .admin-delete-confirmation-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .admin-message-details {
+        padding: 1rem;
+    }
+
+    .admin-message-details-header {
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .admin-message-details-header h1 {
+        font-size: 1.55rem;
+    }
+
+    .admin-message-header-actions {
+        flex-direction: column;
+        align-items: stretch;
+
+        width: 100%;
+    }
+
+    .admin-message-reply-button,
+    .admin-message-delete-button {
+        width: 100%;
+
+        flex: none;
+    }
+
+    .admin-message-detail-card {
+        border-radius: 15px;
+    }
+
+    .admin-message-detail-profile {
+        align-items: flex-start;
+
+        padding: 1.1rem;
+
+        flex-wrap: wrap;
+    }
+
+    .admin-message-date {
+        width: 100%;
+
+        margin-left: 0;
+        padding-left: 0;
+
+        font-size: 0.68rem;
+    }
+
+    .admin-message-subject,
+    .admin-message-content {
+        padding: 1.1rem;
+    }
+
+    .admin-message-detail-actions {
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0.65rem;
+
+        padding: 1rem 1.15rem;
+    }
+
+    .admin-message-reply-large,
+    .admin-message-email-link {
+        width: 100%;
+    }
+
+    .admin-reply-modal-overlay {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+    .admin-reply-modal {
+        width: 100%;
+        max-height: 94vh;
+
+        border-radius:
+            20px 20px 0 0;
+    }
+
+    .admin-reply-modal-header,
+    .admin-reply-form {
+        padding: 1.15rem;
+    }
+
+    .admin-reply-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .admin-reply-cancel,
+    .admin-reply-send {
+        width: 100%;
+    }
+
+    .admin-page-notification {
+        align-items: flex-start;
+
+        padding: 1rem;
+    }
+
+    .admin-page-notification-icon {
+        width: 34px;
+        height: 34px;
+
+        flex-basis: 34px;
+    }
+
+    .admin-delete-confirmation {
+        align-items: flex-start;
+    }
+
+    .admin-delete-confirmation-actions {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .admin-delete-cancel,
+    .admin-delete-confirm {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   TRÈS PETIT MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .admin-message-details {
+        padding: 0.75rem;
+    }
+
+    .admin-message-details-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .admin-message-avatar {
+        width: 46px;
+        height: 46px;
+
+        flex-basis: 46px;
+    }
+
+    .admin-message-detail-profile h2 {
+        font-size: 0.9rem;
+    }
+
+    .admin-message-subject h3 {
+        font-size: 1rem;
+    }
+
+    .admin-message-content-text {
+        font-size: 0.82rem;
+    }
+
+    .admin-message-reply-button,
+    .admin-message-delete-button,
+    .admin-message-reply-large,
+    .admin-message-email-link {
+        min-height: 44px;
+
+        font-size: 0.74rem;
+    }
+
+    .admin-reply-modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .admin-reply-field textarea {
+        min-height: 150px;
+    }
+
+    .admin-page-notification-content strong {
+        font-size: 0.88rem;
+    }
+
+    .admin-page-notification-content p {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* =========================================================
+   MODE SOMBRE
+   ========================================================= */
+
+.dark .admin-message-details-header h1 {
+    color: #f1f5f9;
+}
+
+.dark .admin-message-eyebrow {
+    color: #8bb8f0;
+}
+
+
+/* ---------------------------------------------------------
+   NOTIFICATIONS
+   --------------------------------------------------------- */
+
+.dark .admin-page-notification-content strong,
+.dark .admin-delete-confirmation-content strong {
+    color: #f1f5f9;
+}
+
+.dark .admin-page-notification-content p,
+.dark .admin-delete-confirmation-content p {
+    color: #aeb8c5;
+}
+
+.dark .admin-page-notification-close {
+    color: #aeb8c5;
+}
+
+.dark .admin-page-notification-close:hover {
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    color:
+        #ffffff;
+}
+
+.dark .admin-delete-cancel {
+    background:
+        #1b222c;
+
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    color:
+        #f1f5f9;
+}
+
+.dark .admin-delete-cancel:hover:not(:disabled) {
+    background:
+        #222b36;
+}
+
+
+/* ---------------------------------------------------------
+   RETOUR
+   --------------------------------------------------------- */
+
+.dark .admin-back-button {
+    color: #aeb8c5;
+}
+
+.dark .admin-back-button:hover {
+    background: rgba(139, 184, 240, 0.08);
+
+    border-color:
+        rgba(139, 184, 240, 0.12);
+
+    color: #8bb8f0;
+}
+
+
+/* ---------------------------------------------------------
+   BOUTON RÉPONDRE
+   --------------------------------------------------------- */
+
+.dark .admin-message-reply-button,
+.dark .admin-message-reply-large {
+    background: #1d4e89;
+    border-color: #1d4e89;
+
+    color: #ffffff;
+}
+
+.dark .admin-message-reply-button:hover:not(:disabled),
+.dark .admin-message-reply-large:hover:not(:disabled) {
+    background: #153a66;
+    border-color: #153a66;
+}
+
+
+/* ---------------------------------------------------------
+   BOUTON SUPPRIMER
+   --------------------------------------------------------- */
+
+.dark .admin-message-delete-button {
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border-color:
+        rgba(239, 68, 68, 0.18);
+
+    color: #f87171;
+}
+
+.dark .admin-message-delete-button:hover:not(:disabled) {
+    background: #b3261e;
+    border-color: #b3261e;
+
+    color: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   BOUTON GMAIL
+   --------------------------------------------------------- */
+
+.dark .admin-message-email-link {
+    background: #1b222c;
+
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    color: #d7dee8;
+}
+
+.dark .admin-message-email-link:hover:not(:disabled) {
+    background:
+        rgba(29, 78, 137, 0.25);
+
+    border-color:
+        rgba(139, 184, 240, 0.35);
+
+    color: #8bb8f0;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ---------------------------------------------------------
+   CARTE
+   --------------------------------------------------------- */
+
+.dark .admin-message-detail-card {
+    background: #151b23;
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.dark .admin-message-detail-profile,
+.dark .admin-message-subject {
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+.dark .admin-message-detail-profile h2,
+.dark .admin-message-subject h3 {
+    color: #f1f5f9;
+}
+
+.dark .admin-message-detail-profile a {
+    color: #8bb8f0;
+}
+
+.dark .admin-message-detail-profile a:hover {
+    color: #a9cdf5;
+}
+
+.dark .admin-message-content-text {
+    color: #d1d8e1;
+}
+
+
+/* ---------------------------------------------------------
+   ACTIONS
+   --------------------------------------------------------- */
+
+.dark .admin-message-detail-actions {
+    background: #10161d;
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   LOADING
+   --------------------------------------------------------- */
+
+.dark .admin-message-loading {
+    color: #aeb8c5;
+}
+
+.dark .admin-message-loading-spinner {
+    border-color:
+        rgba(139, 184, 240, 0.15);
+
+    border-top-color:
+        #8bb8f0;
+}
+
+
+/* ---------------------------------------------------------
+   ERREUR
+   --------------------------------------------------------- */
+
+.dark .admin-message-error {
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border-color:
+        rgba(239, 68, 68, 0.16);
+
+    color: #f87171;
+}
+
+.dark .admin-message-error h1 {
+    color: #f1f5f9;
+}
+
+.dark .admin-message-error p {
+    color: #aeb8c5;
+}
+
+.dark .admin-message-error-icon {
+    background:
+        rgba(239, 68, 68, 0.1);
+
+    color:
+        #f87171;
+}
+
+
+/* ---------------------------------------------------------
+   MODAL
+   --------------------------------------------------------- */
+
+.dark .admin-reply-modal {
+    background: #151b23;
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+.dark .admin-reply-modal-header {
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+.dark .admin-reply-modal-header h2 {
+    color: #f1f5f9;
+}
+
+.dark .admin-reply-modal-close {
+    color: #aeb8c5;
+}
+
+.dark .admin-reply-modal-close:hover:not(:disabled) {
+    background:
+        rgba(239, 68, 68, 0.1);
+
+    border-color:
+        rgba(239, 68, 68, 0.16);
+
+    color: #f87171;
+}
+
+
+/* ---------------------------------------------------------
+   DESTINATAIRE
+   --------------------------------------------------------- */
+
+.dark .admin-reply-recipient {
+    background: #10161d;
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+.dark .admin-reply-recipient-avatar {
+    background:
+        rgba(139, 184, 240, 0.1);
+
+    color: #8bb8f0;
+}
+
+.dark .admin-reply-recipient strong {
+    color: #e7edf5;
+}
+
+.dark .admin-reply-recipient span {
+    color: #9ca8b7;
+}
+
+
+/* ---------------------------------------------------------
+   FORMULAIRE
+   --------------------------------------------------------- */
+
+.dark .admin-reply-label-row label {
+    color: #dbe3ec;
+}
+
+.dark .admin-reply-counter {
+    color: #8995a5;
+}
+
+.dark .admin-reply-field input,
+.dark .admin-reply-field textarea {
+    background: #10161d;
+
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    color: #e8edf3;
+}
+
+.dark .admin-reply-field input:focus,
+.dark .admin-reply-field textarea:focus {
+    border-color: #8bb8f0;
+
+    box-shadow:
+        0 0 0 3px rgba(139, 184, 240, 0.12);
+}
+
+.dark .admin-reply-field input:disabled,
+.dark .admin-reply-field textarea:disabled {
+    background: #0d1117;
+}
+
+
+/* ---------------------------------------------------------
+   BOUTON ANNULER
+   --------------------------------------------------------- */
+
+.dark .admin-reply-cancel {
+    background: #1b222c;
+
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    color: #c4ccd6;
+}
+
+.dark .admin-reply-cancel:hover:not(:disabled) {
+    background: #222b36;
+
+    border-color:
+        rgba(255, 255, 255, 0.15);
+
+    color: #f1f5f9;
+}
+
+
+/* ---------------------------------------------------------
+   ALERTES
+   --------------------------------------------------------- */
+
+.dark .admin-reply-alert.error {
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border-color:
+        rgba(239, 68, 68, 0.15);
+
+    color: #f87171;
+}
+
+.dark .admin-reply-alert.success {
+    background:
+        rgba(34, 197, 94, 0.08);
+
+    border-color:
+        rgba(34, 197, 94, 0.15);
+
+    color: #6ee7a0;
+}

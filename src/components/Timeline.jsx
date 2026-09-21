@@ -1,169 +1,223 @@
-import ScrollReveal from "./ScrollReveal";
+import { useEffect, useState } from "react";
 import { useLanguage } from "../context/useLanguage";
 
-function Timeline() {
-    const { t } = useLanguage();
+const API_URL = "http://localhost:8080/api/parcours";
 
-    const timelineItems = [
-        {
-            number: "01",
-            category: t.timeline.item1Category,
-            title: t.timeline.item1Title,
-            location: t.timeline.item1Location,
-            description: t.timeline.item1Description,
-            link: "https://esfbenin.net/",
-            technologies: [
-                "Informatique",
-                "Programmation",
-                "Bases de données",
-            ],
-        },
-        {
-            number: "03",
-            category: t.timeline.item3Category,
-            title: t.timeline.item3Title,
-            location: t.timeline.item3Location,
-            description: t.timeline.item3Description,
-            link: "https://cosit-benin.com/",
-            technologies: [
-                "HTML",
-                "CSS",
-                "JavaScript",
-            ],
-        },
-        {
-            number: "02",
-            category: t.timeline.item2Category,
-            title: t.timeline.item2Title,
-            location: t.timeline.item2Location,
-            description: t.timeline.item2Description,
-            link: "https://iatf-university.org/",
-            technologies: [
-                "Système Informatique",
-                "Développement Web",
-                "Développement Logiciel",
-            ],
-        },
-        {
-            number: "04",
-            category: t.timeline.item4Category,
-            title: t.timeline.item4Title,
-            location: t.timeline.item4Location,
-            description: t.timeline.item4Description,
-            technologies: [
-                "React",
-                "Spring Boot",
-                "Laravel",
-                "Flutter",
-                "MySQL",
-            ],
-        },
-    ];
+function Timeline() {
+    const { language, t } = useLanguage();
+
+    const [parcours, setParcours] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchParcours = async () => {
+            setLoading(true);
+
+            try {
+                const response = await fetch(
+                    `${API_URL}?lang=${language}`
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Erreur HTTP : ${response.status}`
+                    );
+                }
+
+                const data = await response.json();
+
+                const sortedData = [...data].sort(
+                    (a, b) => a.ordre - b.ordre
+                );
+
+                setParcours(sortedData);
+            } catch (error) {
+                console.error(
+                    "Erreur lors du chargement du parcours :",
+                    error
+                );
+
+                setParcours([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchParcours();
+    }, [language]);
 
     return (
-        <section id="parcours" className="section timeline-section">
-            <ScrollReveal direction="up">
-                <div className="section-heading">
-                    <p className="section-label">
-                        {t.timeline.title}
-                    </p>
+        <section
+            className="timeline-section section"
+            id="parcours"
+        >
+            <div className="container">
 
-                    <h2>
-                        {t.timeline.heading}
+                {/* EN-TÊTE */}
+                <div className="section-header">
+                    <span className="section-label">
+                        {t("timeline.title")}
+                    </span>
+
+                    <h2 className="section-title">
+                        {t("timeline.heading")}
                     </h2>
 
-                    <p>
-                        {t.timeline.subtitle}
+                    <p className="section-subtitle">
+                        {t("timeline.subtitle")}
                     </p>
                 </div>
-            </ScrollReveal>
 
-            <div className="timeline">
-                <div
-                    className="timeline-line"
-                    aria-hidden="true"
-                ></div>
+                {/* CHARGEMENT */}
+                {loading && (
+                    <div className="timeline-loading">
+                        <span className="timeline-loading-spinner"></span>
 
-                {timelineItems.map((item, index) => (
-                    <ScrollReveal
-                        key={item.number}
-                        direction={
-                            index % 2 === 0
-                                ? "left"
-                                : "right"
-                        }
-                        delay={150 + index * 150}
-                    >
-                        <article
-                            className={`timeline-item ${
-                                index % 2 === 0
-                                    ? "timeline-item-left"
-                                    : "timeline-item-right"
-                            }`}
-                        >
-                            <div className="timeline-marker">
-                                <span>{item.number}</span>
-                            </div>
+                        <p>
+                            {language === "fr"
+                                ? "Chargement..."
+                                : "Loading..."}
+                        </p>
+                    </div>
+                )}
 
-                            <div className="timeline-card">
-                                <span className="timeline-category">
-                                    {item.category}
-                                </span>
+                {/* PARCOURS */}
+                {!loading && parcours.length > 0 && (
+                    <div className="timeline">
 
-                                <h3>
-                                    {item.link ? (
-                                        <a
-                                            href={item.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="timeline-title-link"
-                                        >
-                                            {item.title}
-                                        </a>
-                                    ) : (
-                                        item.title
-                                    )}
-                                </h3>
+                        {parcours.map((item, index) => {
+                            const translation =
+                                item.translation;
 
-                                <span className="timeline-location">
-                                    {item.location}
-                                </span>
+                            if (!translation) {
+                                return null;
+                            }
 
-                                <p>
-                                    {item.description}
-                                </p>
+                            const isLeft =
+                                index % 2 === 0;
 
-                                <div className="timeline-technologies">
-                                    {item.technologies.map(
-                                        (technology) => (
-                                            <span key={technology}>
-                                                {technology}
-                                            </span>
-                                        )
-                                    )}
-                                </div>
+                            const technologies = [
+                                ...(item.technologies || [])
+                            ].sort(
+                                (a, b) =>
+                                    a.ordre - b.ordre
+                            );
 
-                                {item.link && (
-                                    <a
-                                        href={item.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="timeline-link"
-                                    >
-                                        {t.timeline.visitWebsite}
-                                        <span aria-hidden="true">
-                                            ↗
+                            return (
+                                <div
+                                    className={`timeline-item ${
+                                        isLeft
+                                            ? "timeline-item-left"
+                                            : "timeline-item-right"
+                                    }`}
+                                    key={item.id}
+                                >
+
+                                    {/* NUMÉRO */}
+                                    <div className="timeline-marker">
+                                        <span>
+                                            {item.numero}
                                         </span>
-                                    </a>
-                                )}
-                            </div>
-                        </article>
-                    </ScrollReveal>
-                ))}
+                                    </div>
+
+                                    {/* CONTENU */}
+                                    <div className="timeline-content">
+
+                                        {/* PÉRIODE */}
+                                        <div className="timeline-period">
+                                            {translation.periode}
+                                        </div>
+
+                                        {/* TITRE */}
+                                        <h3 className="timeline-title">
+                                            {translation.title}
+                                        </h3>
+
+                                        {/* LIEU */}
+                                        {translation.location && (
+                                            <div className="timeline-location">
+                                                <span className="timeline-location-icon">
+                                                    📍
+                                                </span>
+
+                                                <span>
+                                                    {translation.location}
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {/* DESCRIPTION */}
+                                        {translation.description && (
+                                            <p className="timeline-description">
+                                                {
+                                                    translation.description
+                                                }
+                                            </p>
+                                        )}
+
+                                        {/* TECHNOLOGIES */}
+                                        {technologies.length > 0 && (
+                                            <div className="timeline-technologies">
+                                                {technologies.map(
+                                                    (technology) => (
+                                                        <span
+                                                            className="timeline-tech"
+                                                            key={
+                                                                technology.id
+                                                            }
+                                                        >
+                                                            {
+                                                                technology.nom
+                                                            }
+                                                        </span>
+                                                    )
+                                                )}
+                                            </div>
+                                        )}
+
+                                        {/* LIEN */}
+                                        {item.lien && (
+                                            <a
+                                                href={item.lien}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="timeline-link"
+                                            >
+                                                <span>
+                                                    {t(
+                                                        "timeline.visitWebsite"
+                                                    )}
+                                                </span>
+
+                                                <span>
+                                                    ↗
+                                                </span>
+                                            </a>
+                                        )}
+
+                                    </div>
+                                </div>
+                            );
+                        })}
+
+                    </div>
+                )}
+
+                {/* AUCUN PARCOURS */}
+                {!loading &&
+                    parcours.length === 0 && (
+                        <div className="timeline-empty">
+                            <p>
+                                {language === "fr"
+                                    ? "Aucun parcours disponible."
+                                    : "No journey available."}
+                            </p>
+                        </div>
+                    )}
+
             </div>
         </section>
     );
 }
 
 export default Timeline;
-

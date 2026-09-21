@@ -11,6 +11,7 @@ function ProjectCard({ project, onOpen }) {
      * EFFET 3D DE LA CARTE
      * ==========================================
      */
+
     const handleMouseMove = (event) => {
         const card = cardRef.current;
 
@@ -18,13 +19,6 @@ function ProjectCard({ project, onOpen }) {
             return;
         }
 
-        /*
-         * Ne pas appliquer l'effet 3D lorsque
-         * la souris est sur les boutons/liens
-         * d'action.
-         *
-         * Cela évite les vibrations au clic.
-         */
         if (
             event.target.closest(
                 ".project-details-button, .project-demo-link"
@@ -33,36 +27,20 @@ function ProjectCard({ project, onOpen }) {
             return;
         }
 
-        const rect =
-            card.getBoundingClientRect();
+        const rect = card.getBoundingClientRect();
 
-        const x =
-            event.clientX -
-            rect.left;
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
 
-        const y =
-            event.clientY -
-            rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-        const centerX =
-            rect.width / 2;
-
-        const centerY =
-            rect.height / 2;
-
-        /*
-         * Intensité de l'inclinaison 3D.
-         */
         const rotateX =
             ((y - centerY) / centerY) * -5;
 
         const rotateY =
             ((x - centerX) / centerX) * 5;
 
-        /*
-         * Position de la lumière
-         * qui suit la souris.
-         */
         const lightX =
             (x / rect.width) * 100;
 
@@ -100,6 +78,7 @@ function ProjectCard({ project, onOpen }) {
      * RÉINITIALISATION DE LA CARTE
      * ==========================================
      */
+
     const resetCardTransform = () => {
         const card = cardRef.current;
 
@@ -138,24 +117,34 @@ function ProjectCard({ project, onOpen }) {
      * SOURIS QUITTE LA CARTE
      * ==========================================
      */
+
     const handleMouseLeave = () => {
         resetCardTransform();
     };
 
     /*
      * ==========================================
-     * SOURIS ENTRE DANS UNE ZONE D'ACTION
+     * SOURIS ENTRE SUR UNE ACTION
      * ==========================================
-     *
-     * On stabilise complètement la carte lorsque
-     * l'utilisateur arrive sur un bouton ou un lien.
-     *
-     * Cela évite que l'effet 3D de la carte continue
-     * à modifier sa position pendant le clic.
      */
+
     const handleActionMouseEnter = () => {
         resetCardTransform();
     };
+
+    /*
+     * ==========================================
+     * STATUT DU PROJET
+     * ==========================================
+     */
+
+    const isOnline =
+        project.status === "online";
+
+    const statusLabel = isOnline
+        ? t("projects.online") || "En ligne"
+        : t("projects.development") ||
+          "En développement";
 
     return (
         <article
@@ -164,30 +153,33 @@ function ProjectCard({ project, onOpen }) {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            {/* ================================
+            {/* ==================================
                 IMAGE DU PROJET
-            ================================= */}
+            ================================== */}
 
             {project.image && (
                 <div className="project-card-image">
-
                     <img
                         src={project.image}
-                        alt={`${t.projects.preview} ${project.title}`}
+                        alt={`${t(
+                            "projects.preview"
+                        )} ${project.title}`}
                         loading="lazy"
                     />
 
                     <div
                         className="project-card-image-shine"
                         aria-hidden="true"
-                    ></div>
+                    />
 
                     <div
                         className="project-card-image-overlay"
                         aria-hidden="true"
                     >
                         <span>
-                            {t.projects.viewProject}
+                            {t(
+                                "projects.viewProject"
+                            )}
                         </span>
                     </div>
 
@@ -197,22 +189,19 @@ function ProjectCard({ project, onOpen }) {
                             "0"
                         )}
                     </div>
-
                 </div>
             )}
 
-            {/* ================================
+            {/* ==================================
                 CONTENU
-            ================================= */}
+            ================================== */}
 
             <div className="project-card-content">
-
-                {/* ================================
+                {/* ==================================
                     EN-TÊTE
-                ================================= */}
+                ================================== */}
 
                 <div className="project-card-top">
-
                     <span className="project-type">
                         {project.type}
                     </span>
@@ -223,57 +212,50 @@ function ProjectCard({ project, onOpen }) {
                             "0"
                         )}
                     </span>
-
                 </div>
 
-                {/* ================================
+                {/* ==================================
                     STATUT
-                ================================= */}
+                ================================== */}
 
                 <div className="project-status">
-
                     <span
                         className={
-                            project.status ===
-                                "En ligne"
+                            isOnline
                                 ? "status-dot online"
                                 : "status-dot development"
                         }
-                    ></span>
+                    />
 
-                    {project.status}
-
+                    {statusLabel}
                 </div>
 
-                {/* ================================
+                {/* ==================================
                     TITRE
-                ================================= */}
+                ================================== */}
 
-                <h3>
-                    {project.title}
-                </h3>
+                <h3>{project.title}</h3>
 
-                {/* ================================
+                {/* ==================================
                     DESCRIPTION
-                ================================= */}
+                ================================== */}
 
                 <p className="project-card-description">
                     {project.description}
                 </p>
 
-                {/* ================================
+                {/* ==================================
                     TECHNOLOGIES
-                ================================= */}
+                ================================== */}
 
                 <div className="project-technologies">
-
                     {project.technologies.map(
                         (
                             technology,
                             index
                         ) => (
                             <span
-                                key={technology}
+                                key={`${technology}-${index}`}
                                 style={{
                                     "--tech-index":
                                         index,
@@ -283,19 +265,13 @@ function ProjectCard({ project, onOpen }) {
                             </span>
                         )
                     )}
-
                 </div>
 
-                {/* ================================
-                    FOOTER / ACTIONS
-                ================================= */}
+                {/* ==================================
+                    ACTIONS
+                ================================== */}
 
                 <div className="project-card-footer">
-
-                    {/* =================================
-                        VOIR LES DÉTAILS
-                    ================================= */}
-
                     <button
                         type="button"
                         className="project-details-button"
@@ -307,17 +283,15 @@ function ProjectCard({ project, onOpen }) {
                         }
                     >
                         <span>
-                            {t.projects.details}
+                            {t(
+                                "projects.details"
+                            )}
                         </span>
 
                         <span className="project-button-arrow">
                             →
                         </span>
                     </button>
-
-                    {/* =================================
-                        VOIR LE PROJET
-                    ================================= */}
 
                     {project.demo && (
                         <a
@@ -330,15 +304,14 @@ function ProjectCard({ project, onOpen }) {
                             }
                         >
                             <span>
-                                {t.projects.viewProject}
+                                {t(
+                                    "projects.viewProject"
+                                )}
                             </span>
 
-                            <span>
-                                ↗
-                            </span>
+                            <span>↗</span>
                         </a>
                     )}
-
                 </div>
             </div>
         </article>

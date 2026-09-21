@@ -4,7 +4,9 @@ import TypingText from "./TypingText";
 
 function Hero() {
     const { t } = useLanguage();
+
     const [showCvModal, setShowCvModal] = useState(false);
+
     const closeModal = () => {
         setShowCvModal(false);
     };
@@ -12,9 +14,11 @@ function Hero() {
     return (
         <>
             <section id="accueil" className="hero">
+
                 <div className="hero-content">
+
                     <p className="hero-intro">
-                        {t.hero.greeting}
+                        {t("hero.greeting")}
                     </p>
 
                     <h1>
@@ -22,26 +26,29 @@ function Hero() {
                     </h1>
 
                     <h2>
-                        <TypingText words={t.hero.typingWords} />
+                        <TypingText
+                            words={t("hero.typingWords")}
+                        />
                     </h2>
 
                     <p className="hero-description">
-                        {t.hero.description}
+                        {t("hero.description")}
                     </p>
 
                     <div className="hero-actions">
+
                         <a
                             href="#projets"
                             className="button button-primary"
                         >
-                            {t.hero.projects}
+                            {t("hero.projects")}
                         </a>
 
                         <a
                             href="#contact"
                             className="button button-secondary"
                         >
-                            {t.hero.contact}
+                            {t("hero.contact")}
                         </a>
 
                         <button
@@ -49,11 +56,13 @@ function Hero() {
                             className="button button-secondary"
                             onClick={() => setShowCvModal(true)}
                         >
-                            {t.hero.cv}
+                            {t("hero.cv")}
                         </button>
+
                     </div>
 
                     <div className="hero-socials">
+
                         <a
                             href="https://github.com/frejus-1/"
                             target="_blank"
@@ -69,11 +78,16 @@ function Hero() {
                         >
                             LinkedIn
                         </a>
+
                     </div>
+
                 </div>
 
+
                 <div className="hero-visual">
+
                     <div className="code-card">
+
                         <div className="code-header">
                             <span></span>
                             <span></span>
@@ -81,6 +95,7 @@ function Hero() {
                         </div>
 
                         <div className="code-content">
+
                             <p>
                                 <span className="code-keyword">
                                     const
@@ -100,9 +115,14 @@ function Hero() {
                                 focus: <span>"Web & Mobile"</span>
                             </p>
 
-                            <p>{"};"}</p>
+                            <p>
+                                {"};"}
+                            </p>
+
                         </div>
+
                     </div>
+
 
                     <div className="floating-badge badge-react">
                         React
@@ -115,67 +135,98 @@ function Hero() {
                     <div className="floating-badge badge-flutter">
                         Flutter
                     </div>
+
                 </div>
+
             </section>
+
+
+            {/* ==========================================
+                MODAL CV
+            ========================================== */}
 
             {showCvModal && (
                 <div
                     className="cv-modal-overlay"
                     onClick={closeModal}
                 >
+
                     <div
                         className="cv-modal"
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="cv-modal-title"
-                        onClick={(event) => event.stopPropagation()}
+                        onClick={(event) =>
+                            event.stopPropagation()
+                        }
                     >
+
                         <button
                             type="button"
                             className="cv-modal-close"
                             onClick={closeModal}
-                            aria-label={t.hero.cvModal.close}
+                            aria-label={t("hero.cvModal.close")}
                         >
                             ×
                         </button>
+
 
                         <div className="cv-modal-icon">
                             📄
                         </div>
 
+
                         <h3 id="cv-modal-title">
-                            {t.hero.cvModal.title}
+                            {t("hero.cvModal.title")}
                         </h3>
 
+
                         <p className="cv-modal-description">
-                            {t.hero.cvModal.description}
+                            {t("hero.cvModal.description")}
                         </p>
 
+
                         <div className="cv-modal-options">
+
+                            {/* ==================================
+                                CV FRANÇAIS
+                            ================================== */}
+
                             <a
                                 href="/cv-frejus-fr.pdf"
                                 download="cv-frejus-fr.pdf"
                                 className="cv-download-option"
                                 onClick={closeModal}
                             >
+
                                 <span className="cv-language">
                                     FR
                                 </span>
 
                                 <span className="cv-option-content">
+
                                     <strong>
-                                        {t.hero.cvModal.french}
+                                        {t("hero.cvModal.french")}
                                     </strong>
 
                                     <small>
-                                        {t.hero.cvModal.frenchDescription}
+                                        {t(
+                                            "hero.cvModal.frenchDescription"
+                                        )}
                                     </small>
+
                                 </span>
 
                                 <span className="cv-download-icon">
                                     ↓
                                 </span>
+
                             </a>
+
+
+                            {/* ==================================
+                                CV ANGLAIS
+                            ================================== */}
 
                             <a
                                 href="/cv-frejus-en.pdf"
@@ -183,28 +234,38 @@ function Hero() {
                                 className="cv-download-option"
                                 onClick={closeModal}
                             >
+
                                 <span className="cv-language">
                                     EN
                                 </span>
 
                                 <span className="cv-option-content">
+
                                     <strong>
-                                        {t.hero.cvModal.english}
+                                        {t("hero.cvModal.english")}
                                     </strong>
 
                                     <small>
-                                        {t.hero.cvModal.englishDescription}
+                                        {t(
+                                            "hero.cvModal.englishDescription"
+                                        )}
                                     </small>
+
                                 </span>
 
                                 <span className="cv-download-icon">
                                     ↓
                                 </span>
+
                             </a>
+
                         </div>
+
                     </div>
+
                 </div>
             )}
+
         </>
     );
 }

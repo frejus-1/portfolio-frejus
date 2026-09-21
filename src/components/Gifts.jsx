@@ -3,10 +3,13 @@ import { useLanguage } from "../context/useLanguage";
 
 function Gifts({ isOpen, onClose }) {
     const { t, language } = useLanguage();
-    const gifts = t.gifts;
+
+    const giftsItems = t("gifts.items") || [];
 
     useEffect(() => {
-        if (!isOpen) return;
+        if (!isOpen) {
+            return;
+        }
 
         const handleEscape = (event) => {
             if (event.key === "Escape") {
@@ -14,7 +17,10 @@ function Gifts({ isOpen, onClose }) {
             }
         };
 
-        document.addEventListener("keydown", handleEscape);
+        document.addEventListener(
+            "keydown",
+            handleEscape
+        );
 
         document.body.style.overflow = "hidden";
 
@@ -93,13 +99,16 @@ I would like to discuss it with you and get more details.`;
                 <div className="gifts-modal-header">
                     <div>
                         <span className="gifts-modal-label">
-                            {gifts.label}
+                            {t("gifts.label")}
                         </span>
 
                         <h2 id="gifts-modal-title">
-                            {gifts.title}
+                            {t("gifts.title")}
+
                             <span>
-                                {gifts.highlight}
+                                {t(
+                                    "gifts.highlight"
+                                )}
                             </span>
                         </h2>
                     </div>
@@ -121,19 +130,21 @@ I would like to discuss it with you and get more details.`;
                 {/* DESCRIPTION */}
 
                 <p className="gifts-modal-description">
-                    {gifts.description}
+                    {t("gifts.description")}
                 </p>
 
                 {/* OFFRES */}
 
                 <div className="gifts-grid">
-                    {gifts.items.map((gift) => (
+                    {giftsItems.map((gift) => (
                         <button
                             type="button"
                             className="gift-card"
                             key={gift.id}
                             onClick={() =>
-                                handleGiftClick(gift)
+                                handleGiftClick(
+                                    gift
+                                )
                             }
                         >
                             <div className="gift-icon">
@@ -151,12 +162,16 @@ I would like to discuss it with you and get more details.`;
                                 </h3>
 
                                 <p>
-                                    {gift.description}
+                                    {
+                                        gift.description
+                                    }
                                 </p>
 
                                 <div className="gift-code">
                                     <span>
-                                        {gifts.codeLabel}
+                                        {t(
+                                            "gifts.codeLabel"
+                                        )}
                                     </span>
 
                                     <strong>
@@ -165,9 +180,13 @@ I would like to discuss it with you and get more details.`;
                                 </div>
 
                                 <span className="gift-action">
-                                    {gifts.action}
+                                    {t(
+                                        "gifts.action"
+                                    )}
 
-                                    <span aria-hidden="true">
+                                    <span
+                                        aria-hidden="true"
+                                    >
                                         →
                                     </span>
                                 </span>
@@ -183,7 +202,7 @@ I would like to discuss it with you and get more details.`;
                     <span>🎁</span>
 
                     <p>
-                        {gifts.footer}
+                        {t("gifts.footer")}
                     </p>
                 </div>
 

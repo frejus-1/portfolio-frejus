@@ -4,21 +4,21 @@ import { useLanguage } from "../context/useLanguage";
 function Terminal({ isOpen, onClose }) {
     const { t } = useLanguage();
 
-    const terminal = t.terminal;
-
     const getInitialHistory = () => [
         {
             type: "system",
-            text: terminal.welcome,
+            text: t("terminal.welcome"),
         },
         {
             type: "system",
-            text: terminal.instruction,
+            text: t("terminal.instruction"),
         },
     ];
 
     const [command, setCommand] = useState("");
-    const [history, setHistory] = useState(getInitialHistory);
+    const [history, setHistory] = useState(
+        getInitialHistory
+    );
 
     useEffect(() => {
         if (!isOpen) {
@@ -31,7 +31,10 @@ function Terminal({ isOpen, onClose }) {
             }
         };
 
-        document.addEventListener("keydown", handleEscape);
+        document.addEventListener(
+            "keydown",
+            handleEscape
+        );
 
         document.body.style.overflow = "hidden";
 
@@ -46,7 +49,9 @@ function Terminal({ isOpen, onClose }) {
     }, [isOpen, onClose]);
 
     const executeCommand = (value) => {
-        const commandValue = value.trim().toLowerCase();
+        const commandValue = value
+            .trim()
+            .toLowerCase();
 
         if (!commandValue) {
             return;
@@ -58,8 +63,10 @@ function Terminal({ isOpen, onClose }) {
             return;
         }
 
+        const commands = t("terminal.commands");
+
         const commandData =
-            terminal.commands[commandValue];
+            commands?.[commandValue];
 
         setHistory((previous) => [
             ...previous,
@@ -76,7 +83,9 @@ function Terminal({ isOpen, onClose }) {
 
                 text: commandData
                     ? commandData.output.join("\n")
-                    : `${terminal.unknownCommand} : ${commandValue}`,
+                    : `${t(
+                          "terminal.unknownCommand"
+                      )} : ${commandValue}`,
             },
         ]);
 
@@ -98,7 +107,7 @@ function Terminal({ isOpen, onClose }) {
             className="terminal-modal"
             role="dialog"
             aria-modal="true"
-            aria-label={terminal.title}
+            aria-label={t("terminal.title")}
             onMouseDown={(event) => {
                 if (
                     event.target ===
@@ -119,14 +128,18 @@ function Terminal({ isOpen, onClose }) {
                     </div>
 
                     <span className="terminal-title">
-                        {terminal.windowTitle}
+                        {t(
+                            "terminal.windowTitle"
+                        )}
                     </span>
 
                     <button
                         type="button"
                         className="terminal-close"
                         onClick={onClose}
-                        aria-label={terminal.close}
+                        aria-label={t(
+                            "terminal.close"
+                        )}
                     >
                         ×
                     </button>
@@ -135,42 +148,51 @@ function Terminal({ isOpen, onClose }) {
 
                 <div className="terminal-body">
 
-                    {history.map((item, index) => (
-                        <div
-                            key={`${item.type}-${index}`}
-                            className={`terminal-line terminal-${item.type}`}
-                        >
-                            {item.type === "command" && (
-                                <span className="terminal-prompt">
-                                    $
-                                </span>
-                            )}
+                    {history.map(
+                        (item, index) => (
+                            <div
+                                key={`${item.type}-${index}`}
+                                className={`terminal-line terminal-${item.type}`}
+                            >
+                                {item.type ===
+                                    "command" && (
+                                    <span className="terminal-prompt">
+                                        $
+                                    </span>
+                                )}
 
-                            <span>
-                                {item.text
-                                    .split("\n")
-                                    .map(
-                                        (
-                                            line,
-                                            lineIndex
-                                        ) => (
-                                            <span
-                                                key={
-                                                    lineIndex
-                                                }
-                                                className="terminal-output-line"
-                                            >
-                                                {line}
-                                            </span>
+                                <span>
+                                    {item.text
+                                        .split(
+                                            "\n"
                                         )
-                                    )}
-                            </span>
-                        </div>
-                    ))}
+                                        .map(
+                                            (
+                                                line,
+                                                lineIndex
+                                            ) => (
+                                                <span
+                                                    key={
+                                                        lineIndex
+                                                    }
+                                                    className="terminal-output-line"
+                                                >
+                                                    {
+                                                        line
+                                                    }
+                                                </span>
+                                            )
+                                        )}
+                                </span>
+                            </div>
+                        )
+                    )}
 
                     <form
                         className="terminal-input-line"
-                        onSubmit={handleSubmit}
+                        onSubmit={
+                            handleSubmit
+                        }
                     >
                         <span className="terminal-prompt">
                             $
@@ -181,18 +203,19 @@ function Terminal({ isOpen, onClose }) {
                             value={command}
                             onChange={(event) =>
                                 setCommand(
-                                    event.target.value
+                                    event.target
+                                        .value
                                 )
                             }
                             autoComplete="off"
                             spellCheck="false"
                             autoFocus
-                            placeholder={
-                                terminal.placeholder
-                            }
-                            aria-label={
-                                terminal.placeholder
-                            }
+                            placeholder={t(
+                                "terminal.placeholder"
+                            )}
+                            aria-label={t(
+                                "terminal.placeholder"
+                            )}
                         />
                     </form>
 

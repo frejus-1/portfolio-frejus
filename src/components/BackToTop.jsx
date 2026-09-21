@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "../context/useLanguage";
+
 function BackToTop() {
     const [visible, setVisible] = useState(false);
     const { t } = useLanguage();
@@ -40,8 +41,8 @@ function BackToTop() {
                 visible ? "back-to-top-visible" : ""
             }`}
             onClick={scrollToTop}
-            aria-label={t.footer.backTop}
-            title={t.footer.backTop}
+            aria-label={t("footer.backTop")}
+            title={t("footer.backTop")}
         >
             <span>↑</span>
         </button>

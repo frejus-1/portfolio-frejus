@@ -2,7 +2,7 @@ import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { useLanguage } from "../context/useLanguage";
 
-const FORM_ENDPOINT = "https://formspree.io/f/meaojonv";
+const API_URL = "http://localhost:8080/api/contact";
 
 const WHATSAPP_NUMBER = "2290152905310";
 
@@ -28,29 +28,35 @@ function Contact() {
             whatsappMessage
         )}`;
 
+    /*
+     * Informations de contact
+     */
     const contactItems = [
         {
-            label: t.contact.email,
+            label: t("contact.email"),
             value: "f2987319@gmail.com",
             href: "mailto:f2987319@gmail.com",
         },
         {
-            label: t.contact.whatsapp,
+            label: t("contact.whatsapp"),
             value: "+229 01 52 90 53 10",
             href: whatsappUrl,
         },
         {
-            label: t.contact.github,
+            label: t("contact.github"),
             value: "github.com/frejus-1",
             href: "https://github.com/frejus-1/",
         },
         {
-            label: t.contact.linkedin,
+            label: t("contact.linkedin"),
             value: "Fréjus Adjanohoun",
             href: "https://www.linkedin.com/in/fr%C3%A9jus-adjanohoun-3629a0376/",
         },
     ];
 
+    /*
+     * Envoi du formulaire vers Spring Boot
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -60,122 +66,177 @@ function Contact() {
         const form = event.currentTarget;
         const formData = new FormData(form);
 
+        const contactMessage = {
+            nom: formData.get("nom"),
+            email: formData.get("email"),
+            sujet: formData.get("sujet"),
+            message: formData.get("message"),
+        };
+
         try {
-            const response = await fetch(FORM_ENDPOINT, {
+            const response = await fetch(API_URL, {
                 method: "POST",
-                body: formData,
                 headers: {
+                    "Content-Type": "application/json",
                     Accept: "application/json",
                 },
+                body: JSON.stringify(contactMessage),
             });
 
-            const data = await response.json();
+            if (!response.ok) {
+                let errorText = "";
 
-            if (response.ok) {
-                form.reset();
-                setFormStatus("success");
+                try {
+                    const data = await response.json();
+
+                    if (data?.message) {
+                        errorText = data.message;
+                    }
+                } catch {
+                    // La réponse peut ne pas contenir de JSON.
+                }
+
+                setErrorMessage(
+                    errorText || t("contact.error")
+                );
+
+                setFormStatus("error");
                 return;
             }
 
-            if (data.errors && Array.isArray(data.errors)) {
-                setErrorMessage(
-                    data.errors
-                        .map((error) => error.message)
-                        .join(" ")
-                );
-            } else {
-                setErrorMessage(t.contact.error);
-            }
+            /*
+             * Le message a été enregistré avec succès.
+             */
+            form.reset();
 
-            setFormStatus("error");
+            setFormStatus("success");
         } catch (error) {
-            console.error("Erreur Formspree :", error);
+            console.error(
+                "Erreur lors de l'envoi du message :",
+                error
+            );
 
-            setErrorMessage(t.contact.networkError);
+            setErrorMessage(
+                t("contact.networkError")
+            );
+
             setFormStatus("error");
         }
     };
 
     return (
-        <section id="contact" className="section contact-section">
+        <section
+            id="contact"
+            className="section contact-section"
+        >
             <div className="contact-container">
 
                 <ScrollReveal direction="left">
                     <div className="contact-content">
 
                         <p className="section-label">
-                            {t.contact.title}
+                            {t("contact.title")}
                         </p>
 
                         <h2>
-                            {t.contact.heading}
-                            <span> {t.contact.headingHighlight}</span>
+                            {t("contact.heading")}
+                            <span>
+                                {" "}
+                                {t(
+                                    "contact.headingHighlight"
+                                )}
+                            </span>
                         </h2>
 
                         <p className="contact-introduction">
-                            {t.contact.introduction}
+                            {t("contact.introduction")}
                         </p>
 
                         <div className="contact-list">
 
-                            {contactItems.map((item, index) => (
-                                <ScrollReveal
-                                    key={item.label}
-                                    direction="left"
-                                    delay={150 + index * 100}
-                                >
-                                    <a
-                                        href={item.href}
-                                        target={
-                                            item.href.startsWith("mailto:")
-                                                ? undefined
-                                                : "_blank"
+                            {contactItems.map(
+                                (item, index) => (
+                                    <ScrollReveal
+                                        key={item.label}
+                                        direction="left"
+                                        delay={
+                                            150 +
+                                            index * 100
                                         }
-                                        rel={
-                                            item.href.startsWith("mailto:")
-                                                ? undefined
-                                                : "noopener noreferrer"
-                                        }
-                                        className="contact-item"
                                     >
-                                        <span className="contact-item-number">
-                                            {String(index + 1).padStart(2, "0")}
-                                        </span>
-
-                                        <span className="contact-item-content">
-
-                                            <span className="contact-item-label">
-                                                {item.label}
+                                        <a
+                                            href={item.href}
+                                            target={
+                                                item.href.startsWith(
+                                                    "mailto:"
+                                                )
+                                                    ? undefined
+                                                    : "_blank"
+                                            }
+                                            rel={
+                                                item.href.startsWith(
+                                                    "mailto:"
+                                                )
+                                                    ? undefined
+                                                    : "noopener noreferrer"
+                                            }
+                                            className="contact-item"
+                                        >
+                                            <span className="contact-item-number">
+                                                {String(
+                                                    index + 1
+                                                ).padStart(
+                                                    2,
+                                                    "0"
+                                                )}
                                             </span>
 
-                                            <span className="contact-item-value">
-                                                {item.value}
+                                            <span className="contact-item-content">
+
+                                                <span className="contact-item-label">
+                                                    {
+                                                        item.label
+                                                    }
+                                                </span>
+
+                                                <span className="contact-item-value">
+                                                    {
+                                                        item.value
+                                                    }
+                                                </span>
+
                                             </span>
 
-                                        </span>
-
-                                        <span className="contact-item-arrow">
-                                            ↗
-                                        </span>
-                                    </a>
-                                </ScrollReveal>
-                            ))}
+                                            <span className="contact-item-arrow">
+                                                ↗
+                                            </span>
+                                        </a>
+                                    </ScrollReveal>
+                                )
+                            )}
 
                         </div>
                     </div>
                 </ScrollReveal>
 
-                <ScrollReveal direction="right" delay={150}>
+                <ScrollReveal
+                    direction="right"
+                    delay={150}
+                >
                     <div className="contact-form-wrapper">
 
                         <div className="contact-form-header">
 
                             <span>
-                                {t.contact.sendMessage}
+                                {t(
+                                    "contact.sendMessage"
+                                )}
                             </span>
 
                             <span className="contact-form-status">
-                                {t.contact.available}
+                                {t(
+                                    "contact.available"
+                                )}
                             </span>
 
                         </div>
@@ -188,15 +249,23 @@ function Contact() {
                             <div className="form-group">
 
                                 <label htmlFor="nom">
-                                    {t.contact.name}
+                                    {t(
+                                        "contact.name"
+                                    )}
                                 </label>
 
                                 <input
                                     type="text"
                                     id="nom"
-                                    name="name"
-                                    placeholder={t.contact.namePlaceholder}
+                                    name="nom"
+                                    placeholder={t(
+                                        "contact.namePlaceholder"
+                                    )}
                                     required
+                                    disabled={
+                                        formStatus ===
+                                        "sending"
+                                    }
                                 />
 
                             </div>
@@ -204,7 +273,9 @@ function Contact() {
                             <div className="form-group">
 
                                 <label htmlFor="email">
-                                    {t.contact.email}
+                                    {t(
+                                        "contact.email"
+                                    )}
                                 </label>
 
                                 <input
@@ -213,6 +284,10 @@ function Contact() {
                                     name="email"
                                     placeholder="votre@email.com"
                                     required
+                                    disabled={
+                                        formStatus ===
+                                        "sending"
+                                    }
                                 />
 
                             </div>
@@ -220,15 +295,23 @@ function Contact() {
                             <div className="form-group">
 
                                 <label htmlFor="sujet">
-                                    {t.contact.subject}
+                                    {t(
+                                        "contact.subject"
+                                    )}
                                 </label>
 
                                 <input
                                     type="text"
                                     id="sujet"
-                                    name="_subject"
-                                    placeholder={t.contact.subjectPlaceholder}
+                                    name="sujet"
+                                    placeholder={t(
+                                        "contact.subjectPlaceholder"
+                                    )}
                                     required
+                                    disabled={
+                                        formStatus ===
+                                        "sending"
+                                    }
                                 />
 
                             </div>
@@ -236,32 +319,38 @@ function Contact() {
                             <div className="form-group">
 
                                 <label htmlFor="message">
-                                    {t.contact.message}
+                                    {t(
+                                        "contact.message"
+                                    )}
                                 </label>
 
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows="6"
-                                    placeholder={t.contact.messagePlaceholder}
+                                    placeholder={t(
+                                        "contact.messagePlaceholder"
+                                    )}
                                     required
+                                    disabled={
+                                        formStatus ===
+                                        "sending"
+                                    }
                                 ></textarea>
 
                             </div>
 
-                            <input
-                                type="hidden"
-                                name="_replyto"
-                                value=""
-                            />
-
-                            {formStatus === "success" && (
+                            {formStatus ===
+                                "success" && (
                                 <p className="form-message form-message-success">
-                                    {t.contact.success}
+                                    {t(
+                                        "contact.success"
+                                    )}
                                 </p>
                             )}
 
-                            {formStatus === "error" && (
+                            {formStatus ===
+                                "error" && (
                                 <p className="form-message form-message-error">
                                     {errorMessage}
                                 </p>
@@ -272,25 +361,42 @@ function Contact() {
                                 <button
                                     type="submit"
                                     className="button button-primary contact-submit"
-                                    disabled={formStatus === "sending"}
+                                    disabled={
+                                        formStatus ===
+                                        "sending"
+                                    }
                                 >
-                                    {formStatus === "sending"
-                                        ? t.contact.sending
-                                        : t.contact.send}
+                                    {formStatus ===
+                                    "sending"
+                                        ? t(
+                                              "contact.sending"
+                                          )
+                                        : t(
+                                              "contact.send"
+                                          )}
 
-                                    {formStatus !== "sending" && (
-                                        <span>↗</span>
+                                    {formStatus !==
+                                        "sending" && (
+                                        <span>
+                                            ↗
+                                        </span>
                                     )}
                                 </button>
 
                                 <a
-                                    href={whatsappUrl}
+                                    href={
+                                        whatsappUrl
+                                    }
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="button button-whatsapp"
                                 >
-                                    {t.contact.whatsapp}
-                                    <span>↗</span>
+                                    {t(
+                                        "contact.whatsapp"
+                                    )}
+                                    <span>
+                                        ↗
+                                    </span>
                                 </a>
 
                             </div>

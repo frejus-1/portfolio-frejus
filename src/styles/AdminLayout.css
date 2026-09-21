@@ -1,0 +1,150 @@
+/* =========================================================
+   LAYOUT ADMIN
+   ========================================================= */
+
+/*
+ * La sidebar est en position: fixed.
+ * Le contenu principal doit donc réserver sa largeur.
+ */
+
+.admin-layout {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    display: block;
+
+    overflow-x: hidden;
+
+    background: var(--c-fond-alt, #f5f7fa);
+}
+
+
+/* =========================================================
+   CONTENU PRINCIPAL
+   ========================================================= */
+
+.admin-main {
+    /*
+     * Même largeur que la sidebar desktop.
+     */
+    width: calc(100% - 270px);
+
+    /*
+     * Décalage nécessaire pour ne pas passer
+     * sous la sidebar.
+     */
+    margin-left: 270px;
+
+    min-width: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+
+    background: var(--c-fond-alt, #f5f7fa);
+}
+
+
+/* =========================================================
+   CONTENU DES PAGES
+   ========================================================= */
+
+.admin-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    flex: 1 1 auto;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   PROTECTION CONTRE LES DÉBORDEMENTS
+   ========================================================= */
+
+.admin-main > *,
+.admin-content > * {
+    min-width: 0;
+    max-width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .admin-main {
+        width: calc(100% - 255px);
+
+        margin-left: 255px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE / TABLETTE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    /*
+     * La sidebar devient un menu coulissant.
+     * Elle ne prend donc plus de place dans le layout.
+     */
+
+    .admin-main {
+        width: 100%;
+
+        margin-left: 0;
+
+        min-width: 0;
+    }
+
+    .admin-content {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   PETITS ÉCRANS
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .admin-main {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .admin-content {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   MODE SOMBRE
+   ========================================================= */
+
+html.dark .admin-layout,
+html.dark .admin-main {
+    background: var(--c-fond-alt, #0d1117);
+}

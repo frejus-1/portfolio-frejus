@@ -7,6 +7,36 @@ import {
 
 import { useLanguage } from "./context/useLanguage";
 
+// ==========================================
+// PAGES
+// ==========================================
+
+import LoginPage from "./pages/LoginPage";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminMessages from "./pages/AdminMessages";
+import AdminMessageDetails from "./pages/AdminMessageDetails";
+import AdminSettings from "./pages/AdminSettings";
+import AdminParcours from "./pages/AdminParcours";
+import AdminSkills from "./pages/AdminSkills";
+
+// ==========================================
+// ADMIN
+// ==========================================
+
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminLayout from "./components/admin/AdminLayout";
+
+// ==========================================
+// COMPOSANTS ADMIN
+// ==========================================
+
+import AdminProjects from "./components/AdminProjects";
+
+
+// ==========================================
+// COMPOSANTS PUBLICS
+// ==========================================
+
 import Terminal from "./components/Terminal";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Navbar from "./components/Navbar";
@@ -27,7 +57,13 @@ import AIChatbot from "./components/AIChatbot";
 import Tarifs from "./components/Tarifs";
 import CodeBackground from "./components/CodeBackground";
 
+
+/* =========================================================
+   PAGE D'ACCUEIL DU PORTFOLIO
+========================================================= */
+
 function Home() {
+
     const [terminalOpen, setTerminalOpen] =
         useState(false);
 
@@ -39,7 +75,13 @@ function Home() {
 
     const { t } = useLanguage();
 
+
+    /* =====================================================
+       ÉVÉNEMENT SECRET
+    ===================================================== */
+
     useEffect(() => {
+
         const handleSecretUnlock = () => {
             setGiftsOpen(true);
         };
@@ -50,27 +92,33 @@ function Home() {
         );
 
         return () => {
+
             window.removeEventListener(
                 "frejus-secret-unlocked",
                 handleSecretUnlock
             );
+
         };
+
     }, []);
+
 
     return (
         <>
+
             {/* ==========================================
                 BACKGROUND ANIMÉ GLOBAL
-                Bulles de code + lueurs + grille
             ========================================== */}
 
             <CodeBackground />
+
 
             {/* ==========================================
                 PROGRESSION DU SCROLL
             ========================================== */}
 
             <ScrollProgress />
+
 
             {/* ==========================================
                 NAVIGATION
@@ -82,11 +130,13 @@ function Home() {
                 }
             />
 
+
             {/* ==========================================
                 CONTENU PRINCIPAL
             ========================================== */}
 
             <main>
+
                 <Hero />
 
                 <About />
@@ -98,13 +148,16 @@ function Home() {
                 <Timeline />
 
                 <Contact />
+
             </main>
+
 
             {/* ==========================================
                 FOOTER
             ========================================== */}
 
             <Footer />
+
 
             {/* ==========================================
                 TERMINAL
@@ -117,6 +170,7 @@ function Home() {
                 }
             />
 
+
             {/* ==========================================
                 BOUTON TERMINAL FLOTTANT
             ========================================== */}
@@ -127,24 +181,27 @@ function Home() {
                 onClick={() =>
                     setTerminalOpen(true)
                 }
-                aria-label={t.terminal.title}
+                aria-label={t("terminal.title")}
             >
+
                 <span>⌨</span>
 
                 <span>
                     Terminal
                 </span>
+
             </button>
+
 
             {/* ==========================================
                 EASTER EGG
-                frejus → secret → cadeaux
             ========================================== */}
 
             <DeveloperEasterEgg />
 
+
             {/* ==========================================
-                CADEAUX - MODAL
+                CADEAUX
             ========================================== */}
 
             <Gifts
@@ -154,8 +211,9 @@ function Home() {
                 }
             />
 
+
             {/* ==========================================
-                TARIFS - MODAL
+                TARIFS
             ========================================== */}
 
             <Tarifs
@@ -165,11 +223,13 @@ function Home() {
                 }
             />
 
+
             {/* ==========================================
                 AI CHATBOT
             ========================================== */}
 
             <AIChatbot />
+
 
             {/* ==========================================
                 WHATSAPP
@@ -177,43 +237,158 @@ function Home() {
 
             <WhatsAppButton />
 
+
             {/* ==========================================
                 RETOUR EN HAUT
             ========================================== */}
 
             <BackToTop />
+
         </>
     );
 }
 
+
+/* =========================================================
+   APPLICATION
+========================================================= */
+
 function App() {
+
     return (
         <>
+
             {/* ==========================================
                 CHARGEMENT INITIAL
             ========================================== */}
 
             <PageLoader />
 
+
             {/* ==========================================
                 ROUTER
             ========================================== */}
 
             <BrowserRouter>
+
                 <Routes>
 
-                    {/* ==============================
-                        PAGE D'ACCUEIL
-                    ============================== */}
+
+                    {/* =================================================
+                        PORTFOLIO PUBLIC
+                    ================================================= */}
 
                     <Route
                         path="/"
                         element={<Home />}
                     />
 
-                    {/* ==============================
+
+                    {/* =================================================
+                        AUTHENTIFICATION ADMIN
+                    ================================================= */}
+
+                    <Route
+                        path="/login"
+                        element={<LoginPage />}
+                    />
+
+
+                    {/* =================================================
+                        ESPACE ADMINISTRATEUR
+
+                        AdminLayout contient :
+                        - Sidebar
+                        - Header
+                        - Outlet
+                    ================================================= */}
+
+                    <Route
+                        path="/admin"
+                        element={
+                            <ProtectedRoute>
+                                <AdminLayout />
+                            </ProtectedRoute>
+                        }
+                    >
+
+                        {/* ==========================================
+                            DASHBOARD
+                        ========================================== */}
+
+                        <Route
+                            index
+                            element={<AdminDashboard />}
+                        />
+
+
+                        {/* ==========================================
+                            PROJETS
+                        ========================================== */}
+
+                        <Route
+                            path="projets"
+                            element={<AdminProjects />}
+                        />
+
+
+                        {/* ==========================================
+                            PARCOURS
+                        ========================================== */}
+
+                        <Route
+                            path="parcours"
+                            element={<AdminParcours />}
+                        />
+
+
+                        {/* ==========================================
+                            COMPÉTENCES
+                        ========================================== */}
+
+                        <Route
+                            path="competences"
+                            element={<AdminSkills />}
+                        />
+
+
+                        {/* ==========================================
+                            MESSAGES
+                        ========================================== */}
+
+                        <Route
+                            path="messages"
+                            element={<AdminMessages />}
+                        />
+
+
+                        {/* ==========================================
+                            DÉTAIL D'UN MESSAGE
+                        ========================================== */}
+
+                        <Route
+                            path="messages/:id"
+                            element={
+                                <AdminMessageDetails />
+                            }
+                        />
+
+
+                        {/* ==========================================
+                            PARAMÈTRES
+                        ========================================== */}
+
+                        <Route
+                            path="parametres"
+                            element={<AdminSettings />}
+                        />
+
+                    </Route>
+
+
+                    {/* =================================================
                         PAGE 404
-                    ============================== */}
+                    ================================================= */}
 
                     <Route
                         path="*"
@@ -221,10 +396,12 @@ function App() {
                     />
 
                 </Routes>
+
             </BrowserRouter>
+
         </>
     );
 }
 
-export default App;
 
+export default App;

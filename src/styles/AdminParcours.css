@@ -1,0 +1,2106 @@
+/* =========================================================
+   PAGE ADMIN PARCOURS
+========================================================= */
+
+.admin-parcours-page {
+    width: 100%;
+    max-width: 1500px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 0.25rem 0 3rem;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.admin-parcours-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+}
+
+.admin-parcours-heading {
+    min-width: 0;
+}
+
+.admin-parcours-eyebrow,
+.admin-parcours-modal-eyebrow {
+    display: inline-block;
+    margin-bottom: 0.55rem;
+    color: #1d4e89;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.admin-parcours-heading h1 {
+    margin: 0;
+    color: #111827;
+    font-size: clamp(1.8rem, 3vw, 2.45rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.admin-parcours-heading p {
+    max-width: 680px;
+    margin: 0.7rem 0 0;
+    color: #6b7280;
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BOUTON AJOUT
+========================================================= */
+
+.admin-parcours-add-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 0.7rem;
+
+    min-height: 48px;
+    padding: 0.8rem 1.1rem;
+
+    border: 1px solid #1d4e89;
+    border-radius: 13px;
+
+    background: #1d4e89;
+    color: #fff;
+
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 25px rgba(29, 78, 137, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.admin-parcours-add-button:hover {
+    transform: translateY(-2px);
+    border-color: #153a66;
+    background: #153a66;
+    box-shadow: 0 14px 30px rgba(29, 78, 137, 0.25);
+}
+
+.admin-parcours-add-button:active {
+    transform: translateY(0);
+}
+
+.admin-parcours-add-button:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 3px rgba(29, 78, 137, 0.16),
+        0 10px 25px rgba(29, 78, 137, 0.18);
+}
+
+.admin-parcours-add-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.admin-parcours-add-icon {
+    display: grid;
+    place-items: center;
+
+    width: 22px;
+    height: 22px;
+
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.admin-parcours-message {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    margin-bottom: 1.25rem;
+    padding: 0.9rem 1rem;
+
+    border-radius: 12px;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    animation: adminParcoursMessageIn 0.25s ease;
+}
+
+.admin-parcours-message > span:first-child {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.admin-parcours-message-success {
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.admin-parcours-message-success > span:first-child {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.admin-parcours-message-error {
+    border: 1px solid #fecaca;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.admin-parcours-message-error > span:first-child {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.admin-parcours-message button {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 28px;
+    height: 28px;
+    margin-left: auto;
+
+    border: 0;
+    border-radius: 7px;
+
+    background: transparent;
+    color: currentColor;
+
+    font-size: 1.2rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.admin-parcours-message button:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.admin-parcours-message button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   STATISTIQUES
+========================================================= */
+
+.admin-parcours-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+.admin-parcours-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+
+    min-width: 0;
+    min-height: 94px;
+    padding: 1rem 1.1rem;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    background: #fff;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.admin-parcours-stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #dbe4ef;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+}
+
+.admin-parcours-stat-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+    color: #1d4e89;
+
+    font-size: 1.15rem;
+}
+
+.admin-parcours-stat-card span {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.admin-parcours-stat-card strong {
+    display: block;
+
+    margin-top: 0.15rem;
+
+    color: #111827;
+
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   CONTENU PRINCIPAL
+========================================================= */
+
+.admin-parcours-content {
+    overflow: hidden;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+
+    background: #fff;
+
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.admin-parcours-content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 1.3rem 1.4rem;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.admin-parcours-content-header > div {
+    min-width: 0;
+}
+
+.admin-parcours-content-header h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: 800;
+}
+
+.admin-parcours-content-header p {
+    margin: 0.3rem 0 0;
+
+    color: #6b7280;
+
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+.admin-parcours-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    min-height: 31px;
+    padding: 0.35rem 0.7rem;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+
+    background: #f9fafb;
+    color: #6b7280;
+
+    font-size: 0.76rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.admin-parcours-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    min-height: 260px;
+    padding: 2rem;
+}
+
+.admin-parcours-loading p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 0.88rem;
+}
+
+.admin-parcours-spinner,
+.admin-parcours-button-spinner {
+    border: 3px solid #e5e7eb;
+    border-top-color: #1d4e89;
+    border-radius: 50%;
+
+    animation: adminParcoursSpin 0.75s linear infinite;
+}
+
+.admin-parcours-spinner {
+    width: 35px;
+    height: 35px;
+}
+
+.admin-parcours-button-spinner {
+    width: 16px;
+    height: 16px;
+
+    border-width: 2px;
+    border-top-color: currentColor;
+}
+
+
+/* =========================================================
+   LISTE DES PARCOURS
+========================================================= */
+
+.admin-parcours-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-parcours-card {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr) 120px;
+    gap: 1.2rem;
+
+    padding: 1.35rem 1.4rem;
+
+    border-bottom: 1px solid #edf0f4;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-parcours-card:last-child {
+    border-bottom: 0;
+}
+
+.admin-parcours-card:hover {
+    background: #fbfdff;
+}
+
+.admin-parcours-number {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.admin-parcours-number span {
+    display: grid;
+    place-items: center;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 15px;
+
+    background: #eff6ff;
+    color: #1d4e89;
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.admin-parcours-number small {
+    padding-left: 4px;
+
+    color: #9ca3af;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.admin-parcours-card-main {
+    min-width: 0;
+}
+
+.admin-parcours-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    min-width: 0;
+}
+
+.admin-parcours-period {
+    display: block;
+
+    margin-bottom: 0.35rem;
+
+    color: #1d4e89;
+
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+}
+
+.admin-parcours-card h3 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 1.08rem;
+    line-height: 1.35;
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+.admin-parcours-status {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.45rem;
+
+    min-height: 28px;
+    padding: 0.32rem 0.62rem;
+
+    border-radius: 999px;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.admin-parcours-status span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+}
+
+.admin-parcours-status.active {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.admin-parcours-status.active span {
+    background: #10b981;
+}
+
+.admin-parcours-status.inactive {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.admin-parcours-status.inactive span {
+    background: #9ca3af;
+}
+
+.admin-parcours-location {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    margin-top: 0.7rem;
+
+    color: #6b7280;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.admin-parcours-description {
+    max-width: 850px;
+
+    margin: 0.8rem 0 0;
+
+    color: #6b7280;
+
+    font-size: 0.84rem;
+    line-height: 1.65;
+
+    overflow-wrap: anywhere;
+}
+
+.admin-parcours-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+
+    margin-top: 0.85rem;
+}
+
+.admin-parcours-technologies span {
+    padding: 0.34rem 0.62rem;
+
+    border: 1px solid #dbeafe;
+    border-radius: 999px;
+
+    background: #f8fbff;
+    color: #1d4e89;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.admin-parcours-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    max-width: 100%;
+    margin-top: 0.85rem;
+
+    color: #1d4e89;
+
+    text-decoration: none;
+
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+.admin-parcours-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.admin-parcours-actions {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    min-width: 0;
+}
+
+.admin-parcours-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+
+    min-height: 38px;
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    background: #fff;
+
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-parcours-action-button:hover {
+    transform: translateY(-1px);
+}
+
+.admin-parcours-action-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.1);
+}
+
+.admin-parcours-action-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+}
+
+.admin-parcours-action-button.edit {
+    color: #1d4e89;
+}
+
+.admin-parcours-action-button.edit:hover {
+    border-color: #bfdbfe;
+    background: #eff6ff;
+}
+
+.admin-parcours-action-button.delete {
+    color: #dc2626;
+}
+
+.admin-parcours-action-button.delete:hover {
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.admin-parcours-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    min-height: 350px;
+    padding: 2rem;
+
+    text-align: center;
+}
+
+.admin-parcours-empty-icon {
+    display: grid;
+    place-items: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 1rem;
+
+    border-radius: 18px;
+
+    background: #eff6ff;
+
+    font-size: 1.5rem;
+}
+
+.admin-parcours-empty h3 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 1.05rem;
+}
+
+.admin-parcours-empty p {
+    max-width: 480px;
+
+    margin: 0.4rem 0 1.2rem;
+
+    color: #6b7280;
+
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.admin-parcours-empty button {
+    min-height: 42px;
+
+    padding: 0.65rem 1rem;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #1d4e89;
+    color: #fff;
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-parcours-empty button:hover {
+    background: #153a66;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   OVERLAY MODAL
+========================================================= */
+
+.admin-parcours-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 1.25rem;
+
+    box-sizing: border-box;
+
+    background: rgba(15, 23, 42, 0.63);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    animation: adminParcoursOverlayIn 0.2s ease;
+}
+
+
+/* =========================================================
+   MODAL PRINCIPAL
+========================================================= */
+
+.admin-parcours-modal {
+    display: flex;
+    flex-direction: column;
+
+    width: min(100%, 980px);
+    max-height: calc(100vh - 2.5rem);
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 22px;
+
+    background: #fff;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.28);
+
+    animation: adminParcoursModalIn 0.25s ease;
+}
+
+.admin-parcours-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    flex-shrink: 0;
+
+    padding: 1.35rem 1.5rem;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.admin-parcours-modal-header > div {
+    min-width: 0;
+}
+
+.admin-parcours-modal-header h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 1.35rem;
+    line-height: 1.25;
+    font-weight: 800;
+}
+
+.admin-parcours-modal-header p {
+    max-width: 720px;
+
+    margin: 0.42rem 0 0;
+
+    color: #6b7280;
+
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+.admin-parcours-modal-close {
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    background: #fff;
+    color: #6b7280;
+
+    font-size: 1.45rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-parcours-modal-close:hover {
+    background: #f9fafb;
+    color: #111827;
+    transform: rotate(4deg);
+}
+
+.admin-parcours-modal-close:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.12);
+}
+
+
+/* =========================================================
+   ERREUR MODAL
+========================================================= */
+
+.admin-parcours-modal-error {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    flex-shrink: 0;
+
+    margin: 1rem 1.5rem 0;
+    padding: 0.75rem 0.85rem;
+
+    border: 1px solid #fecaca;
+    border-radius: 11px;
+
+    background: #fef2f2;
+    color: #b91c1c;
+
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.admin-parcours-modal-error > span:first-child {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 23px;
+    height: 23px;
+
+    border-radius: 50%;
+
+    background: #fee2e2;
+    color: #dc2626;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORMULAIRE
+========================================================= */
+
+.admin-parcours-form {
+    min-height: 0;
+    max-height: calc(100vh - 10rem);
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.admin-parcours-form::-webkit-scrollbar {
+    width: 8px;
+}
+
+.admin-parcours-form::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.admin-parcours-form::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #d1d5db;
+}
+
+.admin-parcours-form::-webkit-scrollbar-thumb:hover {
+    background: #b8bec7;
+}
+
+.admin-parcours-form-section {
+    padding: 1.45rem 1.5rem;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.admin-parcours-form-section:last-child {
+    border-bottom: 0;
+}
+
+.admin-parcours-form-section-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+
+    margin-bottom: 1.2rem;
+}
+
+.admin-parcours-section-number {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+    color: #1d4e89;
+
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.admin-parcours-form-section-heading > div {
+    min-width: 0;
+}
+
+.admin-parcours-form-section-heading h3 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 0.95rem;
+    line-height: 1.35;
+    font-weight: 800;
+}
+
+.admin-parcours-form-section-heading p {
+    margin: 0.25rem 0 0;
+
+    color: #6b7280;
+
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.admin-parcours-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.admin-parcours-form-grid-three {
+    grid-template-columns: 0.7fr 0.7fr 1.6fr;
+}
+
+.admin-parcours-field {
+    min-width: 0;
+}
+
+.admin-parcours-field-full {
+    grid-column: 1 / -1;
+}
+
+.admin-parcours-field label {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: #374151;
+
+    font-size: 0.75rem;
+    font-weight: 750;
+}
+
+.admin-parcours-field input,
+.admin-parcours-field textarea,
+.admin-parcours-technology-input input {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #dfe4ea;
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #fff;
+    color: #111827;
+
+    font: inherit;
+    font-size: 0.82rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.admin-parcours-field input,
+.admin-parcours-technology-input input {
+    min-height: 43px;
+    padding: 0.7rem 0.8rem;
+}
+
+.admin-parcours-field textarea {
+    min-height: 115px;
+    padding: 0.75rem 0.8rem;
+    resize: vertical;
+}
+
+.admin-parcours-field input::placeholder,
+.admin-parcours-field textarea::placeholder,
+.admin-parcours-technology-input input::placeholder {
+    color: #a1a1aa;
+}
+
+.admin-parcours-field input:hover,
+.admin-parcours-field textarea:hover,
+.admin-parcours-technology-input input:hover {
+    border-color: #cbd5e1;
+}
+
+.admin-parcours-field input:focus,
+.admin-parcours-field textarea:focus,
+.admin-parcours-technology-input input:focus {
+    border-color: #1d4e89;
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.1);
+    background: #fff;
+}
+
+.admin-parcours-field input:disabled,
+.admin-parcours-field textarea:disabled,
+.admin-parcours-technology-input input:disabled {
+    cursor: not-allowed;
+    background: #f3f4f6;
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.admin-parcours-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    margin-top: 1.1rem;
+    padding: 0.8rem 0.9rem;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    background: #fafafa;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.admin-parcours-checkbox:hover {
+    border-color: #d1d5db;
+    background: #f8fafc;
+}
+
+.admin-parcours-checkbox input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.admin-parcours-checkbox-ui {
+    position: relative;
+
+    display: block;
+    flex-shrink: 0;
+
+    width: 19px;
+    height: 19px;
+
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+
+    background: #fff;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.admin-parcours-checkbox input:focus-visible + .admin-parcours-checkbox-ui {
+    outline: 3px solid rgba(29, 78, 137, 0.14);
+    outline-offset: 2px;
+}
+
+.admin-parcours-checkbox input:checked + .admin-parcours-checkbox-ui {
+    border-color: #1d4e89;
+    background: #1d4e89;
+}
+
+.admin-parcours-checkbox input:checked + .admin-parcours-checkbox-ui::after {
+    content: "";
+
+    position: absolute;
+    top: 3px;
+    left: 6px;
+
+    width: 5px;
+    height: 9px;
+
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+
+    transform: rotate(45deg);
+}
+
+.admin-parcours-checkbox strong {
+    display: block;
+
+    color: #374151;
+
+    font-size: 0.78rem;
+    line-height: 1.3;
+}
+
+.admin-parcours-checkbox small {
+    display: block;
+
+    margin-top: 0.15rem;
+
+    color: #9ca3af;
+
+    font-size: 0.68rem;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   TECHNOLOGIES
+========================================================= */
+
+.admin-parcours-technology-input {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 46px;
+    gap: 0.55rem;
+}
+
+.admin-parcours-technology-input button {
+    display: grid;
+    place-items: center;
+
+    width: 46px;
+    min-height: 43px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: #1d4e89;
+    color: #fff;
+
+    font-size: 1.3rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-parcours-technology-input button:hover {
+    background: #153a66;
+    transform: translateY(-1px);
+}
+
+.admin-parcours-technology-input button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.14);
+}
+
+.admin-parcours-technology-input button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.admin-parcours-technology-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    margin-top: 0.85rem;
+}
+
+.admin-parcours-technology-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    min-height: 31px;
+    max-width: 100%;
+
+    padding: 0.35rem 0.45rem 0.35rem 0.7rem;
+
+    border: 1px solid #dbeafe;
+    border-radius: 999px;
+
+    background: #f8fbff;
+    color: #1d4e89;
+
+    font-size: 0.72rem;
+    font-weight: 750;
+}
+
+.admin-parcours-technology-tag > span {
+    overflow-wrap: anywhere;
+}
+
+.admin-parcours-technology-tag button {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 21px;
+    height: 21px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #e0edff;
+    color: #1d4e89;
+
+    font-size: 0.95rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.admin-parcours-technology-tag button:hover {
+    background: #cfe2ff;
+}
+
+.admin-parcours-technology-tag button:focus-visible {
+    outline: 2px solid #1d4e89;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   FOOTER MODAL
+========================================================= */
+
+.admin-parcours-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.7rem;
+
+    flex-shrink: 0;
+
+    padding: 1.15rem 1.5rem;
+
+    border-top: 1px solid #edf0f4;
+
+    background: #fafbfc;
+}
+
+
+/* =========================================================
+   BOUTONS MODAL
+========================================================= */
+
+.admin-parcours-cancel-button,
+.admin-parcours-save-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+
+    min-height: 43px;
+    padding: 0.7rem 1rem;
+
+    border-radius: 10px;
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.admin-parcours-cancel-button {
+    border: 1px solid #dfe4ea;
+    background: #fff;
+    color: #4b5563;
+}
+
+.admin-parcours-cancel-button:hover:not(:disabled) {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.admin-parcours-save-button {
+    border: 1px solid #1d4e89;
+    background: #1d4e89;
+    color: #fff;
+
+    box-shadow: 0 8px 20px rgba(29, 78, 137, 0.18);
+}
+
+.admin-parcours-save-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    border-color: #153a66;
+    background: #153a66;
+}
+
+.admin-parcours-cancel-button:focus-visible,
+.admin-parcours-save-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.12);
+}
+
+.admin-parcours-cancel-button:disabled,
+.admin-parcours-save-button:disabled,
+.admin-parcours-modal-close:disabled,
+.admin-parcours-delete-confirm:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+
+/* =========================================================
+   MODAL SUPPRESSION
+========================================================= */
+
+.admin-parcours-delete-modal {
+    width: min(100%, 455px);
+    padding: 1.6rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+
+    background: #fff;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.28);
+
+    text-align: center;
+
+    animation: adminParcoursModalIn 0.25s ease;
+}
+
+.admin-parcours-delete-icon {
+    display: grid;
+    place-items: center;
+
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 18px;
+
+    background: #fef2f2;
+    color: #dc2626;
+
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+
+.admin-parcours-delete-modal h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 1.15rem;
+    line-height: 1.35;
+    font-weight: 800;
+}
+
+.admin-parcours-delete-modal p {
+    max-width: 380px;
+
+    margin: 0.7rem auto 0;
+
+    color: #6b7280;
+
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+.admin-parcours-delete-modal strong {
+    color: #374151;
+}
+
+.admin-parcours-delete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+
+    margin-top: 1.35rem;
+}
+
+.admin-parcours-delete-confirm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+
+    min-height: 43px;
+    padding: 0.7rem 1rem;
+
+    border: 1px solid #dc2626;
+    border-radius: 10px;
+
+    background: #dc2626;
+    color: #fff;
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-parcours-delete-confirm:hover:not(:disabled) {
+    border-color: #b91c1c;
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.admin-parcours-delete-confirm:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes adminParcoursSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes adminParcoursOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes adminParcoursModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes adminParcoursMessageIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark .admin-parcours-heading h1,
+.dark .admin-parcours-card h3,
+.dark .admin-parcours-stat-card strong,
+.dark .admin-parcours-content-header h2,
+.dark .admin-parcours-modal-header h2,
+.dark .admin-parcours-form-section-heading h3,
+.dark .admin-parcours-delete-modal h2 {
+    color: #f8fafc;
+}
+
+.dark .admin-parcours-heading p,
+.dark .admin-parcours-content-header p,
+.dark .admin-parcours-description,
+.dark .admin-parcours-location,
+.dark .admin-parcours-modal-header p,
+.dark .admin-parcours-form-section-heading p,
+.dark .admin-parcours-delete-modal p {
+    color: #94a3b8;
+}
+
+.dark .admin-parcours-stat-card,
+.dark .admin-parcours-content,
+.dark .admin-parcours-card,
+.dark .admin-parcours-modal,
+.dark .admin-parcours-delete-modal {
+    border-color: #263142;
+    background: #151b23;
+}
+
+.dark .admin-parcours-stat-card:hover {
+    border-color: #334155;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.dark .admin-parcours-card:hover {
+    background: #19212c;
+}
+
+.dark .admin-parcours-stat-icon,
+.dark .admin-parcours-number span,
+.dark .admin-parcours-section-number,
+.dark .admin-parcours-empty-icon {
+    background: rgba(29, 78, 137, 0.18);
+    color: #93c5fd;
+}
+
+.dark .admin-parcours-count,
+.dark .admin-parcours-checkbox,
+.dark .admin-parcours-modal-footer {
+    border-color: #263142;
+    background: #111821;
+}
+
+.dark .admin-parcours-count {
+    color: #94a3b8;
+}
+
+.dark .admin-parcours-action-button,
+.dark .admin-parcours-cancel-button,
+.dark .admin-parcours-modal-close {
+    border-color: #334155;
+    background: #151b23;
+    color: #cbd5e1;
+}
+
+.dark .admin-parcours-action-button.edit {
+    color: #93c5fd;
+}
+
+.dark .admin-parcours-action-button.edit:hover {
+    border-color: #29466a;
+    background: rgba(29, 78, 137, 0.14);
+}
+
+.dark .admin-parcours-action-button.delete {
+    color: #fca5a5;
+}
+
+.dark .admin-parcours-action-button.delete:hover {
+    border-color: #7f1d1d;
+    background: rgba(127, 29, 29, 0.16);
+}
+
+.dark .admin-parcours-modal-close:hover {
+    background: #1c2632;
+    color: #f8fafc;
+}
+
+.dark .admin-parcours-field input,
+.dark .admin-parcours-field textarea,
+.dark .admin-parcours-technology-input input {
+    border-color: #334155;
+    background: #101720;
+    color: #f8fafc;
+}
+
+.dark .admin-parcours-field input:hover,
+.dark .admin-parcours-field textarea:hover,
+.dark .admin-parcours-technology-input input:hover {
+    border-color: #475569;
+}
+
+.dark .admin-parcours-field input:focus,
+.dark .admin-parcours-field textarea:focus,
+.dark .admin-parcours-technology-input input:focus {
+    border-color: #4f82b8;
+    background: #101720;
+}
+
+.dark .admin-parcours-field input:disabled,
+.dark .admin-parcours-field textarea:disabled,
+.dark .admin-parcours-technology-input input:disabled {
+    background: #0d131b;
+}
+
+.dark .admin-parcours-checkbox {
+    color: #dbe3ee;
+}
+
+.dark .admin-parcours-checkbox:hover {
+    border-color: #334155;
+    background: #151e28;
+}
+
+.dark .admin-parcours-checkbox-ui {
+    border-color: #475569;
+    background: #101720;
+}
+
+.dark .admin-parcours-checkbox strong,
+.dark .admin-parcours-field label {
+    color: #dbe3ee;
+}
+
+.dark .admin-parcours-checkbox small {
+    color: #64748b;
+}
+
+.dark .admin-parcours-status.inactive {
+    background: #202833;
+    color: #94a3b8;
+}
+
+.dark .admin-parcours-technologies span,
+.dark .admin-parcours-technology-tag {
+    border-color: #29466a;
+    background: rgba(29, 78, 137, 0.13);
+    color: #93c5fd;
+}
+
+.dark .admin-parcours-technology-tag button {
+    background: rgba(29, 78, 137, 0.22);
+    color: #93c5fd;
+}
+
+.dark .admin-parcours-technology-tag button:hover {
+    background: rgba(29, 78, 137, 0.35);
+}
+
+.dark .admin-parcours-modal-footer {
+    border-top-color: #263142;
+}
+
+.dark .admin-parcours-form-section {
+    border-bottom-color: #263142;
+}
+
+.dark .admin-parcours-form::-webkit-scrollbar-thumb {
+    background: #334155;
+}
+
+.dark .admin-parcours-form::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+.dark .admin-parcours-empty h3 {
+    color: #f8fafc;
+}
+
+.dark .admin-parcours-empty p {
+    color: #94a3b8;
+}
+
+.dark .admin-parcours-loading p {
+    color: #94a3b8;
+}
+
+.dark .admin-parcours-spinner {
+    border-color: #334155;
+    border-top-color: #4f82b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLETTE LARGE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .admin-parcours-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-parcours-add-button {
+        width: 100%;
+    }
+
+    .admin-parcours-card {
+        grid-template-columns: 64px minmax(0, 1fr);
+    }
+
+    .admin-parcours-actions {
+        grid-column: 2;
+        flex-direction: row;
+        min-width: 0;
+    }
+
+    .admin-parcours-action-button {
+        flex: 1;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLETTE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .admin-parcours-stats {
+        gap: 0.8rem;
+    }
+
+    .admin-parcours-form-grid-three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-parcours-form-grid-three
+        .admin-parcours-field:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .admin-parcours-modal {
+        width: min(100%, 760px);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE LARGE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .admin-parcours-page {
+        padding-bottom: 2rem;
+    }
+
+    .admin-parcours-header {
+        gap: 1.25rem;
+        margin-bottom: 1.35rem;
+    }
+
+    .admin-parcours-heading h1 {
+        font-size: 1.8rem;
+    }
+
+    .admin-parcours-heading p {
+        font-size: 0.88rem;
+    }
+
+    .admin-parcours-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .admin-parcours-stat-card {
+        min-height: 82px;
+    }
+
+    .admin-parcours-content {
+        border-radius: 15px;
+    }
+
+    .admin-parcours-card {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        padding: 1.2rem;
+    }
+
+    .admin-parcours-number {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .admin-parcours-number span {
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+    }
+
+    .admin-parcours-number small {
+        padding-left: 0;
+    }
+
+    .admin-parcours-actions {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    .admin-parcours-card-top {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+
+    .admin-parcours-status {
+        align-self: flex-start;
+    }
+
+    .admin-parcours-form-grid,
+    .admin-parcours-form-grid-three {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-parcours-form-grid-three
+        .admin-parcours-field:last-child {
+        grid-column: auto;
+    }
+
+    .admin-parcours-modal-overlay {
+        align-items: flex-start;
+        padding: 0.65rem;
+    }
+
+    .admin-parcours-modal {
+        width: 100%;
+        max-height: calc(100vh - 1.3rem);
+        border-radius: 18px;
+    }
+
+    .admin-parcours-modal-header,
+    .admin-parcours-form-section,
+    .admin-parcours-modal-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .admin-parcours-modal-header {
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+    }
+
+    .admin-parcours-form {
+        max-height: calc(100vh - 8rem);
+    }
+
+    .admin-parcours-modal-footer {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — PETIT MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .admin-parcours-page {
+        padding-top: 0;
+    }
+
+    .admin-parcours-heading h1 {
+        font-size: 1.6rem;
+    }
+
+    .admin-parcours-heading p {
+        font-size: 0.84rem;
+        line-height: 1.6;
+    }
+
+    .admin-parcours-add-button {
+        min-height: 46px;
+    }
+
+    .admin-parcours-content-header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 1.05rem;
+    }
+
+    .admin-parcours-card {
+        padding: 1rem;
+    }
+
+    .admin-parcours-actions {
+        flex-direction: column;
+    }
+
+    .admin-parcours-action-button {
+        width: 100%;
+    }
+
+    .admin-parcours-form-section {
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+    }
+
+    .admin-parcours-form-section-heading {
+        gap: 0.7rem;
+    }
+
+    .admin-parcours-section-number {
+        width: 31px;
+        height: 31px;
+    }
+
+    .admin-parcours-modal-header h2 {
+        font-size: 1.15rem;
+    }
+
+    .admin-parcours-modal-header p {
+        font-size: 0.76rem;
+    }
+
+    .admin-parcours-modal-footer,
+    .admin-parcours-delete-actions {
+        flex-direction: column-reverse;
+    }
+
+    .admin-parcours-modal-footer button,
+    .admin-parcours-delete-actions button {
+        width: 100%;
+    }
+
+    .admin-parcours-delete-modal {
+        padding: 1.25rem;
+    }
+
+}
+
+
+/* =========================================================
+   TRÈS PETIT MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .admin-parcours-heading h1 {
+        font-size: 1.45rem;
+    }
+
+    .admin-parcours-stat-card {
+        padding: 0.85rem;
+    }
+
+    .admin-parcours-stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .admin-parcours-form-section-heading {
+        align-items: flex-start;
+    }
+
+    .admin-parcours-technology-input {
+        grid-template-columns: minmax(0, 1fr) 42px;
+    }
+
+    .admin-parcours-technology-input button {
+        width: 42px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ — MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .admin-parcours-modal-overlay,
+    .admin-parcours-modal,
+    .admin-parcours-delete-modal,
+    .admin-parcours-message {
+        animation: none;
+    }
+
+    .admin-parcours-add-button,
+    .admin-parcours-stat-card,
+    .admin-parcours-action-button,
+    .admin-parcours-save-button,
+    .admin-parcours-delete-confirm,
+    .admin-parcours-technology-input button,
+    .admin-parcours-modal-close,
+    .admin-parcours-empty button {
+        transition: none;
+    }
+}

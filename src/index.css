@@ -3480,29 +3480,48 @@ RESPONSIVE
     background: var(--c-fond);
 }
 
+/* =========================================================
+   CONTENEUR TIMELINE
+   ========================================================= */
+
 .timeline {
     position: relative;
 
-    max-width: 1050px;
+    max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 2rem 0;
+    padding: 2.5rem 0 1rem;
 }
 
-.timeline-line {
+/* Ligne centrale */
+
+.timeline::before {
+    content: "";
+
     position: absolute;
 
     top: 0;
     bottom: 0;
     left: 50%;
 
-    width: 1px;
+    width: 2px;
 
-    background: var(--c-bordure-forte);
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--c-primaire-clair) 8%,
+            var(--c-bordure-forte) 92%,
+            transparent
+        );
 
     transform: translateX(-50%);
 }
+
+/* =========================================================
+   ÉLÉMENT
+   ========================================================= */
 
 .timeline-item {
     position: relative;
@@ -3511,7 +3530,9 @@ RESPONSIVE
 
     width: 50%;
 
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+
+    animation: timelineFadeIn 0.7s ease both;
 }
 
 .timeline-item:last-child {
@@ -3521,31 +3542,45 @@ RESPONSIVE
 .timeline-item-left {
     justify-content: flex-end;
 
-    padding-right: 3.5rem;
+    padding-right: 4rem;
 }
 
 .timeline-item-right {
     margin-left: 50%;
 
-    padding-left: 3.5rem;
+    padding-left: 4rem;
 }
+
+/* Décalage léger pour donner un effet plus naturel */
+
+.timeline-item-left {
+    transform: translateX(-8px);
+}
+
+.timeline-item-right {
+    transform: translateX(8px);
+}
+
+/* =========================================================
+   MARQUEUR
+   ========================================================= */
 
 .timeline-marker {
     position: absolute;
 
     top: 1.5rem;
 
-    z-index: 2;
+    z-index: 3;
 
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border: 1px solid var(--c-primaire);
+    border: 2px solid var(--c-primaire);
 
     border-radius: 50%;
 
@@ -3553,25 +3588,27 @@ RESPONSIVE
 
     color: var(--c-primaire);
 
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+
     font-weight: 800;
 
     box-shadow:
         0 0 0 7px var(--c-fond),
-        var(--ombre-legere);
+        0 8px 20px rgba(0, 0, 0, 0.08);
 
     transition:
         background 0.3s ease,
         color 0.3s ease,
-        transform 0.3s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .timeline-item-left .timeline-marker {
-    right: -22px;
+    right: -24px;
 }
 
 .timeline-item-right .timeline-marker {
-    left: -22px;
+    left: -24px;
 }
 
 .timeline-item:hover .timeline-marker {
@@ -3579,13 +3616,23 @@ RESPONSIVE
 
     color: #ffffff;
 
-    transform: scale(1.1);
+    transform: scale(1.12);
+
+    box-shadow:
+        0 0 0 7px var(--c-fond),
+        0 10px 25px rgba(29, 78, 137, 0.25);
 }
 
-.timeline-card {
+/* =========================================================
+   CONTENU
+   ========================================================= */
+
+.timeline-content {
+    position: relative;
+
     width: 100%;
 
-    padding: 2rem;
+    padding: 1.8rem;
 
     background: var(--c-fond-carte);
 
@@ -3601,7 +3648,32 @@ RESPONSIVE
         border-color 0.35s ease;
 }
 
-.timeline-card:hover {
+/* Petite ligne décorative */
+
+.timeline-content::before {
+    content: "";
+
+    position: absolute;
+
+    top: 1.7rem;
+
+    width: 28px;
+    height: 2px;
+
+    background: var(--c-primaire);
+
+    opacity: 0.7;
+}
+
+.timeline-item-left .timeline-content::before {
+    right: -28px;
+}
+
+.timeline-item-right .timeline-content::before {
+    left: -28px;
+}
+
+.timeline-content:hover {
     transform: translateY(-6px);
 
     border-color: var(--c-bordure-forte);
@@ -3609,40 +3681,95 @@ RESPONSIVE
     box-shadow: var(--ombre-forte);
 }
 
-.timeline-category {
+/* =========================================================
+   PÉRIODE
+   ========================================================= */
+
+.timeline-period {
     display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
 
     margin-bottom: 0.8rem;
 
+    padding: 0.35rem 0.75rem;
+
+    border: 1px solid var(--c-bordure);
+
+    border-radius: 999px;
+
+    background: var(--c-fond-alt);
+
     color: var(--c-primaire);
 
-    font-size: 0.81rem;
+    font-size: 0.76rem;
+
     font-weight: 800;
 
     letter-spacing: 0.04em;
-
-    text-transform: uppercase;
 }
 
-.timeline-card h3 {
-    margin: 0 0 0.8rem;
+/* =========================================================
+   TITRE
+   ========================================================= */
+
+.timeline-title {
+    margin: 0 0 0.65rem;
 
     color: var(--c-texte);
 
-    font-size: 1.1rem;
+    font-size: 1.18rem;
 
-    line-height: 1.3;
+    font-weight: 800;
+
+    line-height: 1.35;
 }
 
-.timeline-card p {
-    margin-bottom: 1.4rem;
+/* =========================================================
+   LOCALISATION
+   ========================================================= */
+
+.timeline-location {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.45rem;
+
+    margin-bottom: 1rem;
 
     color: var(--c-texte-doux);
 
-    font-size: 0.89rem;
+    font-size: 0.84rem;
+
+    line-height: 1.5;
+}
+
+.timeline-location-icon {
+    flex-shrink: 0;
+
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.timeline-description {
+    margin: 0 0 1.25rem;
+
+    color: var(--c-texte-doux);
+
+    font-size: 0.9rem;
 
     line-height: 1.75;
 }
+
+/* =========================================================
+   TECHNOLOGIES
+   ========================================================= */
 
 .timeline-technologies {
     display: flex;
@@ -3650,10 +3777,16 @@ RESPONSIVE
     flex-wrap: wrap;
 
     gap: 0.45rem;
+
+    margin-top: 1rem;
 }
 
-.timeline-technologies span {
-    padding: 0.4rem 0.65rem;
+.timeline-tech {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 0.4rem 0.7rem;
 
     border: 1px solid var(--c-bordure);
 
@@ -3663,50 +3796,54 @@ RESPONSIVE
 
     color: var(--c-texte-doux);
 
-    font-size: 0.82rem;
+    font-size: 0.78rem;
+
     font-weight: 600;
 
     transition:
         color 0.25s ease,
         border-color 0.25s ease,
-        background 0.25s ease;
+        background 0.25s ease,
+        transform 0.25s ease;
 }
 
-.timeline-card:hover .timeline-technologies span {
+.timeline-content:hover .timeline-tech {
     border-color: var(--c-primaire-clair);
 }
 
-/* ==========================================
-   LIENS TIMELINE
-   ========================================== */
-
-.timeline-title-link {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.25s ease;
-}
-
-.timeline-title-link:hover {
+.timeline-tech:hover {
     color: var(--c-primaire);
+
+    border-color: var(--c-primaire);
+
+    transform: translateY(-2px);
 }
 
-.timeline-location {
-    display: block;
-    margin-top: 6px;
-    margin-bottom: 14px;
-    color: var(--c-texte-doux);
-    font-size: 0.85rem;
-}
+/* =========================================================
+   LIEN
+   ========================================================= */
 
 .timeline-link {
     display: inline-flex;
+
     align-items: center;
+
     gap: 7px;
-    margin-top: 18px;
+
+    margin-top: 1.25rem;
+
+    padding-top: 0.9rem;
+
+    border-top: 1px solid var(--c-bordure);
+
     color: var(--c-primaire);
-    font-size: 0.88rem;
-    font-weight: 600;
+
+    font-size: 0.86rem;
+
+    font-weight: 700;
+
     text-decoration: none;
+
     transition:
         gap 0.25s ease,
         color 0.25s ease;
@@ -3714,17 +3851,1028 @@ RESPONSIVE
 
 .timeline-link:hover {
     gap: 11px;
+
     color: var(--c-primaire-fonce);
 }
 
 .timeline-link span {
     font-size: 1rem;
+
     transition: transform 0.25s ease;
 }
 
 .timeline-link:hover span {
     transform: translate(2px, -2px);
 }
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes timelineFadeIn {
+    from {
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   CHARGEMENT
+   ========================================================= */
+
+.timeline-loading {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 1rem;
+
+    min-height: 220px;
+
+    color: var(--c-texte-doux);
+}
+
+.timeline-loading-spinner {
+    width: 38px;
+    height: 38px;
+
+    border: 3px solid var(--c-bordure);
+
+    border-top-color: var(--c-primaire);
+
+    border-radius: 50%;
+
+    animation: timelineSpin 0.8s linear infinite;
+}
+
+@keyframes timelineSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   ÉTAT VIDE
+   ========================================================= */
+
+.timeline-empty {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 220px;
+
+    padding: 2rem;
+
+    border: 1px dashed var(--c-bordure-forte);
+
+    border-radius: var(--rayon-l);
+
+    color: var(--c-texte-doux);
+
+    text-align: center;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLETTE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .timeline {
+        max-width: 760px;
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .timeline-item-left {
+        padding-right: 3rem;
+    }
+
+    .timeline-item-right {
+        padding-left: 3rem;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+}
+/* =========================================================
+   12. PARCOURS — TIMELINE UI / UX
+   ========================================================= */
+
+.timeline-section {
+    position: relative;
+
+    overflow: hidden;
+
+    background: var(--c-fond);
+}
+
+/* =========================================================
+   CONTENEUR
+   ========================================================= */
+
+.timeline {
+    position: relative;
+
+    width: min(1120px, 100%);
+
+    margin: 0 auto;
+
+    padding: 4rem 0 2rem;
+}
+
+/* =========================================================
+   LIGNE CENTRALE
+   ========================================================= */
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            var(--c-primaire-clair) 8%,
+            var(--c-primaire) 50%,
+            var(--c-primaire-clair) 92%,
+            transparent 100%
+        );
+
+    transform: translateX(-50%);
+
+    opacity: 0.65;
+}
+
+/* Petite lueur sur la ligne */
+
+.timeline::after {
+    content: "";
+
+    position: absolute;
+
+    top: 10%;
+
+    left: 50%;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--c-primaire);
+
+    box-shadow:
+        0 0 15px var(--c-primaire),
+        0 0 30px var(--c-primaire);
+
+    transform: translateX(-50%);
+
+    animation: timelinePulse 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   ITEM
+   ========================================================= */
+
+.timeline-item {
+    position: relative;
+
+    display: flex;
+
+    width: 50%;
+
+    margin-bottom: 5rem;
+
+    opacity: 0;
+
+    animation: timelineItemAppear 0.8s ease forwards;
+}
+
+.timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.timeline-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   CÔTÉ GAUCHE
+   ========================================================= */
+
+.timeline-item-left {
+    justify-content: flex-end;
+
+    padding-right: 4rem;
+
+    transform: translateX(-20px);
+}
+
+/* =========================================================
+   CÔTÉ DROIT
+   ========================================================= */
+
+.timeline-item-right {
+    margin-left: 50%;
+
+    padding-left: 4rem;
+
+    transform: translateX(20px);
+}
+
+/* =========================================================
+   MARQUEUR / NUMÉRO
+   ========================================================= */
+
+.timeline-marker {
+    position: absolute;
+
+    top: 1.5rem;
+
+    z-index: 10;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid var(--c-primaire);
+
+    border-radius: 50%;
+
+    background: var(--c-fond-carte);
+
+    color: var(--c-primaire);
+
+    font-size: 0.78rem;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 0 0 7px var(--c-fond),
+        0 8px 25px rgba(29, 78, 137, 0.16);
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.timeline-item-left .timeline-marker {
+    right: -26px;
+}
+
+.timeline-item-right .timeline-marker {
+    left: -26px;
+}
+
+/* Cercle intérieur */
+
+.timeline-marker::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border: 1px solid var(--c-primaire-clair);
+
+    border-radius: 50%;
+
+    opacity: 0.4;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+    background: var(--c-primaire);
+
+    color: #ffffff;
+
+    transform: scale(1.12);
+
+    box-shadow:
+        0 0 0 7px var(--c-fond),
+        0 0 25px rgba(29, 78, 137, 0.35);
+}
+
+.timeline-item:hover .timeline-marker::before {
+    transform: scale(1.25);
+
+    opacity: 0;
+}
+
+/* =========================================================
+   CARTE
+   ========================================================= */
+
+.timeline-content {
+    position: relative;
+
+    width: 100%;
+
+    padding: 2rem;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--c-fond-carte),
+            var(--c-fond-alt)
+        );
+
+    border: 1px solid var(--c-bordure);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+/* Ligne décorative en haut */
+
+.timeline-content::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--c-primaire),
+            var(--c-primaire-clair),
+            transparent
+        );
+
+    opacity: 0.9;
+}
+
+/* Petit triangle vers la ligne centrale */
+
+.timeline-item-left .timeline-content::before,
+.timeline-item-right .timeline-content::before {
+    content: "";
+
+    position: absolute;
+
+    top: 2rem;
+
+    width: 12px;
+    height: 12px;
+
+    background: var(--c-fond-carte);
+
+    border-top: 1px solid var(--c-bordure);
+
+    border-right: 1px solid var(--c-bordure);
+
+    transform: rotate(45deg);
+}
+
+.timeline-item-left .timeline-content::before {
+    right: -7px;
+}
+
+.timeline-item-right .timeline-content::before {
+    left: -7px;
+
+    transform: rotate(-135deg);
+}
+
+/* Hover */
+
+.timeline-content:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--c-primaire-clair);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.11);
+}
+
+/* =========================================================
+   PÉRIODE
+   ========================================================= */
+
+.timeline-period {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    margin-bottom: 0.9rem;
+
+    padding: 0.4rem 0.8rem;
+
+    border: 1px solid var(--c-bordure);
+
+    border-radius: 999px;
+
+    background: var(--c-fond);
+
+    color: var(--c-primaire);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.05em;
+
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   TITRE
+   ========================================================= */
+
+.timeline-title {
+    margin: 0 0 0.7rem;
+
+    color: var(--c-texte);
+
+    font-size: 1.2rem;
+
+    font-weight: 800;
+
+    line-height: 1.35;
+}
+
+/* =========================================================
+   LOCALISATION
+   ========================================================= */
+
+.timeline-location {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.45rem;
+
+    margin-bottom: 1rem;
+
+    color: var(--c-texte-doux);
+
+    font-size: 0.84rem;
+
+    line-height: 1.5;
+}
+
+.timeline-location-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--c-fond-alt);
+
+    font-size: 0.75rem;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.timeline-description {
+    margin: 0 0 1.3rem;
+
+    color: var(--c-texte-doux);
+
+    font-size: 0.9rem;
+
+    line-height: 1.75;
+}
+
+/* =========================================================
+   TECHNOLOGIES
+   ========================================================= */
+
+.timeline-technologies {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+
+    padding-top: 1rem;
+
+    border-top: 1px solid var(--c-bordure);
+}
+
+.timeline-tech {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 0.42rem 0.7rem;
+
+    border: 1px solid var(--c-bordure);
+
+    border-radius: 8px;
+
+    background: var(--c-fond);
+
+    color: var(--c-texte-doux);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.timeline-tech:hover {
+    color: var(--c-primaire);
+
+    border-color: var(--c-primaire);
+
+    background: var(--c-fond-alt);
+
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   LIEN
+   ========================================================= */
+
+.timeline-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    margin-top: 1.2rem;
+
+    padding-top: 1rem;
+
+    border-top: 1px solid var(--c-bordure);
+
+    color: var(--c-primaire);
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        gap 0.25s ease,
+        color 0.25s ease;
+}
+
+.timeline-link:hover {
+    gap: 0.8rem;
+
+    color: var(--c-primaire-fonce);
+}
+
+.timeline-link span:last-child {
+    transition: transform 0.25s ease;
+}
+
+.timeline-link:hover span:last-child {
+    transform: translate(3px, -3px);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes timelineItemAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes timelinePulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+
+        transform: translateX(-50%) scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: translateX(-50%) scale(1.4);
+    }
+}
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .timeline {
+        width: min(760px, calc(100% - 2rem));
+
+        padding-top: 3rem;
+    }
+
+    .timeline-item-left {
+        padding-right: 3rem;
+    }
+
+    .timeline-item-right {
+        padding-left: 3rem;
+    }
+
+    .timeline-content {
+        padding: 1.6rem;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /*
+     * IMPORTANT :
+     * Sur mobile la timeline devient une seule colonne.
+     */
+
+    .timeline {
+        width: 100%;
+
+        margin: 0;
+
+        padding: 2rem 1rem 1rem;
+    }
+
+    /*
+     * Ligne centrale parfaitement centrée
+     */
+
+    .timeline::before {
+        top: 0;
+        bottom: 0;
+
+        left: 50%;
+
+        width: 2px;
+
+        transform: translateX(-50%);
+    }
+
+    .timeline::after {
+        left: 50%;
+    }
+
+    /*
+     * Tous les items deviennent centrés
+     */
+
+    .timeline-item,
+    .timeline-item-left,
+    .timeline-item-right {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        width: 100%;
+
+        margin: 0 0 4rem;
+
+        padding: 0;
+
+        transform: none;
+    }
+
+    /*
+     * Numéro au-dessus de la carte
+     */
+
+    .timeline-marker,
+    .timeline-item-left .timeline-marker,
+    .timeline-item-right .timeline-marker {
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        width: 48px;
+        height: 48px;
+
+        margin: 0 auto 1.2rem;
+
+        flex-shrink: 0;
+
+        transform: none;
+    }
+
+    /*
+     * Liaison entre le numéro et la carte
+     */
+
+    .timeline-item::after {
+        content: "";
+
+        position: absolute;
+
+        top: 48px;
+        left: 50%;
+
+        width: 2px;
+        height: 1.2rem;
+
+        background: var(--c-primaire-clair);
+
+        transform: translateX(-50%);
+
+        z-index: 1;
+    }
+
+    /*
+     * Carte parfaitement centrée
+     */
+
+    .timeline-content {
+        width: min(100%, 520px);
+
+        margin: 0 auto;
+
+        padding: 1.5rem;
+
+        border-radius: 18px;
+
+        text-align: left;
+
+        transform: none;
+    }
+
+    /*
+     * Suppression des triangles latéraux
+     */
+
+    .timeline-item-left .timeline-content::before,
+    .timeline-item-right .timeline-content::before {
+        display: none;
+    }
+
+    /*
+     * Barre supérieure
+     */
+
+    .timeline-content::after {
+        height: 3px;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--c-primaire),
+                var(--c-primaire-clair)
+            );
+    }
+
+    /*
+     * Période
+     */
+
+    .timeline-period {
+        margin-bottom: 0.8rem;
+    }
+
+    /*
+     * Titre
+     */
+
+    .timeline-title {
+        font-size: 1.08rem;
+
+        line-height: 1.4;
+    }
+
+    /*
+     * Description
+     */
+
+    .timeline-description {
+        font-size: 0.86rem;
+
+        line-height: 1.7;
+    }
+
+    /*
+     * Technologies
+     */
+
+    .timeline-technologies {
+        justify-content: flex-start;
+    }
+
+    /*
+     * Lien
+     */
+
+    .timeline-link {
+        font-size: 0.82rem;
+    }
+
+    /*
+     * Hover mobile désactivé visuellement
+     * pour éviter les effets bizarres au toucher.
+     */
+
+    .timeline-content:hover {
+        transform: none;
+    }
+}
+
+/* =========================================================
+   PETITS SMARTPHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .timeline {
+        padding-left: 0.75rem;
+
+        padding-right: 0.75rem;
+    }
+
+    .timeline-item {
+        margin-bottom: 3.5rem;
+    }
+
+    .timeline-marker,
+    .timeline-item-left .timeline-marker,
+    .timeline-item-right .timeline-marker {
+        width: 44px;
+        height: 44px;
+
+        margin-bottom: 1rem;
+
+        font-size: 0.72rem;
+    }
+
+    .timeline-item::after {
+        top: 44px;
+    }
+
+    .timeline-content {
+        width: calc(100% - 0.5rem);
+
+        padding: 1.25rem;
+
+        border-radius: 16px;
+    }
+
+    .timeline-title {
+        font-size: 1rem;
+    }
+
+    .timeline-location {
+        font-size: 0.78rem;
+    }
+
+    .timeline-description {
+        font-size: 0.82rem;
+    }
+
+    .timeline-tech {
+        font-size: 0.7rem;
+
+        padding: 0.35rem 0.55rem;
+    }
+}
+
+/* =========================================================
+   TRÈS PETITS ÉCRANS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .timeline {
+        padding-left: 0.5rem;
+
+        padding-right: 0.5rem;
+    }
+
+    .timeline-content {
+        width: 100%;
+
+        padding: 1.1rem;
+    }
+
+    .timeline-title {
+        font-size: 0.95rem;
+    }
+
+    .timeline-description {
+        font-size: 0.8rem;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITÉ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .timeline-item,
+    .timeline-marker,
+    .timeline-content,
+    .timeline-tech,
+    .timeline-link {
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+    .timeline::after {
+        animation: none !important;
+    }
+}
+
 
 
 

@@ -10,27 +10,27 @@ function Footer() {
 
     const navigationLinks = [
         {
-            label: t.nav.home,
+            label: t("nav.home"),
             href: "#accueil",
         },
         {
-            label: t.nav.about,
+            label: t("nav.about"),
             href: "#apropos",
         },
         {
-            label: t.nav.skills,
+            label: t("nav.skills"),
             href: "#competences",
         },
         {
-            label: t.nav.projects,
+            label: t("nav.projects"),
             href: "#projets",
         },
         {
-            label: t.nav.journey,
+            label: t("nav.journey"),
             href: "#parcours",
         },
         {
-            label: t.nav.contact,
+            label: t("nav.contact"),
             href: "#contact",
         },
     ];
@@ -89,11 +89,12 @@ function Footer() {
                             </a>
 
                             <p>
-                                {t.footer.description}
+                                {t("footer.description")}
                             </p>
 
                         </div>
                     </ScrollReveal>
+
 
                     {/* NAVIGATION */}
                     <ScrollReveal
@@ -103,11 +104,11 @@ function Footer() {
                         <div className="footer-navigation">
 
                             <h3>
-                                {t.footer.navigation}
+                                {t("footer.navigation")}
                             </h3>
 
                             <nav
-                                aria-label={t.footer.navigationLabel}
+                                aria-label={t("footer.navigationLabel")}
                             >
                                 {navigationLinks.map((link) => (
                                     <a
@@ -122,6 +123,7 @@ function Footer() {
                         </div>
                     </ScrollReveal>
 
+
                     {/* RÉSEAUX SOCIAUX */}
                     <ScrollReveal
                         direction="right"
@@ -130,7 +132,7 @@ function Footer() {
                         <div className="footer-socials">
 
                             <h3>
-                                {t.footer.socials}
+                                {t("footer.socials")}
                             </h3>
 
                             <div className="footer-social-list">
@@ -146,6 +148,7 @@ function Footer() {
                                         <span>↗</span>
                                     </a>
                                 ))}
+
 
                                 {/* WHATSAPP */}
                                 <a
@@ -165,6 +168,7 @@ function Footer() {
 
                 </div>
 
+
                 {/* BAS DU FOOTER */}
                 <ScrollReveal
                     direction="up"
@@ -174,14 +178,14 @@ function Footer() {
 
                         <p>
                             © {currentYear} Fréjus Adjanohoun.
-                            {` ${t.footer.rights}`}
+                            {` ${t("footer.rights")}`}
                         </p>
 
                         <a
                             href="#accueil"
                             className="footer-back-top"
                         >
-                            {t.footer.backTop}
+                            {t("footer.backTop")}
                             <span>↑</span>
                         </a>
 

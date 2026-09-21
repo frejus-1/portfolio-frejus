@@ -110,23 +110,23 @@ function Navbar({ onOpenTarifs }) {
                 }`}
             >
                 <a href="#accueil" onClick={closeMenu}>
-                    {t.nav.home}
+                    {t("nav.home")}
                 </a>
 
                 <a href="#apropos" onClick={closeMenu}>
-                    {t.nav.about}
+                    {t("nav.about")}
                 </a>
 
                 <a href="#competences" onClick={closeMenu}>
-                    {t.nav.skills}
+                    {t("nav.skills")}
                 </a>
 
                 <a href="#projets" onClick={closeMenu}>
-                    {t.nav.projects}
+                    {t("nav.projects")}
                 </a>
 
                 <a href="#parcours" onClick={closeMenu}>
-                    {t.nav.journey}
+                    {t("nav.journey")}
                 </a>
 
                 {/* ==============================
@@ -143,11 +143,12 @@ function Navbar({ onOpenTarifs }) {
                 </button>
 
                 <a href="#contact" onClick={closeMenu}>
-                    {t.nav.contact}
+                    {t("nav.contact")}
                 </a>
             </nav>
 
             <div className="navbar-actions">
+
                 <button
                     className="language-toggle"
                     type="button"
@@ -188,9 +189,10 @@ function Navbar({ onOpenTarifs }) {
                         {darkMode ? "☀" : "☾"}
                     </span>
                 </button>
+
             </div>
         </header>
     );
 }
 
-export default Navbar
+export default Navbar;

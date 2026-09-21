@@ -16,43 +16,45 @@ function ProjectModal({ project, onClose }) {
 
     /*
      * ==========================================
+     * STATUT DU PROJET
+     * ==========================================
+     */
+
+    const isOnline = project.status === "online";
+
+    const statusLabel = isOnline
+        ? t("projects.online") || "En ligne"
+        : t("projects.development") ||
+          "En développement";
+
+    /*
+     * ==========================================
      * GESTION DU FOCUS + CLAVIER + SCROLL
      * ==========================================
      */
+
     useEffect(() => {
-        /*
-         * Mémoriser l'élément qui avait le focus
-         * avant l'ouverture de la modal.
-         */
         previousFocusRef.current =
             document.activeElement;
 
-        /*
-         * Donner le focus au bouton fermer.
-         */
         const focusTimer = setTimeout(() => {
             closeButtonRef.current?.focus();
         }, 0);
 
-        /*
-         * Bloquer le scroll de la page derrière
-         * la modal.
-         */
         const previousOverflow =
             document.body.style.overflow;
 
         document.body.style.overflow = "hidden";
 
-        /*
-         * Gestion du clavier.
-         */
         const handleKeyDown = (event) => {
             /*
              * ESC → fermer la modal
              */
             if (event.key === "Escape") {
                 event.preventDefault();
+
                 onClose();
+
                 return;
             }
 
@@ -88,7 +90,7 @@ function ProjectModal({ project, onClose }) {
 
                 const lastElement =
                     focusableElements[
-                    focusableElements.length - 1
+                        focusableElements.length - 1
                     ];
 
                 /*
@@ -98,7 +100,7 @@ function ProjectModal({ project, onClose }) {
                 if (
                     !event.shiftKey &&
                     document.activeElement ===
-                    lastElement
+                        lastElement
                 ) {
                     event.preventDefault();
 
@@ -112,7 +114,7 @@ function ProjectModal({ project, onClose }) {
                 if (
                     event.shiftKey &&
                     document.activeElement ===
-                    firstElement
+                        firstElement
                 ) {
                     event.preventDefault();
 
@@ -137,15 +139,9 @@ function ProjectModal({ project, onClose }) {
                 handleKeyDown
             );
 
-            /*
-             * Restaurer le scroll précédent.
-             */
             document.body.style.overflow =
                 previousOverflow;
 
-            /*
-             * Restaurer le focus précédent.
-             */
             previousFocusRef.current?.focus();
 
             previousFocusRef.current = null;
@@ -157,14 +153,8 @@ function ProjectModal({ project, onClose }) {
      * CLIC SUR L'ARRIÈRE-PLAN
      * ==========================================
      */
+
     const handleOverlayClick = (event) => {
-        /*
-         * On ferme uniquement si l'utilisateur
-         * clique directement sur l'overlay.
-         *
-         * Un clic à l'intérieur de la modal
-         * ne ferme donc pas la modal.
-         */
         if (
             event.target ===
             event.currentTarget
@@ -178,6 +168,7 @@ function ProjectModal({ project, onClose }) {
      * EFFET 3D SUR L'IMAGE
      * ==========================================
      */
+
     const handleImageMove = (event) => {
         const imageContainer =
             event.currentTarget;
@@ -191,17 +182,11 @@ function ProjectModal({ project, onClose }) {
         const y =
             event.clientY - rect.top;
 
-        /*
-         * Rotation horizontale.
-         */
         const rotateY =
             ((x - rect.width / 2) /
                 (rect.width / 2)) *
             3;
 
-        /*
-         * Rotation verticale.
-         */
         const rotateX =
             ((y - rect.height / 2) /
                 (rect.height / 2)) *
@@ -236,15 +221,9 @@ function ProjectModal({ project, onClose }) {
     /*
      * ==========================================
      * MODAL
-     *
-     * createPortal permet de placer la modal
-     * directement dans document.body.
-     *
-     * Cela évite les problèmes potentiels liés
-     * aux transform / perspective / z-index
-     * des éléments parents.
      * ==========================================
      */
+
     return createPortal(
         <div
             className="project-modal-overlay"
@@ -281,8 +260,10 @@ function ProjectModal({ project, onClose }) {
                     type="button"
                     className="project-modal-close"
                     onClick={onClose}
-                    aria-label={t.projects.close}
-                    title={t.projects.close}
+                    aria-label={t(
+                        "projects.close"
+                    )}
+                    title={t("projects.close")}
                 >
                     <span>×</span>
                 </button>
@@ -292,7 +273,6 @@ function ProjectModal({ project, onClose }) {
                 ================================== */}
 
                 <div className="project-modal-layout">
-
                     {/* =================================
                         IMAGE
                     ================================== */}
@@ -308,10 +288,11 @@ function ProjectModal({ project, onClose }) {
                             }
                         >
                             <div className="project-modal-visual-inner">
-
                                 <img
                                     src={project.image}
-                                    alt={`${t.projects.preview} ${project.title}`}
+                                    alt={`${t(
+                                        "projects.preview"
+                                    )} ${project.title}`}
                                 />
 
                                 <div
@@ -321,10 +302,9 @@ function ProjectModal({ project, onClose }) {
 
                                 <div className="project-modal-image-label">
                                     <span>
-                                        {
-                                            t.projects
-                                                .preview
-                                        }
+                                        {t(
+                                            "projects.preview"
+                                        )}
                                     </span>
 
                                     <strong>
@@ -336,7 +316,6 @@ function ProjectModal({ project, onClose }) {
                                         )}
                                     </strong>
                                 </div>
-
                             </div>
                         </div>
                     )}
@@ -346,10 +325,9 @@ function ProjectModal({ project, onClose }) {
                     ================================== */}
 
                     <div className="project-modal-content">
-
                         {/* HEADER */}
-                        <div className="project-modal-header">
 
+                        <div className="project-modal-header">
                             <div>
                                 <span className="project-modal-type">
                                     {project.type}
@@ -367,20 +345,16 @@ function ProjectModal({ project, onClose }) {
                             </div>
 
                             <div className="project-modal-status">
-
                                 <span
                                     className={
-                                        project.status ===
-                                            "En ligne"
+                                        isOnline
                                             ? "status-dot online"
                                             : "status-dot development"
                                     }
                                 />
 
-                                {project.status}
-
+                                {statusLabel}
                             </div>
-
                         </div>
 
                         {/* TITRE */}
@@ -405,33 +379,24 @@ function ProjectModal({ project, onClose }) {
                         ================================== */}
 
                         <div className="project-modal-section">
-
                             <div className="project-modal-section-heading">
-
-                                <span>
-                                    01
-                                </span>
+                                <span>01</span>
 
                                 <h3>
-                                    {
-                                        t.projects
-                                            .technologies
-                                    }
+                                    {t(
+                                        "projects.technologies"
+                                    )}
                                 </h3>
-
                             </div>
 
                             <div className="project-modal-technologies">
-
                                 {project.technologies.map(
                                     (
                                         technology,
                                         index
                                     ) => (
                                         <span
-                                            key={
-                                                technology
-                                            }
+                                            key={`${technology}-${index}`}
                                             style={{
                                                 "--modal-tech-index":
                                                     index,
@@ -439,15 +404,11 @@ function ProjectModal({ project, onClose }) {
                                         >
                                             <span className="project-modal-tech-dot" />
 
-                                            {
-                                                technology
-                                            }
+                                            {technology}
                                         </span>
                                     )
                                 )}
-
                             </div>
-
                         </div>
 
                         {/* =================================
@@ -455,29 +416,21 @@ function ProjectModal({ project, onClose }) {
                         ================================== */}
 
                         <div className="project-modal-section">
-
                             <div className="project-modal-section-heading">
-
-                                <span>
-                                    02
-                                </span>
+                                <span>02</span>
 
                                 <h3>
-                                    {
-                                        t.projects
-                                            .aboutProject
-                                    }
+                                    {t(
+                                        "projects.aboutProject"
+                                    )}
                                 </h3>
-
                             </div>
 
                             <p className="project-modal-about">
-                                {
-                                    t.projects
-                                        .aboutProjectDescription
-                                }
+                                {t(
+                                    "projects.aboutProjectDescription"
+                                )}
                             </p>
-
                         </div>
 
                         {/* =================================
@@ -485,7 +438,6 @@ function ProjectModal({ project, onClose }) {
                         ================================== */}
 
                         <div className="project-modal-actions">
-
                             {/* LIEN PROJET */}
 
                             {project.demo && (
@@ -498,10 +450,9 @@ function ProjectModal({ project, onClose }) {
                                     className="project-modal-action project-modal-action-primary"
                                 >
                                     <span>
-                                        {
-                                            t.projects
-                                                .viewProject
-                                        }
+                                        {t(
+                                            "projects.viewProject"
+                                        )}
                                     </span>
 
                                     <span className="project-modal-action-icon">
@@ -536,15 +487,12 @@ function ProjectModal({ project, onClose }) {
                             {!project.demo &&
                                 !project.github && (
                                     <span className="project-modal-development">
-                                        {
-                                            t.projects
-                                                .inDevelopment
-                                        }
+                                        {t(
+                                            "projects.inDevelopment"
+                                        )}
                                     </span>
                                 )}
-
                         </div>
-
                     </div>
                 </div>
 
@@ -553,7 +501,6 @@ function ProjectModal({ project, onClose }) {
                 ================================== */}
 
                 <div className="project-modal-bottom">
-
                     <span>
                         FRÉJUS ADJANOHOUN
                     </span>
@@ -567,16 +514,9 @@ function ProjectModal({ project, onClose }) {
                         )}{" "}
                         / PROJECT
                     </span>
-
                 </div>
-
             </div>
         </div>,
-
-        /*
-         * La modal est montée directement dans
-         * le <body>.
-         */
         document.body
     );
 }
