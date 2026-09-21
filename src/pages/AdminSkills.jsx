@@ -20,8 +20,8 @@ import { API_BASE_URL } from "../config";
 
 
 
-const SKILLS_API_URL = `${API_BASE_URL}/skills`;
-const CATEGORIES_API_URL = `${API_BASE_URL}/skill-categories`;
+const SKILLS_API_URL = `${API_BASE_URL}/api/skills`;
+const CATEGORIES_API_URL = `${API_BASE_URL}/api/skill-categories`;
 
 
 /*
