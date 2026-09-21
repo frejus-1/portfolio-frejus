@@ -1,8 +1,7 @@
+import { API_BASE_URL } from "../config";
 import { getAuthHeaders } from "./authService";
 
-const API_URL =
-    "http://localhost:8080/api/projects";
-
+const API_URL = `${API_BASE_URL}/api/projects`;
 
 /*
  * =========================================================
@@ -11,11 +10,9 @@ const API_URL =
  */
 
 export async function getProjects() {
-
     const response = await fetch(API_URL);
 
     if (!response.ok) {
-
         throw new Error(
             "Impossible de récupérer les projets."
         );
@@ -24,7 +21,6 @@ export async function getProjects() {
     return response.json();
 }
 
-
 /*
  * =========================================================
  * RÉCUPÉRER UN PROJET
@@ -32,13 +28,11 @@ export async function getProjects() {
  */
 
 export async function getProject(id) {
-
     const response = await fetch(
         `${API_URL}/${id}`
     );
 
     if (!response.ok) {
-
         throw new Error(
             "Projet introuvable."
         );
@@ -46,7 +40,6 @@ export async function getProject(id) {
 
     return response.json();
 }
-
 
 /*
  * =========================================================
@@ -58,15 +51,7 @@ export async function createProject(
     project,
     imageFile = null
 ) {
-
-    const formData =
-        new FormData();
-
-
-    /*
-     * Les données du projet sont envoyées
-     * sous forme JSON dans la partie "project".
-     */
+    const formData = new FormData();
 
     formData.append(
         "project",
@@ -80,60 +65,42 @@ export async function createProject(
         )
     );
 
-
-    /*
-     * Ajouter l'image uniquement
-     * si l'utilisateur en a sélectionné une.
-     */
-
     if (imageFile) {
-
         formData.append(
             "image",
             imageFile
         );
     }
 
-
     const response = await fetch(
         API_URL,
         {
             method: "POST",
-
             headers: {
                 ...getAuthHeaders(),
             },
-
             body: formData,
         }
     );
 
-
     if (!response.ok) {
-
         if (
             response.status === 401 ||
             response.status === 403
         ) {
-
             throw new Error(
                 "Vous devez être connecté en tant qu'administrateur."
             );
         }
 
-
         if (response.status === 413) {
-
             throw new Error(
                 "L'image est trop volumineuse."
             );
         }
 
-
         const message =
-            await extractErrorMessage(
-                response
-            );
+            await extractErrorMessage(response);
 
         throw new Error(
             message ||
@@ -141,10 +108,8 @@ export async function createProject(
         );
     }
 
-
     return response.json();
 }
-
 
 /*
  * =========================================================
@@ -157,10 +122,7 @@ export async function updateProject(
     project,
     imageFile = null
 ) {
-
-    const formData =
-        new FormData();
-
+    const formData = new FormData();
 
     formData.append(
         "project",
@@ -174,60 +136,42 @@ export async function updateProject(
         )
     );
 
-
-    /*
-     * Si une nouvelle image est sélectionnée,
-     * elle remplacera l'ancienne.
-     */
-
     if (imageFile) {
-
         formData.append(
             "image",
             imageFile
         );
     }
 
-
     const response = await fetch(
         `${API_URL}/${id}`,
         {
             method: "PUT",
-
             headers: {
                 ...getAuthHeaders(),
             },
-
             body: formData,
         }
     );
 
-
     if (!response.ok) {
-
         if (
             response.status === 401 ||
             response.status === 403
         ) {
-
             throw new Error(
                 "Vous devez être connecté en tant qu'administrateur."
             );
         }
 
-
         if (response.status === 413) {
-
             throw new Error(
                 "L'image est trop volumineuse."
             );
         }
 
-
         const message =
-            await extractErrorMessage(
-                response
-            );
+            await extractErrorMessage(response);
 
         throw new Error(
             message ||
@@ -235,10 +179,8 @@ export async function updateProject(
         );
     }
 
-
     return response.json();
 }
-
 
 /*
  * =========================================================
@@ -247,36 +189,28 @@ export async function updateProject(
  */
 
 export async function deleteProject(id) {
-
     const response = await fetch(
         `${API_URL}/${id}`,
         {
             method: "DELETE",
-
             headers: {
                 ...getAuthHeaders(),
             },
         }
     );
 
-
     if (!response.ok) {
-
         if (
             response.status === 401 ||
             response.status === 403
         ) {
-
             throw new Error(
                 "Vous devez être connecté en tant qu'administrateur."
             );
         }
 
-
         const message =
-            await extractErrorMessage(
-                response
-            );
+            await extractErrorMessage(response);
 
         throw new Error(
             message ||
@@ -284,10 +218,8 @@ export async function deleteProject(id) {
         );
     }
 
-
     return true;
 }
-
 
 /*
  * =========================================================
@@ -295,23 +227,16 @@ export async function deleteProject(id) {
  * =========================================================
  */
 
-async function extractErrorMessage(
-    response
-) {
-
+async function extractErrorMessage(response) {
     try {
-
-        const data =
-            await response.json();
+        const data = await response.json();
 
         return (
-            data.message ||
-            data.error ||
+            data?.message ||
+            data?.error ||
             null
         );
-
     } catch {
-
         return null;
     }
 }

@@ -10,9 +10,10 @@ import {
     getAuthHeaders,
 } from "../services/authService";
 
+import { API_BASE_URL } from "../config";
 
 const API_URL =
-    "http://localhost:8080/api/parcours";
+    `${API_BASE_URL}/api/parcours`;
 
 
 /*

@@ -11,10 +11,9 @@ import { useLanguage } from "../context/useLanguage";
 import {
     getSkillIcon,
 } from "../data/skillIconLibrary";
+import { API_BASE_URL } from "../config";
 
 
-const API_BASE_URL =
-    "http://localhost:8080/api";
 
 const SKILLS_API_URL =
     `${API_BASE_URL}/skills`;

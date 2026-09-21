@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "../context/useLanguage";
 
-const API_URL = "http://localhost:8080/api/parcours";
+import { API_BASE_URL } from "../config";
+
+const API_URL = `${API_BASE_URL}/api/parcours`;
 
 function Timeline() {
     const { language, t } = useLanguage();

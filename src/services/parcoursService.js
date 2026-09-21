@@ -1,9 +1,7 @@
+import { API_BASE_URL } from "../config";
 import { getAuthHeaders } from "./authService";
 
-
-const API_URL =
-    "http://localhost:8080/api/parcours";
-
+const API_URL = `${API_BASE_URL}/api/parcours`;
 
 // =========================================================
 // RÉCUPÉRER TOUS LES PARCOURS POUR L'ADMIN
@@ -12,7 +10,6 @@ const API_URL =
 export const getAdminParcours = async (
     language = "fr"
 ) => {
-
     const response = await fetch(
         `${API_URL}/admin?lang=${language}`,
         {
@@ -23,11 +20,8 @@ export const getAdminParcours = async (
         }
     );
 
-
     if (!response.ok) {
-
-        const message =
-            await response.text();
+        const message = await response.text();
 
         throw new Error(
             message ||
@@ -35,17 +29,14 @@ export const getAdminParcours = async (
         );
     }
 
-
     return response.json();
 };
-
 
 // =========================================================
 // RÉCUPÉRER LES STATISTIQUES DES PARCOURS
 // =========================================================
 
 export const getParcoursStatistics = async () => {
-
     const response = await fetch(
         `${API_URL}/admin/statistiques`,
         {
@@ -56,18 +47,14 @@ export const getParcoursStatistics = async () => {
         }
     );
 
-
     if (!response.ok) {
-
-        const message =
-            await response.text();
+        const message = await response.text();
 
         throw new Error(
             message ||
             `Erreur ${response.status} lors de la récupération des statistiques du parcours.`
         );
     }
-
 
     return response.json();
 };

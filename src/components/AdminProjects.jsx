@@ -19,8 +19,9 @@ import {
 } from "../services/authService";
 
 import "../styles/AdminProjects.css";
+import { API_BASE_URL } from "../config";
 
-const API_BASE_URL = "http://localhost:8080";
+
 
 const emptyForm = {
     titleFr: "",
