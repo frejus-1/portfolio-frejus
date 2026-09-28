@@ -4,12 +4,13 @@ import { useLanguage } from "../context/useLanguage";
 function DeveloperEasterEgg() {
     const { language } = useLanguage();
 
-    const [secret, setSecret] = useState("");
+    const [, setSecret] = useState("");
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (
+                typeof event.key !== "string" ||
                 event.key.length !== 1 ||
                 event.ctrlKey ||
                 event.altKey ||
@@ -18,16 +19,18 @@ function DeveloperEasterEgg() {
                 return;
             }
 
-            const nextSecret = (
-                secret + event.key.toLowerCase()
-            ).slice(-6);
+            setSecret((currentSecret) => {
+                const nextSecret = (
+                    currentSecret + event.key.toLowerCase()
+                ).slice(-6);
 
-            setSecret(nextSecret);
+                if (nextSecret === "frejus") {
+                    setVisible(true);
+                    return "";
+                }
 
-            if (nextSecret === "frejus") {
-                setVisible(true);
-                setSecret("");
-            }
+                return nextSecret;
+            });
         };
 
         window.addEventListener("keydown", handleKeyDown);
@@ -38,7 +41,7 @@ function DeveloperEasterEgg() {
                 handleKeyDown
             );
         };
-    }, [secret]);
+    }, []);
 
     useEffect(() => {
         if (!visible) {
@@ -149,3 +152,4 @@ function DeveloperEasterEgg() {
 }
 
 export default DeveloperEasterEgg;
+
