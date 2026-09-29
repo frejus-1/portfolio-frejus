@@ -1,4 +1,8 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import {
+    NavLink,
+    useNavigate,
+} from "react-router-dom";
+
 import { useState } from "react";
 
 import { logout } from "../../services/authService";
@@ -47,6 +51,11 @@ function AdminSidebar() {
             path: "/admin/messages",
             icon: "✉",
         },
+        {
+            label: "Visiteurs",
+            path: "/admin/visiteurs",
+            icon: "◉",
+        },
     ];
 
 
@@ -79,6 +88,7 @@ function AdminSidebar() {
 
     return (
         <>
+
             {/* =================================
                 BOUTON MENU MOBILE
             ================================== */}
@@ -123,10 +133,11 @@ function AdminSidebar() {
             ================================== */}
 
             <aside
-                className={`admin-sidebar ${mobileOpen
+                className={`admin-sidebar ${
+                    mobileOpen
                         ? "admin-sidebar-open"
                         : ""
-                    }`}
+                }`}
             >
 
                 {/* =================================
@@ -194,6 +205,7 @@ function AdminSidebar() {
                         ADMINISTRATION
                     </span>
 
+
                     <div className="admin-sidebar-links">
 
                         {navigationItems.map(
@@ -207,9 +219,10 @@ function AdminSidebar() {
                                         handleNavigation
                                     }
                                     className={({ isActive }) =>
-                                        `admin-sidebar-link ${isActive
-                                            ? "active"
-                                            : ""
+                                        `admin-sidebar-link ${
+                                            isActive
+                                                ? "active"
+                                                : ""
                                         }`
                                     }
                                 >
@@ -238,6 +251,7 @@ function AdminSidebar() {
                         SYSTÈME
                     </span>
 
+
                     <div className="admin-sidebar-links">
 
                         <NavLink
@@ -246,9 +260,10 @@ function AdminSidebar() {
                                 handleNavigation
                             }
                             className={({ isActive }) =>
-                                `admin-sidebar-link ${isActive
-                                    ? "active"
-                                    : ""
+                                `admin-sidebar-link ${
+                                    isActive
+                                        ? "active"
+                                        : ""
                                 }`
                             }
                         >
@@ -293,6 +308,7 @@ function AdminSidebar() {
                 </div>
 
             </aside>
+
         </>
     );
 }

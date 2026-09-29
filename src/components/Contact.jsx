@@ -4,6 +4,11 @@ import { useLanguage } from "../context/useLanguage";
 
 import { API_BASE_URL } from "../config";
 
+import {
+    getVisitorUuid,
+    recordVisitor,
+} from "../services/visitorService";
+
 const API_URL = `${API_BASE_URL}/api/contact`;
 
 const WHATSAPP_NUMBER = "2290152905310";
@@ -68,11 +73,30 @@ function Contact() {
         const form = event.currentTarget;
         const formData = new FormData(form);
 
+        /*
+ * ==========================================
+ * VISITEUR
+ * ==========================================
+ *
+ * On récupère le visitorUuid créé lors de
+ * l'enregistrement de la visite.
+ *
+ * Si aucune visite n'a encore été enregistrée,
+ * on en crée une maintenant.
+ */
+
+        let visitorUuid = getVisitorUuid();
+
+        if (!visitorUuid) {
+            visitorUuid = await recordVisitor();
+        }
+
         const contactMessage = {
             nom: formData.get("nom"),
             email: formData.get("email"),
             sujet: formData.get("sujet"),
             message: formData.get("message"),
+            visitorUuid: visitorUuid || null,
         };
 
         try {
@@ -344,19 +368,19 @@ function Contact() {
 
                             {formStatus ===
                                 "success" && (
-                                <p className="form-message form-message-success">
-                                    {t(
-                                        "contact.success"
-                                    )}
-                                </p>
-                            )}
+                                    <p className="form-message form-message-success">
+                                        {t(
+                                            "contact.success"
+                                        )}
+                                    </p>
+                                )}
 
                             {formStatus ===
                                 "error" && (
-                                <p className="form-message form-message-error">
-                                    {errorMessage}
-                                </p>
-                            )}
+                                    <p className="form-message form-message-error">
+                                        {errorMessage}
+                                    </p>
+                                )}
 
                             <div className="contact-form-actions">
 
@@ -369,20 +393,20 @@ function Contact() {
                                     }
                                 >
                                     {formStatus ===
-                                    "sending"
+                                        "sending"
                                         ? t(
-                                              "contact.sending"
-                                          )
+                                            "contact.sending"
+                                        )
                                         : t(
-                                              "contact.send"
-                                          )}
+                                            "contact.send"
+                                        )}
 
                                     {formStatus !==
                                         "sending" && (
-                                        <span>
-                                            ↗
-                                        </span>
-                                    )}
+                                            <span>
+                                                ↗
+                                            </span>
+                                        )}
                                 </button>
 
                                 <a

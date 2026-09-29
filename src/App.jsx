@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import { useLanguage } from "./context/useLanguage";
+import { recordVisitor } from "./services/visitorService";
 
 // ==========================================
 // PAGES
@@ -18,6 +19,7 @@ import AdminMessageDetails from "./pages/AdminMessageDetails";
 import AdminSettings from "./pages/AdminSettings";
 import AdminParcours from "./pages/AdminParcours";
 import AdminSkills from "./pages/AdminSkills";
+import AdminVisitors from "./pages/AdminVisitors";
 
 // ==========================================
 // ADMIN
@@ -31,7 +33,6 @@ import AdminLayout from "./components/admin/AdminLayout";
 // ==========================================
 
 import AdminProjects from "./components/AdminProjects";
-
 
 // ==========================================
 // COMPOSANTS PUBLICS
@@ -99,6 +100,17 @@ function Home() {
             );
 
         };
+
+    }, []);
+
+
+    /* =====================================================
+       STATISTIQUES DES VISITEURS
+    ===================================================== */
+
+    useEffect(() => {
+
+        recordVisitor();
 
     }, []);
 
@@ -301,6 +313,9 @@ function App() {
                         - Sidebar
                         - Header
                         - Outlet
+
+                        ProtectedRoute protège l'ensemble
+                        des routes administrateur.
                     ================================================= */}
 
                     <Route
@@ -371,6 +386,16 @@ function App() {
                             element={
                                 <AdminMessageDetails />
                             }
+                        />
+
+
+                        {/* ==========================================
+                            VISITEURS
+                        ========================================== */}
+
+                        <Route
+                            path="visiteurs"
+                            element={<AdminVisitors />}
                         />
 
 

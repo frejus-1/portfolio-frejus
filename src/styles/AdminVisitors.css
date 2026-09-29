@@ -1,0 +1,500 @@
+.admin-visitors {
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.admin-visitors-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.admin-visitors-header h1 {
+    margin: 8px 0;
+    font-size: 34px;
+}
+
+.admin-visitors-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.admin-visitors-refresh {
+    border: 0;
+    border-radius: 10px;
+    padding: 11px 18px;
+    background: #1d4e89;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.admin-visitors-refresh:hover {
+    background: #153a66;
+}
+
+.admin-visitors-refresh:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.admin-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-bottom: 24px;
+    padding: 15px 18px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+}
+
+.admin-alert-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.admin-alert strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.admin-alert p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.admin-alert-error {
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    background: rgba(239, 68, 68, 0.08);
+    color: #991b1b;
+}
+
+.admin-alert-error .admin-alert-icon {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.admin-alert-success {
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    background: rgba(34, 197, 94, 0.08);
+    color: #166534;
+}
+
+.admin-alert-success .admin-alert-icon {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+
+/* =========================================================
+   RÉSUMÉ
+========================================================= */
+
+.admin-visitors-summary {
+    margin-bottom: 24px;
+}
+
+.admin-visitors-total {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: 220px;
+
+    padding: 22px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.admin-visitors-total span {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.admin-visitors-total strong {
+    font-size: 32px;
+    color: #1d4e89;
+}
+
+
+/* =========================================================
+   TABLEAU
+========================================================= */
+
+.admin-visitors-panel {
+    overflow: hidden;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+
+    background: white;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.admin-visitors-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-visitors-table {
+    width: 100%;
+    min-width: 1050px;
+
+    border-collapse: collapse;
+}
+
+.admin-visitors-table th,
+.admin-visitors-table td {
+    padding: 15px 16px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #eef2f7;
+
+    white-space: nowrap;
+}
+
+.admin-visitors-table th {
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.admin-visitors-table td {
+    color: #334155;
+    font-size: 14px;
+}
+
+.admin-visitors-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.admin-visitors-table code {
+    padding: 4px 7px;
+
+    border-radius: 6px;
+
+    background: #f1f5f9;
+
+    font-size: 12px;
+}
+
+.admin-visitors-empty {
+    padding: 45px 20px !important;
+
+    text-align: center !important;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   BOUTON SUPPRESSION
+========================================================= */
+
+.admin-visitor-delete {
+    border: 0;
+    border-radius: 8px;
+
+    padding: 7px 10px;
+
+    background: #fee2e2;
+    color: #b91c1c;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.admin-visitor-delete:hover:not(:disabled) {
+    background: #fecaca;
+    transform: translateY(-1px);
+}
+
+.admin-visitor-delete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MODALE DE CONFIRMATION
+========================================================= */
+
+.admin-visitors-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.58);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.admin-visitors-modal {
+    width: 100%;
+    max-width: 460px;
+
+    padding: 30px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.25);
+
+    text-align: center;
+
+    animation: adminVisitorsModalAppear 0.2s ease-out;
+}
+
+.admin-visitors-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #fee2e2;
+    color: #b91c1c;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.admin-visitors-modal h2 {
+    margin: 0 0 12px;
+
+    color: #1e293b;
+
+    font-size: 22px;
+    line-height: 1.3;
+}
+
+.admin-visitors-modal > p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   INFORMATIONS VISITEUR
+========================================================= */
+
+.admin-visitors-modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    margin-top: 20px;
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    text-align: left;
+}
+
+.admin-visitors-modal-info span {
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.admin-visitors-modal-info strong {
+    color: #334155;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   ACTIONS DE LA MODALE
+========================================================= */
+
+.admin-visitors-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 26px;
+}
+
+.admin-visitors-modal-actions button {
+    border: 0;
+    border-radius: 9px;
+
+    padding: 10px 16px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.admin-visitors-modal-actions button:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.admin-visitors-modal-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   ANNULER
+========================================================= */
+
+.admin-visitors-modal-cancel {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.admin-visitors-modal-cancel:hover:not(:disabled) {
+    background: #e2e8f0;
+}
+
+
+/* =========================================================
+   CONFIRMER
+========================================================= */
+
+.admin-visitors-modal-confirm {
+    background: #b91c1c;
+    color: white;
+}
+
+.admin-visitors-modal-confirm:hover:not(:disabled) {
+    background: #991b1b;
+}
+
+
+/* =========================================================
+   ANIMATION MODALE
+========================================================= */
+
+@keyframes adminVisitorsModalAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .admin-visitors {
+        padding: 20px;
+    }
+
+    .admin-visitors-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-visitors-header h1 {
+        font-size: 28px;
+    }
+
+    .admin-visitors-total {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .admin-visitors-modal {
+        padding: 24px;
+    }
+
+    .admin-visitors-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .admin-visitors-modal-actions button {
+        width: 100%;
+    }
+
+}
+

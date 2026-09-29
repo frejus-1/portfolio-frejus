@@ -1592,6 +1592,37 @@ function AdminSettings() {
 
                     </button>
 
+                    {/* Visiteurs */}
+
+                    <button
+                        type="button"
+                        onClick={() =>
+                            goTo("/admin/visiteurs")
+                        }
+                    >
+
+                        <span>
+                            ◉
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Visiteurs
+                            </strong>
+
+                            <small>
+                                Consulter les visites enregistrées
+                            </small>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </button>
+
                 </div>
 
 

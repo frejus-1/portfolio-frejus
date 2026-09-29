@@ -11,6 +11,7 @@ import { getProjects } from "../services/projectService";
 import { getMessages } from "../services/contactService";
 import { getRole } from "../services/authService";
 import { getParcoursStatistics } from "../services/parcoursService";
+import { getVisitorCount } from "../services/visitorService";
 
 import StatCard from "../components/admin/StatCard";
 import RecentMessages from "../components/admin/RecentMessages";
@@ -24,12 +25,14 @@ function AdminDashboard() {
 
 
     /* =========================================================
-       ÉTATS
+       ÉTATS DES DONNÉES
     ========================================================= */
 
     const [projects, setProjects] = useState([]);
 
     const [messages, setMessages] = useState([]);
+
+    const [visitorCount, setVisitorCount] = useState(0);
 
     const [parcoursStatistics, setParcoursStatistics] = useState({
         total: 0,
@@ -38,90 +41,137 @@ function AdminDashboard() {
         technologies: 0,
     });
 
-    const [loading, setLoading] = useState(true);
 
-    const [error, setError] = useState("");
+    /* =========================================================
+       ÉTATS DE CHARGEMENT INDÉPENDANTS
+    ========================================================= */
+
+    const [projectsLoading, setProjectsLoading] =
+        useState(true);
+
+    const [messagesLoading, setMessagesLoading] =
+        useState(true);
+
+    const [parcoursLoading, setParcoursLoading] =
+        useState(true);
+
+    const [visitorsLoading, setVisitorsLoading] =
+        useState(true);
+
+
+    /* =========================================================
+       ERREUR
+    ========================================================= */
+
+    const [error, setError] =
+        useState("");
 
 
     /* =========================================================
        CHARGEMENT DU DASHBOARD
+
+       Chaque API est indépendante.
+
+       Une erreur sur les visiteurs ne bloque donc pas
+       les projets, les messages ou le parcours.
     ========================================================= */
 
     const loadDashboard = useCallback(async () => {
 
-        try {
+        setError("");
 
-            setLoading(true);
-
-            setError("");
-
-
-            const [
-                projectsData,
-                messagesData,
-                parcoursStatisticsData,
-            ] = await Promise.all([
-                getProjects(),
-                getMessages(),
-                getParcoursStatistics(),
-            ]);
+        setProjectsLoading(true);
+        setMessagesLoading(true);
+        setParcoursLoading(true);
+        setVisitorsLoading(true);
 
 
-            /* =====================================================
-               PROJETS
-            ===================================================== */
+        const results = await Promise.allSettled([
+            getProjects(),
+            getMessages(),
+            getParcoursStatistics(),
+            getVisitorCount(),
+        ]);
+
+
+        /* =====================================================
+           PROJETS
+        ===================================================== */
+
+        const projectsResult = results[0];
+
+        if (projectsResult.status === "fulfilled") {
 
             setProjects(
-                Array.isArray(projectsData)
-                    ? projectsData
+                Array.isArray(projectsResult.value)
+                    ? projectsResult.value
                     : []
             );
 
+        } else {
 
-            /* =====================================================
-               MESSAGES
+            console.error(
+                "Erreur lors du chargement des projets :",
+                projectsResult.reason
+            );
 
-               On conserve TOUS les messages ici.
+        }
 
-               Le filtrage des messages non lus est effectué
-               uniquement pour l'affichage de la section
-               "Messages récents".
-            ===================================================== */
+        setProjectsLoading(false);
+
+
+        /* =====================================================
+           MESSAGES
+        ===================================================== */
+
+        const messagesResult = results[1];
+
+        if (messagesResult.status === "fulfilled") {
 
             setMessages(
-                Array.isArray(messagesData)
-                    ? messagesData
+                Array.isArray(messagesResult.value)
+                    ? messagesResult.value
                     : []
             );
 
+        } else {
 
-            /* =====================================================
-               STATISTIQUES PARCOURS
-            ===================================================== */
+            console.error(
+                "Erreur lors du chargement des messages :",
+                messagesResult.reason
+            );
+
+        }
+
+        setMessagesLoading(false);
+
+
+        /* =====================================================
+           PARCOURS
+        ===================================================== */
+
+        const parcoursResult = results[2];
+
+        if (parcoursResult.status === "fulfilled") {
+
+            const data =
+                parcoursResult.value;
 
             setParcoursStatistics(
-                parcoursStatisticsData &&
-                typeof parcoursStatisticsData === "object"
+                data &&
+                    typeof data === "object"
                     ? {
                         total:
-                            Number(
-                                parcoursStatisticsData.total
-                            ) || 0,
+                            Number(data.total) || 0,
 
                         actifs:
-                            Number(
-                                parcoursStatisticsData.actifs
-                            ) || 0,
+                            Number(data.actifs) || 0,
 
                         inactifs:
-                            Number(
-                                parcoursStatisticsData.inactifs
-                            ) || 0,
+                            Number(data.inactifs) || 0,
 
                         technologies:
-                            Number(
-                                parcoursStatisticsData.technologies
-                            ) || 0,
+                            Number(data.technologies) || 0,
                     }
                     : {
                         total: 0,
@@ -131,55 +181,104 @@ function AdminDashboard() {
                     }
             );
 
-        } catch (err) {
+        } else {
 
             console.error(
-                "Erreur lors du chargement du tableau de bord :",
-                err
+                "Erreur lors du chargement du parcours :",
+                parcoursResult.reason
+            );
+
+        }
+
+        setParcoursLoading(false);
+
+
+        /* =====================================================
+           VISITEURS
+        ===================================================== */
+
+        const visitorsResult = results[3];
+
+        if (visitorsResult.status === "fulfilled") {
+
+            setVisitorCount(
+                Number(visitorsResult.value) || 0
+            );
+
+        } else {
+
+            console.error(
+                "Erreur lors du chargement des visiteurs :",
+                visitorsResult.reason
+            );
+
+        }
+
+        setVisitorsLoading(false);
+
+
+        /* =====================================================
+           ERREURS D'AUTHENTIFICATION
+        ===================================================== */
+
+        const rejectedResults =
+            results.filter(
+                (result) =>
+                    result.status === "rejected"
             );
 
 
-            const errorText =
-                err?.message?.toLowerCase() || "";
+        const authenticationError =
+            rejectedResults.find(
+                (result) => {
+
+                    const message =
+                        result.reason?.message
+                            ?.toLowerCase() || "";
+
+                    return (
+                        message.includes("administrateur") ||
+                        message.includes("connecté") ||
+                        message.includes("connecte") ||
+                        message.includes("unauthorized") ||
+                        message.includes("forbidden") ||
+                        message.includes("session") ||
+                        message.includes("token")
+                    );
+                }
+            );
 
 
-            /* =====================================================
-               SESSION / AUTHENTIFICATION
-            ===================================================== */
+        if (authenticationError) {
 
-            if (
-                errorText.includes("administrateur") ||
-                errorText.includes("connecté") ||
-                errorText.includes("connecte") ||
-                errorText.includes("unauthorized") ||
-                errorText.includes("forbidden") ||
-                errorText.includes("session") ||
-                errorText.includes("token")
-            ) {
+            navigate(
+                "/login",
+                {
+                    replace: true,
+                }
+            );
 
-                navigate(
-                    "/login",
-                    {
-                        replace: true,
-                    }
-                );
-
-                return;
-            }
+            return;
+        }
 
 
-            /* =====================================================
-               ERREUR GÉNÉRALE
-            ===================================================== */
+        /* =====================================================
+           ERREUR PARTIELLE
+        ===================================================== */
+
+        if (rejectedResults.length > 0) {
 
             setError(
-                err?.message ||
-                "Impossible de charger les données du tableau de bord."
+                `${rejectedResults.length} service${
+                    rejectedResults.length > 1
+                        ? "s"
+                        : ""
+                } n'a${
+                    rejectedResults.length > 1
+                        ? "ont"
+                        : ""
+                } pas pu charger leurs données.`
             );
-
-        } finally {
-
-            setLoading(false);
 
         }
 
@@ -188,53 +287,35 @@ function AdminDashboard() {
 
     /* =========================================================
        INITIALISATION
+
+       Le chargement est lancé dans une micro-tâche afin
+       d'éviter le warning react-hooks/set-state-in-effect.
     ========================================================= */
 
     useEffect(() => {
 
-        let cancelled = false;
+        if (getRole() !== "ADMIN") {
+
+            navigate(
+                "/login",
+                {
+                    replace: true,
+                }
+            );
+
+            return;
+        }
 
 
-        const initializeDashboard = async () => {
+        const startDashboardLoading =
+            async () => {
 
-            const role = getRole();
+                await loadDashboard();
 
-
-            /* =====================================================
-               VÉRIFICATION DU RÔLE
-            ===================================================== */
-
-            if (role !== "ADMIN") {
-
-                navigate(
-                    "/login",
-                    {
-                        replace: true,
-                    }
-                );
-
-                return;
-            }
+            };
 
 
-            if (cancelled) {
-                return;
-            }
-
-
-            await loadDashboard();
-
-        };
-
-
-        initializeDashboard();
-
-
-        return () => {
-
-            cancelled = true;
-
-        };
+        void startDashboardLoading();
 
     }, [
         navigate,
@@ -244,14 +325,6 @@ function AdminDashboard() {
 
     /* =========================================================
        MESSAGES NON LUS
-
-       Cette liste sert :
-
-       1. au compteur "Non lus"
-       2. à la section "Messages récents"
-
-       Un message lu disparaît donc automatiquement de cette
-       section après actualisation des données.
     ========================================================= */
 
     const unreadMessages = useMemo(() => {
@@ -326,6 +399,15 @@ function AdminDashboard() {
     };
 
 
+    const handleVisitors = () => {
+
+        navigate(
+            "/admin/visiteurs"
+        );
+
+    };
+
+
     const handleSettings = () => {
 
         navigate(
@@ -380,7 +462,7 @@ function AdminDashboard() {
 
 
             {/* =====================================================
-                ERREUR
+                ERREUR PARTIELLE
             ===================================================== */}
 
             {error && (
@@ -401,7 +483,7 @@ function AdminDashboard() {
                     <div>
 
                         <strong>
-                            Impossible de charger le dashboard
+                            Certaines données sont indisponibles
                         </strong>
 
                         <p>
@@ -440,7 +522,7 @@ function AdminDashboard() {
                 <StatCard
                     label="Projets"
                     value={
-                        loading
+                        projectsLoading
                             ? "—"
                             : totalProjects
                     }
@@ -457,7 +539,7 @@ function AdminDashboard() {
                 <StatCard
                     label="Parcours"
                     value={
-                        loading
+                        parcoursLoading
                             ? "—"
                             : parcoursStatistics.total
                     }
@@ -475,7 +557,7 @@ function AdminDashboard() {
                 <StatCard
                     label="Messages"
                     value={
-                        loading
+                        messagesLoading
                             ? "—"
                             : totalMessages
                     }
@@ -492,7 +574,7 @@ function AdminDashboard() {
                 <StatCard
                     label="Non lus"
                     value={
-                        loading
+                        messagesLoading
                             ? "—"
                             : unreadMessages.length
                     }
@@ -500,6 +582,24 @@ function AdminDashboard() {
                     icon="●"
                     variant="unread"
                     onClick={handleMessages}
+                />
+
+
+                {/* =================================================
+                    VISITEURS
+                ================================================= */}
+
+                <StatCard
+                    label="Visiteurs"
+                    value={
+                        visitorsLoading
+                            ? "—"
+                            : visitorCount
+                    }
+                    description="Visites enregistrées"
+                    icon="◉"
+                    variant="parcours"
+                    onClick={handleVisitors}
                 />
 
             </section>
@@ -514,17 +614,11 @@ function AdminDashboard() {
 
                 {/* =================================================
                     MESSAGES RÉCENTS
-
-                    IMPORTANT :
-                    On envoie uniquement les messages non lus.
-
-                    Lorsqu'un message devient lu, il disparaît
-                    de cette section.
                 ================================================= */}
 
                 <RecentMessages
                     messages={unreadMessages}
-                    loading={loading}
+                    loading={messagesLoading}
                     limit={5}
                 />
 
@@ -581,7 +675,7 @@ function AdminDashboard() {
                                 </strong>
 
                                 <small>
-                                    {loading
+                                    {projectsLoading
                                         ? "Chargement..."
                                         : `${totalProjects} projet${
                                             totalProjects > 1
@@ -629,7 +723,7 @@ function AdminDashboard() {
                                 </strong>
 
                                 <small>
-                                    {loading
+                                    {parcoursLoading
                                         ? "Chargement..."
                                         : `${parcoursStatistics.total} étape${
                                             parcoursStatistics.total > 1
@@ -719,7 +813,7 @@ function AdminDashboard() {
 
                                 <small>
 
-                                    {loading
+                                    {messagesLoading
                                         ? "Chargement..."
                                         : unreadMessages.length > 0
                                             ? `${unreadMessages.length} non lu${
@@ -728,6 +822,60 @@ function AdminDashboard() {
                                                     : ""
                                             }`
                                             : "Aucun message non lu"
+                                    }
+
+                                </small>
+
+                            </span>
+
+
+                            <span
+                                className="admin-quick-arrow"
+                                aria-hidden="true"
+                            >
+                                →
+                            </span>
+
+                        </button>
+
+
+                        {/* =================================================
+                            VISITEURS
+                        ================================================= */}
+
+                        <button
+                            type="button"
+                            className="admin-quick-action"
+                            onClick={handleVisitors}
+                        >
+
+                            <span
+                                className="admin-quick-icon"
+                                aria-hidden="true"
+                            >
+                                ◉
+                            </span>
+
+
+                            <span className="admin-quick-content">
+
+                                <strong>
+                                    Consulter les visiteurs
+                                </strong>
+
+                                <small>
+
+                                    {visitorsLoading
+                                        ? "Chargement..."
+                                        : `${visitorCount} visite${
+                                            visitorCount > 1
+                                                ? "s"
+                                                : ""
+                                        } enregistrée${
+                                            visitorCount > 1
+                                                ? "s"
+                                                : ""
+                                        }`
                                     }
 
                                 </small>
@@ -852,7 +1000,7 @@ function AdminDashboard() {
                             </span>
 
                             <strong>
-                                {loading
+                                {parcoursLoading
                                     ? "—"
                                     : parcoursStatistics.total
                                 }
@@ -872,7 +1020,7 @@ function AdminDashboard() {
                             </span>
 
                             <strong>
-                                {loading
+                                {parcoursLoading
                                     ? "—"
                                     : parcoursStatistics.actifs
                                 }
@@ -892,7 +1040,7 @@ function AdminDashboard() {
                             </span>
 
                             <strong>
-                                {loading
+                                {parcoursLoading
                                     ? "—"
                                     : parcoursStatistics.inactifs
                                 }
@@ -912,7 +1060,7 @@ function AdminDashboard() {
                             </span>
 
                             <strong>
-                                {loading
+                                {parcoursLoading
                                     ? "—"
                                     : parcoursStatistics.technologies
                                 }
@@ -950,6 +1098,7 @@ function AdminDashboard() {
         </div>
 
     );
+
 }
 
 
